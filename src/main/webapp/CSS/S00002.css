@@ -1,0 +1,241 @@
+@charset "UTF-8";
+/******************************************************************************/
+/* ■ブラウザ固有の初期化                                                     */
+/******************************************************************************/
+* {
+  padding: 0;
+  margin: 0;
+}
+/******************************************************************************/
+/* ■文字基本設定                                                              */
+/******************************************************************************/
+* {
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.5em;
+  font-family: "メイリオ","MS Pゴシック",sans-serif;
+  letter-spacing: 0.3px;
+}
+/******************************************************************************/
+/* ■レスポンシブ設定                                                           */
+/******************************************************************************/
+@media screen and (min-width:901px) {
+  /* PC用設定 */
+  * {
+    /* 何もしない */
+  }
+}
+@media only screen and (min-width:415px) and (max-width: 900px) {
+  /* タブレット用設定 */
+  * {
+    /*  何もしない */
+  }
+}
+@media screen and (max-width:414px) {
+  /* スマートフォン用設定 */
+  * {
+    /* 何もしない */
+  }
+}
+/******************************************************************************/
+/* ■全体設定                                                                 */
+/******************************************************************************/
+/******************************************************************************/
+/* ■■テーブルの設定                                                         */
+/******************************************************************************/
+table {
+  border: 0px;
+  border-spacing: 0px;
+}
+/******************************************************************************/
+/* ■■全体のラッパー                                                         */
+/******************************************************************************/
+div.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 640px;
+}
+/******************************************************************************/
+/* ■■タイトルバー                                                           */
+/******************************************************************************/
+div.title_bar {
+  /* absoluteの起点 */
+  position:relative;
+  width: 100%;
+  height: 40px;
+  background-color: #bfffe4;
+}
+a.back {
+  position:absolute;
+  display: block;
+  height: 40px;
+  width: 60px;
+  top: 0px;
+  left: 0px;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 40px;
+  color: #333333;
+  text-align:center;
+  background-color: #cccccc;
+  text-decoration: none;
+}
+p.page_title {
+  position:absolute;
+  display: block;
+  height: 40px;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  box-sizing: border-box;
+  font-size: 18px;
+  line-height: 40px;
+  color: #333333;
+  text-align:center;
+}
+div.title_bar a#menu_open {
+  position:absolute;
+  height: 40px;
+  width: 60px;
+  top: 0px;
+  right: 0px;
+}
+div.title_bar a#menu_open img.menu-icon {
+  display: block;
+  height: 40px;
+  width: 60px;
+}
+/******************************************************************************/
+/* ■■メニューキャンセルレイヤ                                               */
+/******************************************************************************/
+div#marker {
+  position :relative;
+  width: 100%;
+}
+div#layer {
+  position :absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: #ccc;
+  opacity:0.5;
+  z-index:10;
+}
+/******************************************************************************/
+/* ■■メニュー                                                               */
+/******************************************************************************/
+div#menu_marker {
+  /* 起点 */
+  position: relative;
+  width:100%;
+}
+div.menu_base {
+  position:absolute;
+  width:90%;
+  top: 0px;
+  right: 0px;
+  height: 258px;
+  z-index:20;
+  background: #0000ff;
+  opacity:1.0;
+}
+div.menu_header {
+  box-sizing: border-box;
+  width:100%;
+  height:38px;
+  background-color: #bfffe4;
+  border-top: thin solid #333333;
+  border-bottom: thin solid #333333;
+}
+div.menu_header p {
+  width:100%;
+  height:38px;
+  line-height:38px;
+  text-align: center;
+  color: #333333;
+  font-size: 16px;
+}
+div.menu_header a#menu_close {
+  position:absolute;
+  top: 0px;
+  right: 0px;
+  width: 100px;
+  height: 38px;
+  line-height:38px;
+  text-align: center;
+  color: #333333;
+  font-size: 16px;
+  text-decoration: none;
+}
+div.menu_base ul {
+  list-style: none;
+  width: 100%;
+}
+div.menu_base ul {
+  list-style: none;
+  width: 100%;
+}
+div.menu_base ul li {
+  box-sizing: border-box;
+  width: 100%;
+  height:44px;
+  background-color: #afeeee;
+  border-bottom: thin solid #333333;
+}
+div.menu_base ul li a {
+  /* 起点 */
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height:44px;
+  text-decoration: none;
+}
+div.menu_base ul li a p {
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  padding-right: 44px;
+  padding-left: 12px;
+  text-decoration: none;
+}
+div.menu_base ul li a img.right_arrow {
+  position: absolute;
+  box-sizing: border-box;
+  top: 15px;
+  right :15px;
+  width: 16px;
+  height: 16px;
+}
+div.menu_base ul li a p.to_excd {
+  display: block;
+  box-sizing: border-box;
+  height: 44px;
+  width: 80px;
+  line-height: 44px;
+  padding-right: 0px;
+  padding-left: 12px;
+  float: left;
+}
+div.menu_base ul li a img.pop_up {
+  box-sizing: border-box;
+  margin-top: 7px;
+  width: 28px;
+  height: 28px;
+  clear: left;
+}
+
+div.title_bar a#menu_open {
+  position:absolute;
+  height: 40px;
+  width: 60px;
+  top: 0px;
+  right: 0px;
+}
+div.title_bar a#menu_open img.menu {
+  display: block;
+  height: 40px;
+  width: 60px;
+}

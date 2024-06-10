@@ -17,7 +17,7 @@ public class Transform {
         return String.format("%.1f", roundedNumber);
 	}
 
-	public String getLastUploadTime(Double release_datetime) {
+	public String getLastUploadTime(double release_datetime) {
 
 		String resultVal;
 		double d_releaseDay = 0;
@@ -123,106 +123,106 @@ public class Transform {
 		
 		String resultKey = null;
 		
-		if(key.equals("01")){
+		if("01".equals(key)){
 			resultKey = "Cメジャー";
 		
-		}else if(key.equals("02")){
+		}else if("02".equals(key)){
 			resultKey = "Cシャープメジャー";
 			
-		}else if(key.equals("03")){
+		}else if("03".equals(key)){
 			resultKey = "Dフラットメジャー";
 			
-		}else if(key.equals("04")){
+		}else if("04".equals(key)){
 			resultKey = "Dメジャー";
 			
-		}else if(key.equals("05")){
+		}else if("05".equals(key)){
 			resultKey = "Dシャープメジャー";
 			
-		}else if(key.equals("06")){
+		}else if("06".equals(key)){
 			resultKey = "Eフラットメジャー";
 			
-		}else if(key .equals("07")){
+		}else if("07".equals(key)){
 			resultKey = "Eメジャー";
 			
-		}else if(key.equals("08")){
+		}else if("08".equals(key)){
 			resultKey = "Fメジャー";
 			
-		}else if(key.equals("09")){
+		}else if("09".equals(key)){
 			resultKey = "Fシャープメジャー";
 			
-		}else if(key.equals("10")){
+		}else if("10".equals(key)){
 			resultKey = "Gフラットメジャー";
 			
-		}else if(key.equals("11")){
+		}else if("11".equals(key)){
 			resultKey = "Gメジャー";
 			
-		}else if(key.equals("12")){
+		}else if("12".equals(key)){
 			resultKey = "Gシャープメジャー";
 			
-		}else if(key.equals("13")){
+		}else if("13".equals(key)){
 			resultKey = "Aフラットメジャー";
 			
-		}else if(key.equals("14")){
+		}else if("14".equals(key)){
 			resultKey = "Aメジャー";
 			
-		}else if(key.equals("15")){
+		}else if("15".equals(key)){
 			resultKey = "Aシャープメジャー";
 		
-		}else if(key.equals("16")){
+		}else if("16".equals(key)){
 			resultKey = "Bフラットメジャー";
 			
-		}else if(key.equals("17")){
+		}else if("17".equals(key)){
 			resultKey = "Bメジャー";
 			
-		}else if(key.equals("18")){
+		}else if("18".equals(key)){
 			resultKey = "Cマイナー";
 			
-		}else if(key.equals("19")){
+		}else if("19".equals(key)){
 			resultKey = "Cシャープマイナー";
 			
-		}else if(key.equals("20")){
+		}else if("20".equals(key)){
 			resultKey = "Dフラットマイナー";
 			
-		}else if(key.equals("21")){
+		}else if("21".equals(key)){
 			resultKey = "Dマイナー";
 			
-		}else if(key.equals("22")){
+		}else if("22".equals(key)){
 			resultKey = "Dシャープマイナー";
 			
-		}else if(key.equals("23")){
+		}else if("23".equals(key)){
 			resultKey = "Eフラットマイナー";
 			
-		}else if(key.equals("24")){
+		}else if("24".equals(key)){
 			resultKey = "Eマイナー";
 			
-		}else if(key.equals("25")){
-			resultKey = "Eシャープマイナー";
+		}else if("25".equals(key)){
+			resultKey = "Fマイナー";
 			
-		}else if(key.equals("26")){
+		}else if("26".equals(key)){
 			resultKey = "Fシャープマイナー";
 			
-		}else if(key.equals("27")){
+		}else if("27".equals(key)){
 			resultKey = "Gフラットマイナー";
 			
-		}else if(key.equals("28")){
+		}else if("28".equals(key)){
 			resultKey = "Gマイナー";
 			
-		}else if(key.equals("29")){
+		}else if("29".equals(key)){
 			resultKey = "Gシャープマイナー";
 			
-		}else if(key.equals("30")){
+		}else if("30".equals(key)){
 			resultKey = "Aフラットマイナー";
 			
-		}else if(key.equals("31")){
+		}else if("31".equals(key)){
 			resultKey = "Aマイナー";
 			
-		}else if(key.equals("32")){
+		}else if("32".equals(key)){
 			resultKey = "Aシャープマイナー";
 			
-		}else if(key.equals("33")){
+		}else if("33".equals(key)){
 			resultKey = "Bフラットマイナー";
 			
-		}else if(key.equals("34")){
+		}else if("34".equals(key)){
 			resultKey = "Bマイナー";
 			
 		}
@@ -234,22 +234,22 @@ public class Transform {
 	
 		String resultScore_type = null;
 		
-		if(score_type.equals("0")){
+		if("0".equals(score_type)){
 			resultScore_type = "楽譜通り";
 		
-		}else if(score_type.equals("1")){
+		}else if("1".equals(score_type)){
 			resultScore_type = "1オクターブ上で表記";
 			
 		}
 		return resultScore_type;
 	}
 	
-	//登録日を[yyyy年MM月dd日]で返す。
-	public static String isDate(String joined_date){
+	//日付を[yyyy年MM月dd日]で返す。
+	public static String isDate(String date){
 		
-		StringBuilder joined = new StringBuilder(joined_date);
-		StringBuilder date = (joined.insert(4, "年").insert(7, "月").insert(10,"日"));
-		String resultDate = date.toString();
+		StringBuilder builder = new StringBuilder(date);
+		StringBuilder sb = (builder.insert(4, "年").insert(7, "月").insert(10,"日"));
+		String resultDate = sb.toString();
 		return resultDate;
 	}
 	
@@ -258,10 +258,10 @@ public class Transform {
 	
 		String resultGender = null;
 		
-		if(gender.equals("1")){
+		if("1".equals(gender)){
 			resultGender = "男";
 			
-		}else if(gender.equals("2")){
+		}else if("2".equals(gender)){
 			resultGender = "女";
 			
 		}else{
@@ -274,9 +274,9 @@ public class Transform {
 	//誕生日を[yyyy/MM/dd]で返す。
 	public static String isBirthday(String birthday){
 	
-		StringBuilder sb = new StringBuilder(birthday);
-		StringBuilder SB = (sb.insert(4, "/").insert(7, "/"));
-		String resultBirthday = SB.toString();
+		StringBuilder builder = new StringBuilder(birthday);
+		StringBuilder sb = (builder.insert(4, "/").insert(7, "/"));
+		String resultBirthday = sb.toString();
 		return resultBirthday;
 	}
 	
@@ -285,10 +285,10 @@ public class Transform {
 	
 		String resultLanguage_type = null;
 		
-		if(language_type.equals("001")){
+		if("001".equals(language_type)){
 			resultLanguage_type = "英語";
 			
-		}else if(language_type.equals("002")){
+		}else if("002".equals(language_type)){
 			resultLanguage_type = "日本語";
 			
 		}

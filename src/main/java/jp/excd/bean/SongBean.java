@@ -43,10 +43,10 @@ public class SongBean {
 	private String image_file_name;
 	
 	//イメージファイル画像高さ
-	private String image_file_height;
+	private int image_file_height;
 	
 	//イメージファイル画像幅
-	private String image_file_width;
+	private int image_file_width;
 	
 	//関連リンク
 	private String other_link_url;
@@ -55,7 +55,7 @@ public class SongBean {
 	private String other_link_description;
 	
 	
-	//②コンストラクタ生成
+	//コンストラクタ生成
 	//曲ID
 	public String getsong_id() {
 		return song_id;
@@ -174,20 +174,20 @@ public class SongBean {
 	}
 	
 	//イメージファイル画像高さ
-	public String getimage_file_height() {
+	public int getimage_file_height() {
 		return image_file_height;
 	}
 	
-	public void setimage_file_height(String image_file_height) {
+	public void setimage_file_height(int image_file_height) {
 		this.image_file_height = image_file_height;
 	}
 	
 	//イメージファイル画像幅
-	public String getimage_file_width() {
+	public int getimage_file_width() {
 		return image_file_width;
 	}
 	
-	public void setimage_file_width(String image_file_width) {
+	public void setimage_file_width(int image_file_width) {
 		this.image_file_width = image_file_width;
 	}
 	

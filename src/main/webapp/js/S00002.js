@@ -110,7 +110,7 @@ var Util = {
       + '    <li>'
       + '      <a href="https://excd.jp/">'
       + '        <p class="to_excd">運営会社</p>'
-      + '        <img alt="運営会社" class="return.png" src="/web/image/return.png" />'
+      + '        <img alt="運営会社" class="pop_up" src="/web/image/return.png" />'
       + '      </a>'
       + '    </li>'
       + '  </ul>'

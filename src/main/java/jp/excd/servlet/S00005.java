@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import jp.excd.bean.SongBean;
 import jp.excd.bean.SongRecord;
 import jp.excd.conponent.PlaceHolderInput;
+import jp.excd.judge.Judge;
 import jp.excd.transform.Transform;
 
 public class S00005 extends HttpServlet {
@@ -34,7 +35,7 @@ public class S00005 extends HttpServlet {
 		String dbName = "meloko";
 		String UserName = "meloko";
 		String Password = "exceed";
-		String timeZone = "JST";
+		String timeZone = "Asia/Tokyo";
 
 		Connection con = null;
 
@@ -135,7 +136,7 @@ public class S00005 extends HttpServlet {
 			if (release_date_from == null || "".equals(release_date_from)) {
 				// 処理継続	
 
-			} else if (Transform.isDateValue(release_date_from) == false) {
+			} else if (Judge.isDateValue(release_date_from) == false) {
 				// エラー
 				String s = this.getDescription(con, "ES00005_001");
 				request.setAttribute("error", s);
@@ -155,7 +156,7 @@ public class S00005 extends HttpServlet {
 			if (release_date_to == null || "".equals(release_date_to)) {
 				// 処理継続
 
-			} else if (Transform.isDateValue(release_date_to) == false) {
+			} else if (Judge.isDateValue(release_date_to) == false) {
 				// エラー
 				String s = this.getDescription(con, "ES00005_002");
 				request.setAttribute("error", s);
@@ -181,10 +182,10 @@ public class S00005 extends HttpServlet {
 				return;
 
 			} else if (release_date_from == null
-					|| "".equals(release_date_from) && Transform.isDateValue(release_date_to) == true) {
+					|| "".equals(release_date_from) && Judge.isDateValue(release_date_to) == true) {
 				//処理続行
 
-			} else if (Transform.isDateValue(release_date_from)) {
+			} else if (Judge.isDateValue(release_date_from)) {
 				//処理続行
 			}
 		} else if (!("1".equals(release_date_radio))) {
@@ -211,7 +212,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_radio)) {
 			if (rating_from == null || "".equals(rating_from)) {
 				// 処理継続
-			} else if (Transform.isNumber(rating_from) == false) {
+			} else if (Judge.isNumber(rating_from) == false) {
 				// エラー
 				String s = this.getDescription(con, "ES00005_005");
 				request.setAttribute("error", s);
@@ -231,7 +232,7 @@ public class S00005 extends HttpServlet {
 			if (rating_to == null || "".equals(rating_to)) {
 				//処理継続
 
-			} else if (Transform.isNumber(rating_to) == false) {
+			} else if (Judge.isNumber(rating_to) == false) {
 				//エラー
 				String s = this.getDescription(con, "ES00005_006");
 				request.setAttribute("error", s);
@@ -259,10 +260,10 @@ public class S00005 extends HttpServlet {
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00005.jsp").forward(request,response);
 				return;
 
-			} else if (rating_from == null || "".equals(rating_from) && Transform.isNumber(rating_to) == true) {
+			} else if (rating_from == null || "".equals(rating_from) && Judge.isNumber(rating_to) == true) {
 				//処理続行
 
-			} else if (Transform.isNumber(rating_from)) {
+			} else if (Judge.isNumber(rating_from)) {
 				//処理続行
 			}
 		} else if (!("1".equals(rating_radio))) {
@@ -323,7 +324,7 @@ public class S00005 extends HttpServlet {
 			if (views_from == null || "".equals(views_from)) {
 				//処理継続
 
-			} else if (Transform.isNumber(views_from) == false) {
+			} else if (Judge.isNumber(views_from) == false) {
 				//エラー
 				String s = this.getDescription(con, "ES00005_010");
 				request.setAttribute("error", s);
@@ -344,7 +345,7 @@ public class S00005 extends HttpServlet {
 			if (views_to == null || "".equals(views_to)) {
 				//処理継続
 
-			} else if (Transform.isNumber(views_to) == false) {
+			} else if (Judge.isNumber(views_to) == false) {
 				//エラー
 				String s = this.getDescription(con, "ES00005_011");
 				request.setAttribute("error", s);
@@ -373,10 +374,10 @@ public class S00005 extends HttpServlet {
 				.forward(request, response);
 				return;
 
-			} else if (views_from == null || "".equals(views_from) && Transform.isNumber(views_to) == true) {
+			} else if (views_from == null || "".equals(views_from) && Judge.isNumber(views_to) == true) {
 				//処理続行
 
-			} else if (Transform.isNumber(views_from)) {
+			} else if (Judge.isNumber(views_from)) {
 				//処理続行
 			}
 		} else if (!("1".equals(views_radio))) {
@@ -477,9 +478,16 @@ public class S00005 extends HttpServlet {
 		List<SongBean> songList = new ArrayList<SongBean>();
 
 		int counter = 0;
+		
 
 		for (SongRecord record : results) {
 			SongBean bean = new SongBean();
+
+			counter = counter + 1;
+			
+			if (counter > 10) {
+				break;
+			}
 			
 			//ソングID
 			String Song_id = record.song_id();
@@ -497,7 +505,7 @@ public class S00005 extends HttpServlet {
 
 			//平均感動指数
 			double Rating_average = record.rating_average();
-			String rating_average_formated = Transform.isMin(Rating_average);			
+			String rating_average_formated = Transform.isThree(Rating_average);			
 			bean.setrating_average_formated(rating_average_formated);
 
 			//再生回数
@@ -513,16 +521,18 @@ public class S00005 extends HttpServlet {
 			//ファイルネーム
 			String Image_file_name = record.imege_file_name();
 			bean.setimage_file_name(Image_file_name);
-
 			
-			counter = counter + 1;
-			// 先頭の10件のみ処理を行う。
-			if (counter > 10) {
-				break;
-			}
 			songList.add(bean);
 		}
-		String count = NumberFormat.getNumberInstance().format(counter);
+		
+		int counter_main = 0;
+
+		for (SongRecord record : results) {
+
+			counter_main = counter_main + 1;
+		}
+		
+		String count = NumberFormat.getNumberInstance().format(counter_main);
 		request.setAttribute("hits", count);
 		request.setAttribute("list", songList);
 
@@ -572,10 +582,10 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 		String title_type_radio, 
 		String title, 
 		String sort_order) throws Exception {
-
+	
 	String SQL = "SELECT id, title, composer_id, rating_total, rating_average, "
 			+ "total_listen_count, release_datetime, last_update_datetime, "
-			+ "massage, key, score_type, bpm, image_file_name, image_file_height, "
+			+ "message, `key` , score_type, bpm, image_file_name, image_file_height, "
 			+ "image_file_width, other_link_url, other_link_description "
 			+ "FROM song ";
 
@@ -597,7 +607,7 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 	String sql16 = "ORDER BY rating_average asc ";
 	String sql17 = "ORDER BY total_listen_count desc ";
 	String sql18 = "ORDER BY total_listen_count asc ";
-	String sql19 = ", id desc;";
+	String sql19 = "ORDER BY id desc;";
 	String and = "AND ";
 	/*		String from = ">= ? ";
 	 * 		String space = " ";
@@ -607,7 +617,7 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 	 * 		String asc = "asc ";	
 	 */		
 	List<PlaceHolderInput> list = new ArrayList<PlaceHolderInput>(); 
-
+	
 	if ("1".equals(release_date_radio) || "1".equals(rating_radio) || "1".equals(rating_average_radio) || "1".equals(views_radio) || "1".equals(title_radio)) {
 		SQL += "WHERE ";
 
@@ -615,14 +625,15 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 		if ("1".equals(release_date_radio)) {
 			if (release_date_from == null || "".equals(release_date_from)) {
 				//処理続行
-
-			} else {
+			} else if (Judge.isDateValue(release_date_from)) {
 				SQL += sql1;
-
+				
 				PlaceHolderInput phi = new PlaceHolderInput();
 				phi.setType("2");
 				phi.setDoubleValue(Double.parseDouble(release_date_from));
 				list.add(phi);
+			} else {
+				throw new Exception();
 			}
 
 		} else if (!("1".equals(release_date_radio))) {
@@ -634,8 +645,9 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 			if (release_date_to == null || "".equals(release_date_to)) {
 				//処理続行
 
-			} else {
+			} else if (Judge.isDateValue(release_date_to)) {
 				if (list.size() == 0) {
+				} else {
 					SQL += and;
 				}
 
@@ -645,8 +657,9 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 				phi.setType("2");
 				phi.setDoubleValue(Double.parseDouble(release_date_to));
 				list.add(phi);
+			}  else {
+				throw new Exception();
 			}
-
 		} else if (!("1".equals(release_date_radio))) {
 			//処理続行				
 		}
@@ -656,8 +669,9 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 			if (rating_from == null || "".equals(rating_from)) {
 				//処理続行
 
-			} else {
+			} else if (Judge.isNumber(rating_from)) {
 				if (list.size() == 0) {
+				} else {
 					SQL += and;
 				}
 
@@ -667,6 +681,8 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 				phi.setType("1");
 				phi.setIntValue(Integer.parseInt(rating_from));
 				list.add(phi);
+			} else {
+				throw new Exception();
 			}
 
 		} else if (!("1".equals(rating_radio))) {
@@ -678,8 +694,9 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 			if (rating_to == null || "".equals(rating_to)) {
 				//処理続行
 
-			} else {
+			} else if (Judge.isNumber(rating_to)) {
 				if (list.size() == 0) {
+				} else {
 					SQL += and;
 				}
 
@@ -689,6 +706,8 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 				phi.setType("1");
 				phi.setIntValue(Integer.parseInt(rating_from));
 				list.add(phi);
+			} else {
+				throw new Exception();
 			}
 
 		} else if (!("1".equals(rating_radio))) {
@@ -700,17 +719,20 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 			if (rating_average_from == null || "".equals(rating_average_from)) {
 				//処理続行
 
-			} else {
+			} else if (Judge.isDouble(rating_average_from)) {
 				if (list.size() == 0) {
+				} else {
 					SQL += and;
 				}
 
 				SQL += sql5;
 
 				PlaceHolderInput phi = new PlaceHolderInput();
-				phi.setType("1");
-				phi.setIntValue(Integer.parseInt(rating_from));
+				phi.setType("2");
+				phi.setDoubleValue(Double.parseDouble(rating_average_from));
 				list.add(phi);
+			} else {
+				throw new Exception();
 			}
 
 		} else if (!("1".equals(rating_average_radio))) {
@@ -722,17 +744,20 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 			if (rating_average_to == null || "".equals(rating_average_to)) {
 				//処理続行
 
-			} else {
+			} else if (Judge.isDouble(rating_average_to)) {
 				if (list.size() == 0) {
+				} else {
 					SQL += and;
 				}
 
 				SQL += sql6;
 
 				PlaceHolderInput phi = new PlaceHolderInput();
-				phi.setType("1");
-				phi.setIntValue(Integer.parseInt(rating_to));
+				phi.setType("2");
+				phi.setDoubleValue(Double.parseDouble(rating_average_to));
 				list.add(phi);
+			} else {
+				throw new Exception();
 			}
 
 		} else if (!("1".equals(rating_average_radio))) {
@@ -744,8 +769,9 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 			if (views_from == null || "".equals(views_from)) {
 				//処理続行
 
-			} else {
+			} else if (Judge.isNumber(views_from)) {
 				if (list.size() == 0) {
+				} else {
 					SQL += and;
 				}
 
@@ -755,6 +781,8 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 				phi.setType("1");
 				phi.setIntValue(Integer.parseInt(views_from));
 				list.add(phi);
+			} else {
+				throw new Exception();
 			}
 
 		} else if (!("1".equals(views_radio))) {
@@ -766,8 +794,9 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 			if (views_to == null || "".equals(views_to)) {
 				//処理続行
 
-			} else {
+			} else if (Judge.isNumber(views_to)) {
 				if (list.size() == 0) {
+				} else {
 					SQL += and;
 				}
 
@@ -777,6 +806,8 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 				phi.setType("1");
 				phi.setIntValue(Integer.parseInt(views_to));
 				list.add(phi);
+			} else {
+				throw new Exception();
 			}
 
 		} else if (!("1".equals(views_radio))) {
@@ -790,17 +821,17 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 
 			} else {
 				if (list.size() == 0) {
+				} else {
 					SQL += and;
 				}
 
 				if ("3".equals(title_type_radio)) {
-					SQL = SQL + "% " + sql9 + "% "; 
+					SQL = SQL + sql9; 
+					title = "%" + title + "%";
 
 				} else if ("4".equals(title_type_radio)) {
 					SQL = SQL + sql10; 
 
-				} else {
-					throw new Exception();
 				}
 
 				PlaceHolderInput phi = new PlaceHolderInput();
@@ -846,7 +877,7 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 	ResultSet rs = null;
 
 	pstmt = con.prepareStatement(SQL);
-
+	
 	for (int i = 0; i < list.size(); i++) {
 
 		PlaceHolderInput option = list.get(i);
@@ -882,7 +913,7 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 								rs.getString("key"),
 								rs.getString("score_type"),
 								rs.getDouble("bpm"),
-								rs.getString("imege_file_name"),
+								rs.getString("image_file_name"),
 								rs.getInt("image_file_height"),
 								rs.getInt("image_file_width"),
 								rs.getString("other_link_url"),

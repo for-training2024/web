@@ -14,16 +14,16 @@
 	}
 
 	// (3) 以下の項目を元にニックネームの入力状態を再現する。
-	String release_date_Radio1 = "";
-    if ("1".equals(request.getAttribute("release_date_is_radio"))) {
-    	release_date_Radio1 = "checked=\"checked\"";
-    };
-	String release_date_Radio2 = "";
-	if ("0".equals(request.getAttribute("release_date_is_radio"))) {
-		release_date_Radio2 = "checked=\"checked\"";
+	String release_date_radio1 = "";
+    if ("1".equals(request.getAttribute("release_date_radio"))) {
+    	release_date_radio1 = "checked=\"checked\"";
+    }
+	String release_date_radio2 = "";
+	if ("0".equals(request.getAttribute("release_date_radio"))) {
+		release_date_radio2 = "checked=\"checked\"";
 	}
-	String release_date_is_from = (String)request.getAttribute("release_date_is_from");
-	String release_date_is_to = (String)request.getAttribute("release_date_is_to");
+	String release_date_from = (String)request.getAttribute("release_date_from");
+	String release_date_to = (String)request.getAttribute("release_date_to");
 
 	// (4) 「感動指数_エラー状態(rating_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 	String rating_is_error = "";
@@ -61,9 +61,13 @@
 		rating_radio2 = "checked=\"checked\"";
 	}
 	String rating_average_from = (String)request.getAttribute("rating_average_from");
-	if (rating_average_from == null) rating_average_from="1.0";
+	if (rating_average_from == null) { 
+		rating_average_from="1.0";
+	}
 	String rating_average_to = (String)request.getAttribute("rating_average_to");
-	if (rating_average_to == null) rating_average_to ="1.0";
+	if (rating_average_to == null) {
+		rating_average_to ="1.0";
+	}
 
 	// (8) 「再生回数_エラー状態(views_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 	String views_is_error = "";
@@ -97,7 +101,7 @@
 		title_radio1 = "checked=\"checked\"";
 	}
 	String title_radio2 = "";
-	if ("0".equals(request.getAttribute("title_radio"))) {
+	if ("2".equals(request.getAttribute("title_radio"))) {
 		title_radio2 = "checked=\"checked\"";
 	}
 	String title_type_radio1 = "";
@@ -157,7 +161,7 @@
     <% } %>
 
     <!-- フォーム -->
-    <form name="main" action="#" method="post">
+    <form name="main" action="/web/ja/S00005/search" method="post">
 
       <!-- 公開日 -->
       <div class="input_table <%= release_date_is_error %>">
@@ -169,12 +173,12 @@
                 <tr>
                   <td>
                     <label>
-                      <input type="radio" name="release_date_radio" value="1" class="onOffRadio" <%= release_date_Radio1 %>><span class="radio_label">指定</span>
+                      <input type="radio" name="release_date_radio" value="1" class="onOffRadio" <%= release_date_radio1 %>><span class="radio_label">指定</span>
                     </label>
                   </td>
                   <td>
                     <label>
-                      <input type="radio" name="release_date_radio" value="2" class="onOffRadio" checked="checked" <%= release_date_Radio2 %>><span class="radio_label">指定なし</span>
+                      <input type="radio" name="release_date_radio" value="2" class="onOffRadio" <%= release_date_radio2 %>><span class="radio_label">指定なし</span>
                     </label>
                   </td>
                 </tr>
@@ -183,11 +187,11 @@
           </tr>
           <tr>
             <td class="value">
-              <input type="date" name="release_date_from" value="<%= release_date_is_from %>">
+              <input type="date" name="release_date_from" value="<%= release_date_from %>">
               <br>
               ～
               <br>
-              <input type="date" name="release_date_to" value="<%= release_date_is_to %>">
+              <input type="date" name="release_date_to" value="<%= release_date_to %>">
             </td>
           </tr>
         </table>
@@ -209,7 +213,7 @@
                   </td>
                   <td>
                     <label>
-                      <input type="radio" name="rating_radio" value="2" class="onOffRadio" checked="checked" <%= rating_radio2 %>><span class="radio_label">指定なし</span>
+                      <input type="radio" name="rating_radio" value="2" class="onOffRadio" <%= rating_radio2 %>><span class="radio_label">指定なし</span>
                     </label>
                   </td>
                 </tr>
@@ -243,7 +247,7 @@
                   </td>
                   <td>
                     <label>
-                      <input type="radio" name="rating_average_radio" value="2" class="onOffRadio" checked="checked" <%= rating_radio2 %>><span class="radio_label">指定なし</span>
+                      <input type="radio" name="rating_average_radio" value="2" class="onOffRadio" <%= rating_radio2 %>><span class="radio_label">指定なし</span>
                     </label>
                   </td>
                 </tr>
@@ -361,7 +365,7 @@
                   </td>
                   <td>
                     <label>
-                      <input type="radio" name="views_radio" value="2" class="onOffRadio" checked="checked" <%= views_radio2 %>><span class="radio_label">指定なし</span>
+                      <input type="radio" name="views_radio" value="2" class="onOffRadio" <%= views_radio2 %>><span class="radio_label">指定なし</span>
                     </label>
                   </td>
                 </tr>
@@ -395,7 +399,7 @@
                   </td>
                   <td>
                     <label>
-                      <input type="radio" name="title_radio" value="2" class="onOffRadio" checked="checked" <%=title_radio2 %>><span class="radio_label">指定なし</span>
+                      <input type="radio" name="title_radio" value="2" class="onOffRadio" <%=title_radio2 %>><span class="radio_label">指定なし</span>
                     </label>
                   </td>
                 </tr>
@@ -408,12 +412,12 @@
                 <tr>
                   <td>
                     <label>
-                      <input type="radio" name="title_match_type_radio" value="1"><span class="radio_label" <%=title_type_radio1 %>>あいまい</span>
+                      <input type="radio" name="title_type_radio" value="3" <%=title_type_radio1 %>><span class="radio_label">あいまい</span>
                     </label>
                   </td>
                   <td>
                     <label>
-                      <input type="radio" name="title_match_type_radio" value="2" checked="checked"><span class="radio_label"  <%=title_type_radio2 %>>完全一致</span>
+                      <input type="radio" name="title_type_radio" value="4"  <%=title_type_radio2 %>><span class="radio_label" >完全一致</span>
                     </label>
                   </td>
                 </tr>
@@ -448,14 +452,14 @@
 
     <!-- メインボタン -->
     <div class="main_button">
-      <a href="S00006.jsp">検索</a>
+      <button type="submit" value="検索">検索
     </div>
 
     </form>
 
     <!-- ページトップへjavaScript -->
     <div id="pagetop" hidden>
-      <img alt="ページトップ" src="/wab/images/pagetop.png">
+      <img alt="ページトップ" src="/web/images/pagetop.png">
     </div>
 
     <!-- フッター -->

@@ -85,7 +85,7 @@ public class MySQLSetting extends HttpServlet {
 		//String hostName = "localhost";
 		
 		// ホストの設定 (固定IP指定)
-		 String hostName = "192.168.12.200";
+		String hostName = "192.168.12.200";
 
 		// ユーザ名
 		String connectUserName = userName;

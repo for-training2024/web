@@ -16,33 +16,8 @@
 <link rel="stylesheet" href="/web/css/main.css" />
 <script src="/web/js/jquery-3.3.0.min.js"></script>
 <script type="text/javascript" src="/web/js/input.js"></script>
-<script type="text/javascript" src="/web/js/util.js"></script>
 <script type="text/javascript" src="/web/js/S00002.js"></script>
 
-<!-- 画像の圧縮表示設定 -->
-<style>
-div.song_list ul li div.cell div.song1 img {
-    position: relative;
-    left: 0px;
-    top: -11px;
-    width :275px;
-    height :182px;
-}
-div.song_list ul li div.cell div.song2 img {
-    position: relative;
-    left: 0px;
-    top: -134.5px;
-    width :275px;
-    height :429px;
-}
-div.song_list ul li div.cell div.song3 img {
-    position: relative;
-    left: 0px;
-    top: -30.5px;
-    width :275px;
-    height :220px;
-}
-</style>
 </head>
 <body>
   <!-- メニューのキャンセルレイヤの起点 -->
@@ -59,7 +34,7 @@ div.song_list ul li div.cell div.song3 img {
       </p>
       
 	  <a href="#" id="menu_open">
-		<img alt="メニュー" src="/web/images/menu.png" class="menu-icon">
+		<img alt="メニュー" src="/web/image/menu.png" class="menu-icon">
 	  </a>
 	</div>
 
@@ -85,20 +60,20 @@ div.song_list ul li div.cell div.song3 img {
 		<% for (SongBean bean : songs) { %>
 		<li>
  		  <div class="cell">
-			<div class="song_title"><%=bean.gettitle()%></div>
+			<div class="song_title"><%=bean.getTitle()%></div>
 			<div class="image_base">
-			  <a href="/web/ja/S00003/<%= bean.getsong_id()%>">
+			  <a href="/web/ja/S00003/<%= bean.getSong_id()%>">
 				<div class="image song1">
-				  <img src="/web/images/<%=bean.getimage_file_name()%>" class="trimc" alt="">
-				  <img alt= "play" class="play" src="/web/images/play.png">
+				  <img src="<%=bean.getImage_file_name()%>" class="trimc" alt="">
+				  <img alt= "play" class="play" src="/web/image/play.png">
 				</div>
 			  </a>
 			</div>
 			<div class="detail">
-			  <span class="label_top">総感動指数:</span><span class="value"><%=bean.getrating_total_formated()%></span>
-			  <span class="label">平均感動指数:</span><span class="value"><%=bean.getrating_average_formated()%></span><br>
-			  <span class="label">再生回数</span><span class="value"><%=bean.gettotal_listen_count_formated()%></span>
-			  <span class="label">公開:</span><span class="value"><%=bean.getrelease_datetime_formated()%></span>
+			  <span class="label_top">総感動指数:</span><span class="value"><%=bean.getRating_total_formated()%></span>
+			  <span class="label">平均感動指数:</span><span class="value"><%=bean.getRating_average_formated()%></span><br>
+			  <span class="label">再生回数</span><span class="value"><%=bean.getTotal_listen_count_formated()%></span>
+			  <span class="label">公開:</span><span class="value"><%=bean.getRelease_datetime_formated()%></span>
 			</div>
 		  </div>
 		</li>
@@ -157,7 +132,7 @@ div.song_list ul li div.cell div.song3 img {
 
     <!-- ページトップへjavaScript -->
 	<div id="pagetop" hidden>
-	  <img alt="ページトップ" src="/web/images/pagetop.png">
+	  <img alt="ページトップ" src="/web/image/pagetop.png">
 	</div>
 
 	<footer>

@@ -5,7 +5,7 @@
 <%
 	// (1) 「エラー情報(error)」が設定されている場合は、画面に「エラー情報(error)」を表示する。
 	String errorMessage = (String)request.getAttribute("error");
-    if (errorMessage == null) errorMessage = "";
+    if (errorMessage == null){ errorMessage = ""; }
 
 	// (2) 「公開日_エラー状態(release_date_is_error)」= "1"の場合
 	String release_date_is_error = "";
@@ -13,19 +13,17 @@
 		release_date_is_error = " error";
 	}
 
-	// (3) 以下の項目を元にニックネームの入力状態を再現する。
+	// (3) 以下の項目を元に公開日時の入力状態を再現する。
 	String release_date_radio1 = "";
+	String release_date_radio2 = "checked=\"checked\"";
     if ("1".equals(request.getAttribute("release_date_radio"))) {
     	release_date_radio1 = "checked=\"checked\"";
+		release_date_radio2 = "";
     }
-	String release_date_radio2 = "";
-	if ("0".equals(request.getAttribute("release_date_radio"))) {
-		release_date_radio2 = "checked=\"checked\"";
-	}
 	String release_date_from = (String)request.getAttribute("release_date_from");
 	String release_date_to = (String)request.getAttribute("release_date_to");
 
-	// (4) 「感動指数_エラー状態(rating_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
+	// (4) 「感動指数_エラー状態(rating_is_error)」= "1"の場合、tdタグに errorを加える。
 	String rating_is_error = "";
 	if ("1".equals(request.getAttribute("rating_is_error"))) {
 		rating_is_error = " error";
@@ -33,19 +31,17 @@
 
 	// (5) 以下の項目を元に感動指数の入力状態を再現する。
 	String rating_radio1 = "";
+	String rating_radio2 = "checked=\"checked\"";
 	if ("1".equals(request.getAttribute("rating_radio"))) {
 		rating_radio1 = "checked=\"checked\"";
-	}
-	String rating_radio2 = "";
-	if ("0".equals(request.getAttribute("rating_radio"))) {
-		rating_radio2 = "checked=\"checked\"";
+		rating_radio2 = "";
 	}
 	String rating_from = (String)request.getAttribute("rating_from");
-	if (rating_from == null) rating_from = "";
+	if (rating_from == null){ rating_from = "";}
 	String rating_to = (String)request.getAttribute("rating_to");
-	if (rating_to == null) rating_to = "";
+	if (rating_to == null) {rating_to = "";}
 
-	// (6) 「平均感動指数_エラー状態(rating_average_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
+	// (6) 「平均感動指数_エラー状態(rating_average_is_error)」= "1"の場合、tdタグに errorを加える。
 	String rating_average_is_error = "";
 	if ("1".equals(request.getAttribute("rating_average_is_error"))) {
 		rating_is_error = " error";
@@ -53,12 +49,10 @@
 	
 	// (7) 以下の項目を元に平均感動指数の入力状態を再現する。
 	String rating_average_radio1 = "";
+	String rating_average_radio2 = "checked=\"checked\"";
 	if ("1".equals(request.getAttribute("rating_average_radio"))) {
-		rating_radio1 = "checked=\"checked\"";
-	}
-	String rating_average_radio2 = "";
-	if ("0".equals(request.getAttribute("rating_average_radio"))) {
-		rating_radio2 = "checked=\"checked\"";
+		rating_average_radio1 = "checked=\"checked\"";
+		rating_average_radio2 = "";
 	}
 	String rating_average_from = (String)request.getAttribute("rating_average_from");
 	if (rating_average_from == null) { 
@@ -66,10 +60,10 @@
 	}
 	String rating_average_to = (String)request.getAttribute("rating_average_to");
 	if (rating_average_to == null) {
-		rating_average_to ="1.0";
+		rating_average_to ="5.0";
 	}
 
-	// (8) 「再生回数_エラー状態(views_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
+	// (8) 「再生回数_エラー状態(views_is_error)」= "1"の場合、tdタグにerrorを加える。
 	String views_is_error = "";
 	if ("1".equals(request.getAttribute("views_is_error"))) {
 		views_is_error = " error";
@@ -77,17 +71,15 @@
 	
 	// (9) 以下の項目を元に再生回数の入力状態を再現する。
 	String views_radio1 = "";
+	String views_radio2 = "checked=\"checked\"";
 	if ("1".equals(request.getAttribute("views_radio"))) {
-		views_radio1 = "";
-	}
-	String views_radio2 = "";
-	if ("0".equals(request.getAttribute("views_radio"))) {
+		views_radio1 = "checked=\"checked\"";
 		views_radio2 = "";
 	}
 	String views_from = (String)request.getAttribute("views_from");
-	if (views_from == null) views_from = "";
+	if (views_from == null){ views_from = "";}
 	String views_to = (String)request.getAttribute("views_to");
-	if (views_to == null) views_to = "";
+	if (views_to == null){ views_to = "";}
 
 	// (10) 「曲名_エラー状態(title_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 	String title_is_error = "";
@@ -97,27 +89,26 @@
 
 	// (11) 以下の項目を元に曲名の入力状態を再現する。
 	String title_radio1 = "";
+	String title_radio2 ="checked=\"checked\"";
+
 	if ("1".equals(request.getAttribute("title_radio"))) {
 		title_radio1 = "checked=\"checked\"";
+		title_radio2 = "";
 	}
-	String title_radio2 = "";
-	if ("2".equals(request.getAttribute("title_radio"))) {
-		title_radio2 = "checked=\"checked\"";
-	}
+	
 	String title_type_radio1 = "";
+	String title_type_radio2 = "checked=\"checked\"";
+
 	if ("3".equals(request.getAttribute("title_type_radio"))) {
 		title_type_radio1 = "checked=\"checked\"";
-	}
-	String title_type_radio2 = "";
-	if ("4".equals(request.getAttribute("title_type_radio"))) {
-		title_type_radio2 = "checked=\"checked\"";
+		title_type_radio2 = "";
 	}
 	String title = (String)request.getAttribute("title");
-	if (title == null) title = "";
+	if (title == null){ title = "";}
 
 	// (12) 以下の項目を元に並び順の入力状態を再現する。
 	String sort_order = (String)request.getAttribute("sort_order");
-	if (sort_order == null) sort_order="01";
+	if (sort_order == null){ sort_order="01";}
 %>
 
 
@@ -129,8 +120,9 @@
   <title>作品検索</title>
   <link rel="stylesheet" href="/web/css/main.css">
   <script src="/web/js/jquery-3.3.0.min.js"></script>
-  <script src="/web/js/util.js"></script>
-  <script src="/web/js/input.js"></script>
+    <script src="/web/js/input.js"></script>
+  <script src="/web/js/S00002.js"></script>
+  
 </head>
 
 <body>
@@ -144,7 +136,7 @@
 	<div class="title_bar">
       <p class="page_title">作品検索</p>
       <a href="#" id="menu_open">
-        <img alt="メニュー" src="/web/images/menu.png" class="menu-icon">
+        <img alt="メニュー" src="/web/image/menu.png" class="menu-icon">
       </a>
     </div>
 
@@ -155,7 +147,7 @@
     <!-- エラーメッセージ -->
 	<% if ("".equals(errorMessage) == false) { %>
 	  <div class="error_message">
- 		<img alt="エラーマーク" src="/web/images/error_mark.png">
+ 		<img alt="エラーマーク" src="/web/image/error_mark.png">
 		  <p><%= errorMessage %></p>
     </div>
     <% } %>
@@ -164,11 +156,11 @@
     <form name="main" action="/web/ja/S00005/search" method="post">
 
       <!-- 公開日 -->
-      <div class="input_table <%= release_date_is_error %>">
+      <div class="input_table" >
         <table>
           <tr>
-            <td class="label" rowspan=2 >公開日</td>
-            <td class="value">
+            <td class="label" rowspan=2  <%= release_date_is_error %>>公開日</td>
+            <td class="value" <%= release_date_is_error %>>
               <table class="radio_base">
                 <tr>
                   <td>
@@ -186,7 +178,7 @@
             </td>
           </tr>
           <tr>
-            <td class="value">
+            <td class="value" <%= release_date_is_error %>>
               <input type="date" name="release_date_from" value="<%= release_date_from %>">
               <br>
               ～
@@ -199,11 +191,11 @@
     
 
       <!-- 感動指数 -->
-      <div class="input_table <%= rating_is_error %>">
+      <div class="input_table">
         <table>
           <tr>
-            <td class="label" rowspan=2 >感動指数</td>
-            <td class="value">
+            <td class="label" rowspan=2 <%= rating_is_error %>>感動指数</td>
+            <td class="value" <%= rating_is_error %>>
               <table class="radio_base">
                 <tr>
                   <td>
@@ -221,33 +213,33 @@
             </td>
           </tr>
           <tr>
-            <td class="value">
-              <input type="text" name="rating_from" value="<%= rating_from %>">
+            <td class="value" <%= rating_is_error %>>
+              <input type="text" name="rating_from" maxlength=8 value="<%= rating_from %>">
               <br>
               ～
               <br>
-              <input type="text" name="rating_to" value="<%= rating_to %>">
+              <input type="text" name="rating_to" maxlength=8 value="<%= rating_to %>">
             </td>
           </tr>
         </table>
       </div>
 
       <!-- 平均感動指数 -->
-      <div class="input_table <%= rating_average_is_error %>">
+      <div class="input_table">
         <table>
           <tr>
-            <td class="label" rowspan=2 >平均感動指数</td>
-            <td class="value">
+            <td class="label" rowspan=2 <%= rating_average_is_error %>>平均感動指数</td>
+            <td class="value" <%= rating_average_is_error %>>
               <table class="radio_base">
                 <tr>
                   <td>
                     <label>
-                      <input type="radio" name="rating_average_radio" value="1" class="onOffRadio" <%= rating_radio1 %>><span class="radio_label">指定</span>
+                      <input type="radio" name="rating_average_radio" value="1" class="onOffRadio" <%= rating_average_radio1 %>><span class="radio_label">指定</span>
                     </label>
                   </td>
                   <td>
                     <label>
-                      <input type="radio" name="rating_average_radio" value="2" class="onOffRadio" <%= rating_radio2 %>><span class="radio_label">指定なし</span>
+                      <input type="radio" name="rating_average_radio" value="2" class="onOffRadio" <%= rating_average_radio2 %>><span class="radio_label">指定なし</span>
                     </label>
                   </td>
                 </tr>
@@ -255,7 +247,7 @@
             </td>
           </tr>
           <tr>
-            <td class="value">
+            <td class="value" <%= rating_average_is_error %>>
               <select name="rating_average_from" tabindex="1">
 				<option value="1.0">1.0</option>
 				<option value="1.1">1.1</option>
@@ -287,7 +279,7 @@
 				<option value="3.7">3.7</option>
 				<option value="3.8">3.8</option>
 				<option value="3.9">3.9</option>
-				<option value="4.0">4.0</option>
+				<option value="4.0" selected>4.0</option>
 				<option value="4.1">4.1</option>
 				<option value="4.2">4.2</option>
 				<option value="4.3">4.3</option>
@@ -343,7 +335,7 @@
 				<option value="4.7">4.7</option>
 				<option value="4.8">4.8</option>
 				<option value="4.9">4.9</option>
-				<option value="5.0">5.0</option>
+				<option value="5.0" selected>5.0</option>
               </select>
             </td>
           </tr>
@@ -351,11 +343,11 @@
       </div>
 
       <!-- 再生回数 -->
-      <div class="input_table <%= views_is_error %>">
+      <div class="input_table">
         <table>
           <tr>
-            <td class="label" rowspan=2 >再生回数</td>
-            <td class="value">
+            <td class="label" rowspan=2 <%= views_is_error %>>再生回数</td>
+            <td class="value" <%= views_is_error %>>
               <table class="radio_base">
                 <tr>
                   <td>
@@ -373,7 +365,7 @@
             </td>
           </tr>
           <tr>
-            <td class="value">
+            <td class="value" <%= views_is_error %>>
               <input type="text" name="views_from" maxlength='8' value="<%= views_from %>">
               <br>
               ～
@@ -385,21 +377,21 @@
       </div>
 
       <!-- 曲名 -->
-      <div class="input_table <%= title_is_error %>">
+      <div class="input_table">
         <table>
           <tr>
-            <td class="label" rowspan=2 >曲名</td>
-            <td class="value">
+            <td class="label" rowspan=2 <%= title_is_error %>>曲名</td>
+            <td class="value" <%= title_is_error %>>
               <table class="radio_base">
                 <tr>
 				  <td>
 					<label>
-                      <input type="radio" name="title_radio" value="1" class="onOffRadio" <%=title_radio1 %>><span class="radio_label">指定</span>
+                      <input type="radio" id="id_title1" name="title_radio" value="1" class="onOffRadio" <%=title_radio1 %>><span class="radio_label">指定</span>
  					</label>
                   </td>
                   <td>
                     <label>
-                      <input type="radio" name="title_radio" value="2" class="onOffRadio" <%=title_radio2 %>><span class="radio_label">指定なし</span>
+                      <input type="radio" id="id_title2" name="title_radio" value="2" class="onOffRadio" <%=title_radio2 %>><span class="radio_label">指定なし</span>
                     </label>
                   </td>
                 </tr>
@@ -407,22 +399,22 @@
             </td>
           </tr>
           <tr>
-            <td class="value">
+            <td class="value" <%= title_is_error %>>
               <table class="radio_base">
                 <tr>
                   <td>
                     <label>
-                      <input type="radio" name="title_type_radio" value="3" <%=title_type_radio1 %>><span class="radio_label">あいまい</span>
+                      <input type="radio" id="id_title3" name="title_type_radio" value="3" <%=title_type_radio1 %>><span class="radio_label">あいまい</span>
                     </label>
                   </td>
                   <td>
                     <label>
-                      <input type="radio" name="title_type_radio" value="4"  <%=title_type_radio2 %>><span class="radio_label" >完全一致</span>
+                      <input type="radio" id="id_title4" name="title_type_radio" value="4"  <%=title_type_radio2 %>><span class="radio_label" >完全一致</span>
                     </label>
                   </td>
                 </tr>
               </table>
-              <input type="text" name="title" value="<%=title%>">
+              <input type="text" name="title" maxlength=255 value="<%=title%>">
             </td>
           </tr>
         </table>
@@ -435,7 +427,7 @@
             <td class="label">並び順</td>
             <td class="value">
               <select name="order" tabindex="10">
-                <option value="" selected="selected">新しい順</option>
+                <option value="" selected="selected"></option>
                 <option value="">新しい順</option>
                 <option value="">古い順</option>
                 <option value="">感動指数が多い順</option>
@@ -459,7 +451,7 @@
 
     <!-- ページトップへjavaScript -->
     <div id="pagetop" hidden>
-      <img alt="ページトップ" src="/web/images/pagetop.png">
+      <img alt="ページトップ" src="/web/image/pagetop.png">
     </div>
 
     <!-- フッター -->
@@ -468,5 +460,7 @@
     </footer>
 
   </div>
+    <script src="/web/js/S00005.js"></script>
+  
 </body>
 </html>

@@ -63,7 +63,7 @@ div.song_link div.cell div.song1 img {
 		<!-- 作者へのリンク -->
 		<div class="label_and_link">
 			<span class="label">作者：</span><span class="link"><a
-				href="https://www/web/ja/S00004/<%=beanS3.getunique_code()%>"><%=beanS3.getnickname()%></a></span>
+				href="../S00004/<%=beanS3.getunique_code()%>"><%=beanS3.getnickname()%></a></span>
 		</div>
 
 		<!-- メッセージ -->
@@ -146,7 +146,7 @@ div.song_link div.cell div.song1 img {
 						<div class="rating star<%=beanCR.getrating_rating()%>0"></div>
 						<div class="composer_link">
 							<a
-								href="https://www/web/ja/S00004/<%=beanCR.getcomposer_unique_code()%>"><%=beanCR.getcomposer_nickname()%></a>
+								href="../S00004/<%=beanCR.getcomposer_unique_code()%>"><%=beanCR.getcomposer_nickname()%></a>
 						</div>
 						<p class="comment"><%=beanCR.getcomment_comment()%></p>
 						<p class="time"><%=beanCR.getcomment_write_datetime_fomated()%></p>
@@ -164,7 +164,7 @@ div.song_link div.cell div.song1 img {
 							<div class="rating star<%=beanReply.getrating_rating()%>0"></div>
 						<div class="composer_link">
 								<a
-									href="https://www/web/ja/S00004/<%=beanReply.getcomposer_unique_code()%>"><%=beanReply.getcomposer_nickname()%></a>
+									href="../S00004/<%=beanReply.getcomposer_unique_code()%>"><%=beanReply.getcomposer_nickname()%></a>
 							</div>
 							<p class="comment"><%=beanReply.getcomment_comment()%></p>
 							<p class="time"><%=beanReply.getcomment_write_datetime_fomated()%></p>
@@ -182,7 +182,7 @@ div.song_link div.cell div.song1 img {
 							<div class="rating star<%=beanReply2.getrating_rating()%>0"></div>
 						<div class="composer_link">
 								<a
-									href="https://www/web/ja/S00004/<%=beanReply2.getcomposer_unique_code()%>"><%=beanReply2.getcomposer_nickname()%></a>
+									href="../S00004/<%=beanReply2.getcomposer_unique_code()%>"><%=beanReply2.getcomposer_nickname()%></a>
 							</div>
 							<p class="comment"><%=beanReply2.getcomment_comment()%></p>
 							<p class="time"><%=beanReply2.getcomment_write_datetime_fomated()%></p>
@@ -198,7 +198,7 @@ div.song_link div.cell div.song1 img {
 							<div class="rating star<%=beanReply2.getrating_rating()%>0"></div>
 						<div class="composer_link">
 								<a
-									href="https://www/web/ja/S00004/<%=beanReply2.getcomposer_unique_code()%>"><%=beanReply2.getcomposer_nickname()%></a>
+									href="../S00004/<%=beanReply2.getcomposer_unique_code()%>"><%=beanReply2.getcomposer_nickname()%></a>
 							</div>
 							<p class="comment"><%=beanReply2.getcomment_comment()%></p>
 							<p class="time"><%=beanReply2.getcomment_write_datetime_fomated()%></p>
@@ -215,7 +215,7 @@ div.song_link div.cell div.song1 img {
 					<div class="reply">
 						<div class="grater_than">&gt;</div>
 						<div class="composer_link_no_rating">
-						<a href="https://www/web/ja/S00004/<%=beanReply.getcomposer_unique_code()%>"><%=beanReply.getcomposer_nickname()%></a>
+						<a href="../S00004/<%=beanReply.getcomposer_unique_code()%>"><%=beanReply.getcomposer_nickname()%></a>
 						</div>
 						<p class="comment"><%=beanReply.getcomment_comment()%></p>
 						<p class="time"><%=beanReply.getcomment_write_datetime_fomated()%></p>
@@ -233,7 +233,7 @@ div.song_link div.cell div.song1 img {
 							<div class="rating star<%=beanReply2_2.getrating_rating()%>0"></div>
 						<div class="composer_link">
 								<a
-									href="https://www/web/ja/S00004/<%=beanReply2_2.getcomposer_unique_code()%>"><%=beanReply2_2.getcomposer_nickname()%></a>
+									href="../S00004/<%=beanReply2_2.getcomposer_unique_code()%>"><%=beanReply2_2.getcomposer_nickname()%></a>
 							</div>
 							<p class="comment"><%=beanReply2_2.getcomment_comment()%></p>
 							<p class="time"><%=beanReply2_2.getcomment_write_datetime_fomated()%></p>

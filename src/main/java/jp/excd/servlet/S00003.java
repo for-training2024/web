@@ -228,7 +228,7 @@ public class S00003 extends HttpServlet {
 
 			counter = counter + 1;
 			// 先頭の100件のみ処理を行う。
-			if (counter > 99) {
+			if (counter > 100) {
 				break;
 			}
 		

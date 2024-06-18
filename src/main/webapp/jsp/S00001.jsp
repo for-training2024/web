@@ -128,10 +128,14 @@ div.song_list ul li div.cell div.song1 img {
     </div>
 
     <!-- メインボタン -->
-    <div class="main_button">
-      <a href="<%=request.getAttribute("loadMore") %>">さらに読み込む</a>
-    </div>
-
+      <% 
+    if((int)request.getAttribute("listSize") == 5) {
+    	out.println("<div class=\"main_button\">");
+    	out.println("<a href=\""+ request.getAttribute("loadMore") + "\">さらに読み込む</a>");
+    	out.println("</div>");    	
+    }
+    %>
+    
     <!-- ページトップへjavaScript -->
     <div id="pagetop" hidden>
       <img alt="ページトップ" src="../image/pagetop.png">

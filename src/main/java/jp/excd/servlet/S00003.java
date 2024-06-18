@@ -76,7 +76,7 @@ public class S00003 extends HttpServlet {
 		// 最後の部分を取得
 		String urlSongId = parts[parts.length - 1];
 
-		// (1) 接続URLが「/ja/S00003searh」以外の場合は、404.jspへフォワーディングする。
+		//  接続URLが「/ja/S00003searh」以外の場合は、404.jspへフォワーディングする。
 		if (("/web/ja/S00003/" + urlSongId).equals(url)) {
 			
 		} else {
@@ -84,19 +84,19 @@ public class S00003 extends HttpServlet {
 			return;
 		}
 
-		
+		//(3)songS3をS00003Record型で呼び出し
 		S00003Record recordS3 = songS3(con, urlSongId);
 
 
-			//  DBに値がある以外の場合は、404.jspへフォワーディングする。
-			if (!((recordS3.getsong_id()).equals(null))) {
-				
-			} else {
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
-				return;
-			}
+		//  DBに値がある以外の場合は、404.jspへフォワーディングする。
+		if (!((recordS3.getsong_id()).equals(null))) {
 			
-		// (19) 前処理で得られたListを用いて、CommentRatingBeanに値を設定していく。
+		} else {
+			getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
+			return;
+		}
+			
+		// (4)前処理で得られたListを用いて、S00003Beanに値を設定していく。
 			S00003Bean beanS3 = new S00003Bean();			
 			
 			//曲ID
@@ -175,15 +175,14 @@ public class S00003 extends HttpServlet {
 		request.setAttribute("list1", beanS3);
 
 		
-		
+		//(3)songS3をS00003Record型で呼び出し
 		List<CommentRatingRecord> resultsCR = commentRating(con, urlSongId);
-
-		// (19) 前処理で得られたListを用いて、CommentRatingBeanに値を設定していく。
 		List<CommentRatingBean> newCRList = new ArrayList<CommentRatingBean>();
 
 			
 		int counter = 0;
-
+		
+		// (4) 前処理で得られたListを用いて、CommentRatingBeanに値を設定していく。
 		for (CommentRatingRecord recordCR : resultsCR) {
 			CommentRatingBean beanCR = new CommentRatingBean();
 
@@ -243,7 +242,7 @@ public class S00003 extends HttpServlet {
 
 		request.setAttribute("list2", newCRList);
 
-		// (20) S00003.jsp にフォワーディングする。
+		// (5) S00003.jsp にフォワーディングする。
 		getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00003.jsp").forward(request, response);
 		return;
 	}
@@ -263,16 +262,13 @@ public class S00003 extends HttpServlet {
 				+ "LEFT OUTER JOIN composer ON song.composer_id = composer.id\n"
 				+ "where song.id = ? ;\n";
 
-		// (14) PreparedStatementのインスタンスを得る。
+		// (2) PreparedStatementのインスタンスを得る。
 		PreparedStatement pstmt = con.prepareStatement(sql);
+		//urlの曲IDを代入する
 		pstmt.setString(1, urlSongId);
 		
-
-
-
-		// (16) executeQueryを実行し、結果の「ResultSet」を得る。
+		// (3) executeQueryを実行し、結果の「ResultSet1」を得る。
 		ResultSet rs1 = pstmt.executeQuery();
-		
 		
 			S00003Record record = new S00003Record();
 			//ソングID
@@ -335,10 +331,10 @@ public class S00003 extends HttpServlet {
 			record.setnickname(Nickname);
 		}
 
-		// (17) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
+		// (4) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
 		pstmt.close();
 
-		// (18) 前処理で生成したListを呼び出し元に返却する。
+		// (5) 前処理で生成したListを呼び出し元に返却する。
 		return record;
 		
 	}
@@ -350,7 +346,7 @@ public class S00003 extends HttpServlet {
 		@SuppressWarnings("unused")
 		boolean joinFlg = false; // true:結合した、false：結合していない			
 
-		//  SQLを組み立てる
+		// (1)SQLを組み立てる
 		String sql = "SELECT comment.id, comment.song_id, comment.sequence, comment.composer_id,\n"
 				+ " comment.comment, comment.type, comment.to_comment_id, comment.write_datetime,\n"
 				+ " rating.rating, composer.unique_code, composer.nickname FROM comment\n"
@@ -359,12 +355,12 @@ public class S00003 extends HttpServlet {
 				+ "where comment.song_id = ?\n"
 				+ "ORDER BY comment.sequence; \n";
 
-		//  PreparedStatementのインスタンスを得る。
+		//(2) PreparedStatementのインスタンスを得る。
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		//ソングIDを?に代入
 		pstmt.setString(1, urlSongId);
 
-		//  executeQueryを実行し、結果の「ResultSet」を得る。
+		//(3) executeQueryを実行し、結果の「ResultSet2」を得る。
 		ResultSet rs2 = pstmt.executeQuery();
 		List<CommentRatingRecord> commentRatingRecordList = new ArrayList<CommentRatingRecord>();
 
@@ -406,10 +402,10 @@ public class S00003 extends HttpServlet {
 
 			commentRatingRecordList.add(record);
 		}
-		// (17) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
+		// (4) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
 		pstmt.close();
 
-		// (18) 前処理で生成したListを呼び出し元に返却する。
+		// (5) 前処理で生成したListを呼び出し元に返却する。
 		return commentRatingRecordList;
 
 	}

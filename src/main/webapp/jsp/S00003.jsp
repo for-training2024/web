@@ -7,7 +7,9 @@
 <html lang="ja">
 <html>
 <%
+	//S00003Beanの読み込み
 	S00003Bean beanS3 = (S00003Bean)request.getAttribute("list1");
+	//CommentRatingBeanの読み込み
 	List<CommentRatingBean> newCRList = (List<CommentRatingBean>)request.getAttribute("list2");
 %>
 <head>
@@ -134,6 +136,7 @@ div.song_link div.cell div.song1 img {
 		<div class="comments">
 			<ul>
 <%
+	//ノーマルコメントの取得
 	String root = null;
 	if (newCRList != null) {
 		for  (CommentRatingBean beanCR : newCRList) {
@@ -152,7 +155,8 @@ div.song_link div.cell div.song1 img {
 						<p class="time"><%=beanCR.getcomment_write_datetime_fomated()%></p>
 					</div>
 				</li>
-<%	
+<%
+				//ノーマルコメントの返信の取得
 					for  (CommentRatingBean beanReply : newCRList) {
 						if (root.equals(beanReply.getcomment_to_comment_id())){
 							if(!(beanS3.getunique_code()).equals(beanReply.getcomposer_unique_code())){
@@ -171,6 +175,7 @@ div.song_link div.cell div.song1 img {
 						</div>
 					</li>
 <%
+								//返信コメントの返信の取得
 									for  (CommentRatingBean beanReply2 : newCRList) {
 										if ((beanReply.getcomment_id()).equals(beanReply2.getcomment_to_comment_id())){
 											if(!(beanS3.getunique_code()).equals(beanReply2.getcomposer_unique_code())){

@@ -78,7 +78,7 @@ public class S00003 extends HttpServlet {
 
 		// (1) 接続URLが「/ja/S00003searh」以外の場合は、404.jspへフォワーディングする。
 		if (("/web/ja/S00003/" + urlSongId).equals(url)) {
-//ここ重要		
+			
 		} else {
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
 			return;
@@ -87,16 +87,21 @@ public class S00003 extends HttpServlet {
 		
 		S00003Record recordS3 = songS3(con, urlSongId);
 
+
+			//  DBに値がある以外の場合は、404.jspへフォワーディングする。
+			if (!((recordS3.getsong_id()).equals(null))) {
+				
+			} else {
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
+				return;
+			}
+			
 		// (19) 前処理で得られたListを用いて、CommentRatingBeanに値を設定していく。
-
-			S00003Bean beanS3 = new S00003Bean();
-
+			S00003Bean beanS3 = new S00003Bean();			
+			
 			//曲ID
 			String song_id = recordS3.getsong_id();
 			beanS3.setsong_id(song_id);
-			
-			
-
 			//曲名
 			String title = recordS3.gettitle();
 			beanS3.settitle(title);
@@ -263,8 +268,12 @@ public class S00003 extends HttpServlet {
 		pstmt.setString(1, urlSongId);
 		
 
+
+
 		// (16) executeQueryを実行し、結果の「ResultSet」を得る。
 		ResultSet rs1 = pstmt.executeQuery();
+		
+		
 			S00003Record record = new S00003Record();
 			//ソングID
 		if(rs1.next()) {			
@@ -334,13 +343,14 @@ public class S00003 extends HttpServlet {
 		
 	}
 
+	//コメント取得呼び出し先
 	private List<CommentRatingRecord> commentRating(Connection con,
 			String urlSongId) throws Exception {
 
 		@SuppressWarnings("unused")
 		boolean joinFlg = false; // true:結合した、false：結合していない			
 
-		// (1) SQLの断片を準備する
+		//  SQLを組み立てる
 		String sql = "SELECT comment.id, comment.song_id, comment.sequence, comment.composer_id,\n"
 				+ " comment.comment, comment.type, comment.to_comment_id, comment.write_datetime,\n"
 				+ " rating.rating, composer.unique_code, composer.nickname FROM comment\n"
@@ -349,11 +359,12 @@ public class S00003 extends HttpServlet {
 				+ "where comment.song_id = ?\n"
 				+ "ORDER BY comment.sequence; \n";
 
-		// (14) PreparedStatementのインスタンスを得る。
+		//  PreparedStatementのインスタンスを得る。
 		PreparedStatement pstmt = con.prepareStatement(sql);
+		//ソングIDを?に代入
 		pstmt.setString(1, urlSongId);
 
-		// (16) executeQueryを実行し、結果の「ResultSet」を得る。
+		//  executeQueryを実行し、結果の「ResultSet」を得る。
 		ResultSet rs2 = pstmt.executeQuery();
 		List<CommentRatingRecord> commentRatingRecordList = new ArrayList<CommentRatingRecord>();
 

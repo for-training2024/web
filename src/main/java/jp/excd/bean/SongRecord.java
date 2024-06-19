@@ -39,7 +39,7 @@ public record SongRecord(
 		double bpm,
 		
 		//イメージファイル
-		String imege_file_name,
+		String image_file_name,
 		
 		//イメージファイル画像高さ
 		int image_file_height,

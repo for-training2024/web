@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="jp.excd.bean.S00004SongBean" %>
 <!DOCTYPE html>
 <html lang="ja">
+<html>
+<%
+	S00004SongBean composer = (S00004SongBean)request.getAttribute("Composer");
+	List<S00004SongBean> songs = (List<S00004SongBean>)request.getAttribute("songList");
+%>
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ">
   <meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
   <title>作曲家紹介</title>
-  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../CSS/main.css">
   <script src="../../js/jquery-3.3.0.min.js"></script>
   <script src="../../js/S00002.js"></script>
 </head>
@@ -35,11 +42,11 @@
       <table>
         <tr>
           <td class="label">ID</td>
-          <td class="value">SpoonDragon</td>
+          <td class="value"> <%=composer.getUnique_code() %></td>
         </tr>
         <tr>
           <td class="label">ニックネーム</td>
-          <td class="value">スプーンドラゴン</td>
+          <td class="value"><%=composer.getNickname() %></td>
         </tr>
       </table>
     </div>
@@ -51,7 +58,7 @@
           <td class="label">メッセージ</td>
         </tr>
         <tr>
-          <td class="value">作曲の面白さを誰かと語り合いたいです。</td>
+          <td class="value"><%=composer.getmessage() %></td>
         </tr>
       </table>
     </div>
@@ -65,15 +72,15 @@
         <tr>
           <td class="value">
             <span class="label_top">性別：</span>
-            <span class="value">男</span>
+            <span class="value"><%=composer.getGender_formated() %></span>
             <span class="label">誕生日：</span>
-            <span class="value">1976/04/08</span>
+            <span class="value"><%=composer.getBirthday_formated() %></span>
             <br>
             <span class="label_top">FB：</span>
-            <span class="value"><a href="https://google.co.jp">https://xxx.xx.xxxxx/xxxx</a></span>
+            <span class="value"><a href="https://google.co.jp"><%=composer.getFb_link() %></a></span>
             <br>
             <span class="label_top">Twitter：</span>
-            <span class="value"><a href="https://google.co.jp">https://xxx.xx.xxxx/xxxxx</a></span>
+            <span class="value"><a href="https://google.co.jp"><%=composer.getTw_link() %></a></span>
           </td>
         </tr>
       </table>
@@ -88,23 +95,13 @@
         <tr>
           <td class="value">
             <span class="label_top">登録：</span>
-            <span class="value">2008年12月</span>
+            <span class="value"><%=composer.getJoined_date_formated() %></span>
             <br>
 
             <span class="label_top">作品数：</span>
-            <span class="value">25</span>
+            <span class="value"><%=request.getAttribute("hits") %></span>
             <br>
 
-            <span class="label_top">総感動指数：</span>
-            <span class="value">531,345</span>
-            <br>
-
-            <span class="label_top">平均感動指数：</span>
-            <span class="value">4.8</span>
-            <br>
-
-            <span class="label_top">総再生回数：</span>
-            <span class="value">2,445,931</span>
             <br>
 
           </td>
@@ -120,7 +117,7 @@
         </tr>
         <tr>
           <td class="value">
-            <a href="https://google.co.jp">BLOG</a>
+            <a href="https://google.co.jp"><%=composer.getother_link_url() %></a>
           </td>
         </tr>
       </table>
@@ -135,77 +132,36 @@
     <div class="song_list">
       <ul>
 
+<% 
+System.out.println(songs);
+for (int i=0; i<songs.size(); i++) { %>
         <li>
           <div class="cell">
-            <div class="song_title">希望の扉</div>
+            <div class="song_title"><%=songs.get(i).gettitle() %></div>
             <div class="image_base">
-              <a href="S00003.html">
+              <a href="web/ja/S00003/<%= songs.get(i).getsong_id() %>">
                 <div class="image song1">
-                  <img alt="希望の扉" src="../../image/tsugumi_01.jpg">
+                  <img src="<%=songs.get(i).getimage_file_name() %>" class="trimc" alt="">
                   <img alt= "play" class="play" src="../../image/play.png">
+                  
                 </div>
               </a>
             </div>
             <div class="detail">
               <span class="label_top">総感動指数：</span>
-              <span class="value">868</span>
+              <span class="value"><%=songs.get(i).getrating_total_formated() %></span>
               <span class="label">平均感動指数：</span>
-              <span class="value">4.3</span>
+              <span class="value"><%=songs.get(i).getrating_average_formated() %></span>
               <span class="label">再生回数：</span>
-              <span class="value">1,253</span>
+              <span class="value"><%=songs.get(i).gettotal_listen_count_formated() %></span>
               <span class="label">公開：</span>
-              <span class="value">5分前</span>
+              <span class="value"><%=songs.get(i).getrelease_datetime_formated() %></span>
             </div>
           </div>
         </li>
-
-        <li>
-          <div class="cell">
-            <div class="song_title">Melody Loop Of World</div>
-            <div class="image_base">
-              <a href="S00003.html">
-                <div class="image song2">
-                  <img alt="Melody Loop Of World" src="../../image/song2.jpg">
-                  <img alt="play" class="play" src="../../image/play.png">
-                </div>
-              </a>
-            </div>
-            <div class="detail">
-              <span class="label_top">総感動指数：</span>
-              <span class="value">2,583</span>
-              <span class="label">平均感動指数：</span>
-              <span class="value">4.3</span>
-              <span class="label">再生回数：</span>
-              <span class="value">25,136</span>
-              <span class="label">公開：</span>
-              <span class="value">2週間前</span>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="cell">
-            <div class="song_title">朝日の見える丘から</div>
-            <div class="image_base">
-              <a href="S00003.html">
-                <div class="image song3">
-                  <img alt="朝日の見える丘から" src="../../image/noimage.png">
-                  <img alt="play" class="play" src="../../image/play.png">
-                </div>
-              </a>
-            </div>
-            <div class="detail">
-              <span class="label_top">総感動指数：</span>
-              <span class="value">21,013</span>
-              <span class="label">平均感動指数：</span>
-              <span class="value">4.3</span>
-              <span class="label">再生回数：</span>
-              <span class="value">250,511</span>
-              <span class="label">公開：</span>
-              <span class="value">1ヶ月前</span>
-            </div>
-          </div>
-        </li>
+<%
+	}
+%>
 
       </ul>
     </div>

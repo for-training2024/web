@@ -24,7 +24,7 @@ public class S00004SongBean{
 
 	private String score_type_formated;
 
-	private String bpm;
+	private double bpm;
 
 	private String image_file_name;
 
@@ -144,11 +144,11 @@ public class S00004SongBean{
 	}
 
 	//BPM
-	public String getbpm() {
+	public double getbpm() {
 		return bpm;
 	}
 
-	public void setbpm(String bpm) {
+	public void setbpm(double bpm) {
 		this.bpm = bpm;
 	}
 
@@ -193,7 +193,7 @@ public class S00004SongBean{
 		return other_link_description;
 	}
 
-	public void setgetother_link_description(String other_link_description) {
+	public void setother_link_description(String other_link_description) {
 		this.other_link_description = other_link_description;
 	}
 

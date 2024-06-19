@@ -89,7 +89,7 @@ public class S00003 extends HttpServlet {
 
 
 		//  DBに値がある以外の場合は、404.jspへフォワーディングする。
-		if (!((recordS3.getsong_id()).equals(null))) {
+		if (recordS3.getsong_id() != null) {
 			
 		} else {
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);

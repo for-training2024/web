@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.NumberFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,7 +134,7 @@ public class S00005 extends HttpServlet {
 		Double rAt = null;
 		Integer vf = null;
 		Integer vt = null;
-
+		
 		//(3)公開日FROMについてエラー判定を行う
 		if ("1".equals(release_date_radio)) {
 			if (release_date_from == null || "".equals(release_date_from)) {
@@ -195,15 +199,17 @@ public class S00005 extends HttpServlet {
 
 		//(6)公開日FROM、公開日TOについてエラー判定を行う
 		if ("1".equals(release_date_radio)) {
-			int checkResult = release_date_to.compareTo(release_date_from);
-
-			if (checkResult < 0) {
-				// エラー
-				String s = this.getDescription(con, "ES00005_004");
-				request.setAttribute("error", s);
-				request.setAttribute("release_date_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00005.jsp").forward(request, response);
-				return;
+			if( Judge.isDateValue(release_date_from) == true && Judge.isDateValue(release_date_to) == true) {
+				int checkResult = release_date_to.compareTo(release_date_from);
+	
+				if (checkResult < 0) {
+					// エラー
+					String s = this.getDescription(con, "ES00005_004");
+					request.setAttribute("error", s);
+					request.setAttribute("release_date_is_error", "1");
+					getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00005.jsp").forward(request, response);
+					return;
+				}
 			}
 		} else if (!("1".equals(release_date_radio))) {
 			//処理続行
@@ -628,9 +634,11 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 			} else if (Judge.isDateValue(release_date_from)) {
 				SQL += sql1;
 				
+				String epochSeconds = getEpochSeconds(release_date_from);
+				
 				PlaceHolderInput phi = new PlaceHolderInput();
 				phi.setType("2");
-				phi.setDoubleValue(Double.parseDouble(release_date_from));
+				phi.setDoubleValue(Double.parseDouble(epochSeconds));
 				list.add(phi);
 			} else {
 				throw new Exception();
@@ -653,9 +661,11 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 
 				SQL += sql2;
 
+				String epochSeconds = getEpochSeconds(release_date_to);
+				
 				PlaceHolderInput phi = new PlaceHolderInput();
 				phi.setType("2");
-				phi.setDoubleValue(Double.parseDouble(release_date_to));
+				phi.setDoubleValue(Double.parseDouble(epochSeconds));
 				list.add(phi);
 			}  else {
 				throw new Exception();
@@ -934,6 +944,17 @@ private List<SongRecord> executeQuery (HttpServletRequest request,
 
 
 	}
+
+	private String getEpochSeconds(String num) {
+		
+			LocalDate date = LocalDate.parse(num, DateTimeFormatter.ISO_LOCAL_DATE);
+			Instant instant = date.atStartOfDay().toInstant(ZoneOffset.UTC);
+			long epochSeconds = instant.getEpochSecond();
+			String formattedDate = String.valueOf(epochSeconds);
+			return formattedDate;
+
+	}
+
 
 }
 

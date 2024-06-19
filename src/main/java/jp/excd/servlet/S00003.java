@@ -64,6 +64,17 @@ public class S00003 extends HttpServlet {
 		}
 
 	}
+	
+	public void doPost(
+			HttpServletRequest request,
+			HttpServletResponse response)
+			throws IOException, ServletException {
+		
+		getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
+		return;
+		
+	}
+	
 
 	private void main(HttpServletRequest request, HttpServletResponse response, Connection con)
 			throws IOException, Exception {

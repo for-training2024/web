@@ -27,7 +27,7 @@
 
 <!-- 画像の圧縮表示設定 -->
 <style>
-div.song_link div.cell div.song1 img {　
+div.song_link div.cell div.song1 img {
 	position: relative;
 	left: 0px;
 	top: -11px;

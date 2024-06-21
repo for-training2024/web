@@ -24,7 +24,7 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>Sample</servlet-name>
+		<servlet-name>SampleServlet</servlet-name>
 		<url-pattern>/ja/Sample/*</url-pattern>
 	</servlet-mapping>
 
@@ -37,19 +37,55 @@
 		<error-code>500</error-code>
 		<location>/jsp/500.jsp</location>
 	</error-page>
-
+	
+	<!-- S00007 作曲家検索（検索条件入力） -->
 	<servlet>
-		<servlet-name>S00009</servlet-name>
-		<servlet-class>jp.excd.servlet.S00009</servlet-class>
+		<servlet-name>S00007</servlet-name>
+		<servlet-class>jp.excd.servlet.S00007</servlet-class>
 		<init-param>
 			<param-name>javaEncoding</param-name>
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>S00007</servlet-name>
+		<url-pattern>/ja/S00007/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>S00007</servlet-name>
+		<url-pattern>/ja/S00007</url-pattern>
+	</servlet-mapping>
+	
+	<!-- S00008 作曲家検索（検索結果） -->
+	<servlet>
+		<servlet-name>S00008</servlet-name>
+		<servlet-class>jp.excd.servlet.S00008</servlet-class>
+		<init-param>
+			<param-name>javaEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>S00008</servlet-name>
+		<url-pattern>/ja/S00008/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>S00008</servlet-name>
+		<url-pattern>/ja/S00008</url-pattern>
+	</servlet-mapping>
+
+	<!-- 専用アプリダウンロード -->
+	<servlet>
+		<servlet-name>S00009</servlet-name>
+		<servlet-class>jp.excd.servlet.S00009</servlet-class>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>S00009</servlet-name>
 		<url-pattern>/ja/S00009</url-pattern>
 	</servlet-mapping>
-
-
+	
 </web-app>

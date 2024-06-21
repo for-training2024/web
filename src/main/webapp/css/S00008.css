@@ -1,0 +1,38 @@
+.label {
+	color: #344dff;
+}
+
+.composer_nickname {
+	color: #344dff;
+	font-size: 20px;
+}
+
+.cell {
+	border-top:thin solid #344dff;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+}
+
+body {
+	padding-right:10px;
+	padding-left:10px;
+}
+
+.right_button a {
+	display: block;
+	box-sizing: border-box;
+	font-size: 18px;
+	text-align: center;
+	width: 120;
+	height: 36px;
+	line-height: 36px;
+	border: thin solid #333333;
+	background-color: #cccccc;
+	color: #000080;
+	text-decoration: none;
+}
+
+li {
+	list-style:none;
+}

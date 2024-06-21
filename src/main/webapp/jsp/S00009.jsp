@@ -39,8 +39,8 @@
 			<a href="https://itunes.apple.com/jp/app/id1440134774?mt=8"
 				target="_blank"> <img alt="メロコ～専用アプリダウンロード画面へ"
 				src="/web/image/melokoIcon.png" class="app-icon">
-			</a> <br> <a
-				href="https://itunes.apple.com/jp/app/id1440134774?mt=8"
+			</a> <br> 
+			<a href="https://itunes.apple.com/jp/app/id1440134774?mt=8"
 				target="_blank"> <img alt="メロコ～専用アプリダウンロード画面へのリンク"
 				src="/web/image/applestore.png" class="apple-store">
 			</a>

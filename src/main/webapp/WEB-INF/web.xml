@@ -15,8 +15,8 @@
 	</servlet>
 
 	<servlet>
-		<servlet-name>Sample</servlet-name>
-		<servlet-class>jp.excd.servlet.SampleServlet</servlet-class>	
+		<servlet-name>SampleServlet</servlet-name>
+		<servlet-class>jp.excd.servlet.SampleServlet</servlet-class>
 		<init-param>
 			<param-name>javaEncoding</param-name>
 			<param-value>UTF-8</param-value>
@@ -24,13 +24,65 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>Sample</servlet-name>
+		<servlet-name>SampleServlet</servlet-name>
 		<url-pattern>/ja/Sample/*</url-pattern>
 	</servlet-mapping>
 
 	<error-page>
-    <error-code>404</error-code>
-    <location>/jsp/404.jsp</location>
-    </error-page>
+		<error-code>404</error-code>
+		<location>/jsp/404.jsp</location>
+	</error-page>
+
+
+	<servlet>
+		<servlet-name>S00007</servlet-name>
+		<servlet-class>jp.excd.servlet.S00007</servlet-class>
+		<init-param>
+			<param-name>javaEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>S00007</servlet-name>
+		<url-pattern>/ja/S00007/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>S00007</servlet-name>
+		<url-pattern>/ja/S00007</url-pattern>
+	</servlet-mapping>
+
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/404.jsp</location>
+	</error-page>
+
+	<servlet>
+		<servlet-name>S00008</servlet-name>
+		<servlet-class>jp.excd.servlet.S00008</servlet-class>
+		<init-param>
+			<param-name>javaEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>S00008</servlet-name>
+		<url-pattern>/ja/S00008/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>S00008</servlet-name>
+		<url-pattern>/ja/S00008</url-pattern>
+	</servlet-mapping>
+
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/404.jsp</location>
+	</error-page>
+
 
 </web-app>

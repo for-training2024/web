@@ -170,7 +170,9 @@ public class S00004 extends HttpServlet {
 					songBean.setother_link_description(comRrecord.other_link_description());
 
 				}else {
-					//データが取れなかった場合
+					//データが取れなかった場合、404.jspに遷移
+					getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
+
 				}
 
 				//			まだ使わない↓

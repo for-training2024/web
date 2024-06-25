@@ -1,4 +1,4 @@
-.label {
+span.label {
 	color: #344dff;
 }
 
@@ -19,7 +19,7 @@ body {
 	padding-left:10px;
 }
 
-.right_button a {
+right_button a {
 	display: block;
 	box-sizing: border-box;
 	font-size: 18px;

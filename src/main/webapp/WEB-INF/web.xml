@@ -15,7 +15,7 @@
 	</servlet>
 
 	<servlet>
-		<servlet-name>SampleServlet</servlet-name>
+		<servlet-name>Sample</servlet-name>
 		<servlet-class>jp.excd.servlet.SampleServlet</servlet-class>
 		<init-param>
 			<param-name>javaEncoding</param-name>
@@ -24,13 +24,13 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>SampleServlet</servlet-name>
+		<servlet-name>Sample</servlet-name>
 		<url-pattern>/ja/Sample/*</url-pattern>
 	</servlet-mapping>
 
-	<error-page>
-		<error-code>404</error-code>
-		<location>/jsp/404.jsp</location>
+		<error-page>
+	<error-code>404</error-code>
+	<location>/jsp/404.jsp</location>
 	</error-page>
 
 
@@ -53,12 +53,6 @@
 		<url-pattern>/ja/S00007</url-pattern>
 	</servlet-mapping>
 
-
-	<error-page>
-		<error-code>404</error-code>
-		<location>/jsp/404.jsp</location>
-	</error-page>
-
 	<servlet>
 		<servlet-name>S00008</servlet-name>
 		<servlet-class>jp.excd.servlet.S00008</servlet-class>
@@ -77,12 +71,5 @@
 		<servlet-name>S00008</servlet-name>
 		<url-pattern>/ja/S00008</url-pattern>
 	</servlet-mapping>
-
-
-	<error-page>
-		<error-code>404</error-code>
-		<location>/jsp/404.jsp</location>
-	</error-page>
-
 
 </web-app>

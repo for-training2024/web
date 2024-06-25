@@ -13,11 +13,11 @@ List<ComposerBean> composers = (List<ComposerBean>) request.getAttribute("list")
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>作曲家検索</title>
-<link rel="stylesheet" href="/web/css/main.css" />
-<link rel="stylesheet" type="text/css" href="/web/css/menu.css" />
-<link rel="stylesheet" type="text/css" href="/web/css/S00008.css" />
+<link rel="stylesheet" href="/web/CSS/main.css" />
+<link rel="stylesheet" type="text/css" href="/web/CSS/menu.css" />
+<link rel="stylesheet" type="text/css" href="/web/CSS/S00008.css" />
 <script src="/web/js/jquery-3.3.0.min.js"></script>
-<script type="text/javascript" src="/web/js/util.js"></script>
+<script type="text/javascript" src="/web/js/S00002.js"></script>
 <script type="text/javascript" src="/web/js/S00008.js"></script>
 
 
@@ -32,10 +32,10 @@ List<ComposerBean> composers = (List<ComposerBean>) request.getAttribute("list")
 		<div class="title_bar">
 			<p class="page_title">作曲家検索
 			<button type="submit" form="formBack" id="back" class="back"
-				value="戻る">戻る</button>
+				value="戻る">＜戻る</button>
 
 			<a href="#" id="menu_open"><img alt="メニュー"
-				src="/web/images/menu.png" class="menu-icon"> </a>
+				src="/web/image/menu.png" class="menu-icon"> </a>
 			</p>
 		</div>
 
@@ -55,36 +55,36 @@ List<ComposerBean> composers = (List<ComposerBean>) request.getAttribute("list")
 		</div>
 
 		<!-- 作曲家テーブル -->
-		<div class="contents">
+		<div class="composer_list">
 			<ul>
 				<%
 				for (ComposerBean cb : composers) {
 				%>
 				<li>
 					<div class="cell">
-						<div class="nickname">
-							<a href="../S00004/<%=cb.getunique_code()%>"><%=cb.getnickname()%></a>
-						</div>
+						
+							<a href="../S00004/<%=cb.getUnique_code()%>" class ="composer_nickname"><%=cb.getNickname()%></a>
+						
 						<table class="detail">
 							<tr>
 								<td><span class="label">登録日：</span></td>
-								<td><span><%=cb.getjoined_date_formated()%></span></td>
+								<td><span><%=cb.getJoined_date_formated()%></span></td>
 							</tr>
 							<tr>
 								<td><span class="label">性別：</span></td>
-								<td><span><%=cb.getgender_formated()%></span></td>
+								<td><span><%=cb.getGender_formated()%></span></td>
 							</tr>
 							<tr>
 								<td><span class="label">誕生日：</span></td>
-								<td><span><%=cb.getbirthday_formated()%></span></td>
+								<td><span><%=cb.getBirthday_formated()%></span></td>
 							</tr>
 							<tr>
 								<td><span class="label">リスナー数：</span></td>
-								<td><span><%=cb.getlistener_count_formated()%></span></td>
+								<td><span><%=cb.getListener_count_formated()%></span></td>
 							</tr>
 							<tr>
 								<td><span class="label">言語：</span></td>
-								<td><span><%=cb.getlanguage_type()%></span></td>
+								<td><span><%=cb.getLanguage_type()%></span></td>
 							</tr>
 						</table>
 					</div>
@@ -93,7 +93,7 @@ List<ComposerBean> composers = (List<ComposerBean>) request.getAttribute("list")
 				}
 				%>
 			</ul>
-			<div class="right_button">
+			<div class="main_button">
 				<button type="submit" form="formChange" id="change" class="change"
 					value="条件変更">条件変更</button>
 			</div>
@@ -176,8 +176,6 @@ List<ComposerBean> composers = (List<ComposerBean>) request.getAttribute("list")
 			value="<%=request.getAttribute("sort_order")%>">
 	</form>
 
-	<br>
-	<hr>
 	<footer>
 		<p>
 			Copyright &copy; <a href="https://www.excd.jp/top">EXCEED

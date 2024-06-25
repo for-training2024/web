@@ -1051,7 +1051,7 @@ div.message_with_right_button button{
 }
 
 /*メインボタン*/
-div .contents button {
+div .main_button button{
   margin-top: 8px;
   text-align : center; 
   font-size: large;

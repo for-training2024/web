@@ -411,7 +411,7 @@ public class S00007 extends HttpServlet {
 
 		// (17) リスナー数FROM　リスナー数TO エラー判定を行う。
 		if ("1".equals(listener_count_radio)) {
-			if (listener_count_from != null) {
+			if (isBlank(listener_count_from) == false) {
 				lcf = Integer.parseInt(listener_count_from);
 			}
 			if (isBlank(listener_count_to) == false) {
@@ -517,15 +517,30 @@ public class S00007 extends HttpServlet {
 			}
 
 			ComposerBean cb = new ComposerBean(); // コンストラクタはループ内で生成する
-
-			cb.setnickname(l.nickname());
-			cb.setjoined_date_formated(Transform.conDate(l.joined_date()));
-			cb.setgender_formated(Transform.getGender(l.gender()));
-			cb.setbirthday_formated(Transform.conBirthday(l.birthday()));
-			cb.setlistener_count_formated(Transform.conComma(l.listener_count()));
-			cb.setlanguage_type(Transform.getLanguage_type(l.language_type()));
-			cb.setcomposer_id(l.composer_id());
-			cb.setunique_code(l.unique_code());
+			//ニックネーム
+			String Nickname = l.nickname();
+			cb.setNickname(Nickname);
+			//登録日
+			String joined_date_formated = Transform.conDate(l.joined_date());
+			cb.setJoined_date_formated(joined_date_formated);
+			//性別
+			String Gender = Transform.getGender(l.gender());
+			cb.setGender_formated(Gender);
+			//誕生日
+			String birthday_formated = Transform.conBirthday(l.birthday());
+			cb.setBirthday_formated(birthday_formated);
+			//リスナー数
+			String listener_count_formated = Transform.conComma(l.listener_count());
+			cb.setListener_count_formated(listener_count_formated);
+			//言語
+			String language_type = Transform.getLanguage_type(l.language_type());
+			cb.setLanguage_type(language_type);
+			//作曲家 ID
+			String composer_id = l.composer_id();
+			cb.setComposer_id(composer_id);
+			//ユニークコード
+			String unique_code = l.unique_code();
+			cb.setUnique_code(unique_code);
 
 			newList.add(cb);
 		}

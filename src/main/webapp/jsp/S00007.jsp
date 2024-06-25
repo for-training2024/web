@@ -38,9 +38,9 @@ if (nickname == null)
 	nickname = "";
 
 // (4) 「登録日_エラー状態(joined_date_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
-String joined_is_error = "";
+String joined_date_is_error = "";
 if ("1".equals(request.getAttribute("joined_date_is_error"))) {
-	joined_is_error = ", error";
+	joined_date_is_error = ", error";
 }
 
 // (5) 以下の項目を元に登録日の入力状態を再現する。
@@ -94,7 +94,7 @@ String birthday_to = (String) request.getAttribute("birthday_to");
 
 // (10) 「リスナー数_エラー状態(listener_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String listener_is_error = "";
-if ("1".equals(request.getAttribute("listener_is_error"))) {
+if ("1".equals(request.getAttribute("listener_count_is_error"))) {
 	listener_is_error = ", error";
 }
 
@@ -108,7 +108,11 @@ if ("2".equals(request.getAttribute("listener_count_radio"))) {
 	listener_count_Radio2 = "checked=\"checked\"";
 }
 String listener_count_from = (String) request.getAttribute("listener_count_from");
+if(listener_count_from == null)
+	listener_count_from = "";
 String listener_count_to = (String) request.getAttribute("listener_count_to");
+if(listener_count_to == null)
+	listener_count_to ="";
 
 // (12) 「言語_エラー状態(language_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String language_is_error = "";
@@ -118,11 +122,11 @@ if ("1".equals(request.getAttribute("language_is_error"))) {
 
 // (13) 以下の項目を元に言語の入力状態を再現する。
 String language_type_jp = "";
-if ("1".equals(request.getAttribute("language_type_jp"))) {
+if ("001".equals(request.getAttribute("language_type_jp"))) {
 	language_type_jp = "checked=\"checked\"";
 }
 String language_type_en = "";
-if ("2".equals(request.getAttribute("language_type_en"))) {
+if ("002".equals(request.getAttribute("language_type_en"))) {
 	language_type_en = "checked=\"checked\"";
 }
 
@@ -141,10 +145,10 @@ if (sort_order == null)
 <meta name="description"
 	content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
 <title>作曲家検索</title>
-<link rel="stylesheet" href="/web/css/main.css">
-<link rel="stylesheet" href="/web/css/S00007.css">
+<link rel="stylesheet" href="/web/CSS/main.css">
+<link rel="stylesheet" href="/web/CSS/S00007.css">
 <script src="/web/js/jquery-3.3.0.min.js"></script>
-<script src="/web/js/util.js"></script>
+<script src="/web/js/S00002.js"></script>
 <script src="/web/js/S00007.js"></script>
 </head>
 
@@ -159,7 +163,7 @@ if (sort_order == null)
 			<p class="page_title">作曲家検索</p>
 
 			<a href="#" id="menu_open"> <img alt="メニュー"
-				src="/web/images/menu.png" class="menu-icon">
+				src="/web/image/menu.png" class="menu-icon">
 			</a>
 		</div>
 
@@ -171,7 +175,7 @@ if (sort_order == null)
 		if ("".equals(errorMessage) == false) {
 		%>
 		<div class="error_message">
-			<img alt="エラーマーク" src="/web/images/error_mark.png">
+			<img alt="エラーマーク" src="/web/image/error_mark.png">
 			<p><%=errorMessage%></p>
 		</div>
 		<%
@@ -305,7 +309,7 @@ if (sort_order == null)
 			<div class="input_table">
 				<table>
 					<tr>
-						<td class="label" rowspan="2"<%=birthday_is_error %>>誕生日</td>
+						<td class="label" rowspan="2" <%=birthday_is_error %>>誕生日</td>
 						<td class="value"<%=birthday_is_error %>>
 							<table class="radio_base">
 								<tr>
@@ -323,7 +327,7 @@ if (sort_order == null)
 						</td>
 					</tr>
 					<tr>
-						<td class="value"<%=birthday_is_error %>>
+						<td class="value" <%=birthday_is_error %>>
 							<table class="date_base">
 								<tr>
 									<td><input type="date" name="birthday_from"
@@ -347,7 +351,7 @@ if (sort_order == null)
 			<div class="input_table">
 				<table>
 					<tr>
-						<td class="label" rowspan="2"<%=listener_is_error %>>リスナー数</td>
+						<td class="label" rowspan="2" <%=listener_is_error%>>リスナー数</td>
 						<td class="value"<%=listener_is_error %>>
 							<table class="radio_base">
 								<tr>
@@ -365,12 +369,12 @@ if (sort_order == null)
 						</td>
 					</tr>
 					<tr>
-						<td class="value"<%=listener_is_error %>>
+						<td class="value" <%=listener_is_error%>>
 							<table class="text_base">
 								<tr>
 									<td><input type="text" name="listener_count_from"
 										maxlength="8" class="listner_count_text"
-										<%=listener_count_from%>></td>
+										value="<%=listener_count_from%>"></td>
 								</tr>
 								<tr>
 									<td>～</td>
@@ -378,7 +382,7 @@ if (sort_order == null)
 								<tr>
 									<td><input type="text" name="listener_count_to"
 										maxlength="8" class="listner_count_text"
-										<%=listener_count_to%>></td>
+										value="<%=listener_count_to%>"></td>
 								</tr>
 							</table>
 						</td>
@@ -391,19 +395,19 @@ if (sort_order == null)
 			<div class="input_table">
 				<table>
 					<tr>
-						<td class="label"<%=language_is_error %>>言語</td>
-						<td class="value"<%=language_is_error %>>
+						<td class="label"<%=language_is_error%>>言語</td>
+						<td class="value"<%=language_is_error%>>
 							<table class="check_base">
 								<tr>
 									<td><label> <input type="checkbox"
 											name="language_type_jp" value="001"><span
-											class="check_label">日本語</span>
+											class="check_label"<%=language_type_jp %>>日本語</span>
 									</label></td>
 								</tr>
 								<tr>
 									<td><label> <input type="checkbox"
 											name="language_type_en" value="002"><span
-											class="check_label">英語</span>
+											class="check_label"<%=language_type_en %>>英語</span>
 									</label></td>
 								</tr>
 							</table>
@@ -430,7 +434,7 @@ if (sort_order == null)
 
 			<!-- メインボタン -->
 			<div class="main_button">
-				<input type="submit" value="送信">
+				<button type="submit" value="送信">送信
 			</div>
 		</form>
 	</div>

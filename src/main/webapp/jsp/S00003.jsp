@@ -21,9 +21,9 @@
 <meta name="description"
 	content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
 <title><%=beanS3.gettitle()%></title>
-<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../CSS/main.css">
 <script src="../../js/jquery-3.3.0.min.js"></script>
-<script src="../../js/util.js"></script>
+<script src="../../js/S00002.js"></script>
 
 <!-- 画像の圧縮表示設定 -->
 <style>
@@ -45,7 +45,7 @@ div.song_link div.cell div.song1 img {
 		<div class="title_bar">
 			<p class="page_title"><%=beanS3.gettitle()%></p>
 			<a href="#" id="menu_open"> <img alt="メニュー"
-				src="../../images/menu.png" class="menu-icon">
+				src="../../image/menu.png" class="menu-icon">
 			</a>
 		</div>
 
@@ -86,8 +86,18 @@ div.song_link div.cell div.song1 img {
 				<div class="image_base">
 					<a href="meloko://?song_id=<%=beanS3.getsong_id()%>">
 						<div class="image song1">
+						<%
+						if((beanS3.getimage_file_name()) != null){
+						%>
 							<img alt="<%=beanS3.gettitle()%>" src="<%=beanS3.getimage_file_name()%>">
-								<img alt="play" class="play" src="../../images/play.png">
+						<%
+						}else{
+						%>
+							<img alt="<%=beanS3.gettitle()%>" src="/web/image/noimage.png">						
+						<%
+						}
+						%>	
+								<img alt="play" class="play" src="../../image/play.png">
 						</div>
 					</a>
 				</div>
@@ -121,8 +131,19 @@ div.song_link div.cell div.song1 img {
 				</tr>
 				<tr>
 					<td class="value">
-						<!-- 関連リンクUrL --> <a href="<%=beanS3.getother_link_url()%>"><%=beanS3.getother_link_description()%></a>
-					</td>
+						<!-- 関連リンクUrL --> 
+						<%
+						if((beanS3.getother_link_description()) != null){
+						%>
+						<a href="<%=beanS3.getother_link_url()%>"><%=beanS3.getother_link_description()%></a>
+						<%
+						}else{
+							%>
+							<p>No links</p>
+							<%
+						}
+						%>
+											</td>
 				</tr>
 			</table>
 		</div>
@@ -264,7 +285,7 @@ div.song_link div.cell div.song1 img {
 
 		<!-- ページトップへjavaScript -->
 		<div id="pagetop" hidden>
-			<img alt="ページトップ" src="/web/images/pagetop.png">
+			<img alt="ページトップ" src="/web/image/pagetop.png">
 		</div>
 
 		<!-- フッター -->

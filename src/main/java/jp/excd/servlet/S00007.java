@@ -545,6 +545,7 @@ public class S00007 extends HttpServlet {
 			newList.add(cb);
 		}
 		 
+		
 		String count = NumberFormat.getNumberInstance().format(listSize);
 		request.setAttribute("listSize", listSize);
 		request.setAttribute("hits", count);

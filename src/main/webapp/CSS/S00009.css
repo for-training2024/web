@@ -1,0 +1,23 @@
+/******************************************************************************/
+/* ■■メロコやダウンロード画像のサイズ調整                                   */
+/******************************************************************************/
+.app-icon {
+	width: 180px; 
+  	height: auto; 
+  	margin: 0px 0px 0px 10px;
+ 	border-radius: 20%;
+}
+
+.app-store {
+  	width: 300px; 
+  	height: auto; 
+  	margin: 0px 0px 70px 0px;
+	}
+
+.ap {
+ 	padding: 20px; /* Add internal padding to the content */
+}
+
+.asd{
+	padding:20px
+}

@@ -6,7 +6,9 @@
 <html>
 <%
 List<ComposerBean> composers = (List<ComposerBean>) request.getAttribute("list");
+String hits = (String) request.getAttribute("hits");
 %>
+
 
 <head>
 <meta charset="utf-8">
@@ -45,7 +47,14 @@ List<ComposerBean> composers = (List<ComposerBean>) request.getAttribute("list")
 
 		<!-- 検索結果表示 -->
 		<div class="message_with_right_button">
-			<p><%=request.getAttribute("hits")%>件が該当します。
+			<p><%=hits%>件が該当します。
+				<% 
+					if( (int)request.getAttribute("listSize") > 10){
+				%>
+				(うち10件表示しています。)
+				<% 
+					}
+				%>
 			</p>
 			<div class="right_button">
 

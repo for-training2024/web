@@ -3,22 +3,22 @@
 //-----------------------------------------------------------------------------
 var Util = {
   changeTabelStatus: function(_base$) {
-    
+
     // 自分を含むテーブル
     var _table$ = _base$.parents('table.radio_base');
-    
+
     // 自分を含むdiv
     var _div$ = _table$.parents('div.input_table');
-    
+
     // ラジオボタンの配列
     var _radios$ = _table$.find("input[type=radio].onOffRadio");
-    
+
     _radios$.each(function(index) {
         var _this$ = $(this);
 
         // チェックされているかどうか？
         var isChecked = _this$.is(":checked");
-        
+
         if (_this$.val() === "1") {
           //----------------------------------------------------------------------
           // ONのラジオ
@@ -47,7 +47,7 @@ var Util = {
   //------------------------------------------------------------------------------
   addCancelLayer: function() {
     console.log("addCancelLayer");
-    
+
     // bodyの取得
     var _body$ = $('body');
 
@@ -65,7 +65,7 @@ var Util = {
 
     // DOMに追加
     $("#layer_marker").append(_layer$);
-    
+
     // ゆっくり表示
     _layer$.fadeIn(150);
   },
@@ -74,7 +74,7 @@ var Util = {
   //------------------------------------------------------------------------------
   addMenu: function() {
     console.log("addMenu");
-    
+
     // Layerの生成
     var _layer$ = $(''
       + '<div class="menu_base">'
@@ -84,33 +84,33 @@ var Util = {
       + '  </div>'
       + '  <ul>'
       + '    <li>'
-      + '      <a href="S00001.html">'
+      + '      <a href="/web/ja/S00001">'
       + '        <p>HOME</p>'
-      + '        <img alt="HOME" class="right_arrow" src="/web/images/right_arrow.png" />'
+      + '        <img alt="HOME" class="right_arrow" src="/web/image/right_arrow.png" />'
       + '      </a>'
       + '    </li>'
       + '    <li>'
-      + '      <a href="S00005.html">'
+      + '      <a href="/web/ja/S00005">'
       + '        <p>作品検索</p>'
-      + '        <img alt="作品検索" class="right_arrow" src="/web/images/right_arrow.png" />'
+      + '        <img alt="作品検索" class="right_arrow" src="/web/image/right_arrow.png" />'
       + '      </a>'
       + '    </li>'
       + '    <li>'
-      + '      <a href="S00007.html">'
+      + '      <a href="/web/ja/S00007">'
       + '        <p>作曲家検索</p>'
-      + '        <img alt="作曲家検索" class="right_arrow" src="/web/images/right_arrow.png" />'
+      + '        <img alt="作曲家検索" class="right_arrow" src="/web/image/right_arrow.png" />'
       + '      </a>'
       + '    </li>'
       + '    <li>'
-      + '      <a href="S00009.html">'
+      + '      <a href="/web/ja/S00009">'
       + '        <p>専用アプリダウンロード</p>'
-      + '        <img alt="専用アプリダウンロード" class="right_arrow" src="/web/images/right_arrow.png" />'
+      + '        <img alt="専用アプリダウンロード" class="right_arrow" src="/web/image/right_arrow.png" />'
       + '      </a>'
       + '    </li>'
       + '    <li>'
       + '      <a href="https://excd.jp/">'
       + '        <p class="to_excd">運営会社</p>'
-      + '        <img alt="運営会社" class="pop_up" src="/web/images/return.png" />'
+      + '        <img alt="運営会社" class="pop_up" src="/web/image/return.png" />'
       + '      </a>'
       + '    </li>'
       + '  </ul>'
@@ -122,7 +122,7 @@ var Util = {
 
     // DOMに追加
     $("#menu_marker").append(_layer$);
-    
+
     // ゆっくり表示
     _layer$.fadeIn(300);
   },
@@ -131,21 +131,21 @@ var Util = {
   //-----------------------------------------------------------------------------
   addMenuEventHandller :function() {
       console.log("addMenuEventHandller");
-      
+
       // クローズボタン
       $("#menu_close, #layer").on("click", function() {
           console.log("close");
-          
+
           // メニューを非表示
           $(".menu_base").fadeOut(150, function() {
-              
+
               // メニューをDOMから削除
               $(".menu_base").remove();
           });
 
           // レイヤを非表示
           $("#layer").fadeOut(300, function() {
-              
+
               // レイヤをDOMから削除
               $("#layer").remove();
           });
@@ -159,12 +159,12 @@ var Util = {
 $(function() {
   var topBtn=$('#pagetop');
   topBtn.hide();
- 
+
   $(window).scroll(function(){
     if($(this).scrollTop()>5){
       topBtn.fadeIn();
     }else{
-     
+
       topBtn.fadeOut();
     } 
   });
@@ -180,22 +180,14 @@ $(function() {
 $(function() {
     $("a#menu_open").on("click", function() {
         console.log("menu_open");
-        
+
         // キャンセルレイアの追加
         Util.addCancelLayer();
-        
+
         // メニューの追加
         Util.addMenu();
-        
+
         // イベントハンドラの追加
         Util.addMenuEventHandller();
     });
 });
-
-//-----------------------------------------------------------------------------
-// エラーで背景色変更
-//-----------------------------------------------------------------------------
-	  $("td[error]").css("background-color", "#FFC0CB");
-	
-
-

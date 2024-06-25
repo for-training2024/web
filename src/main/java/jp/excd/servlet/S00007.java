@@ -527,7 +527,7 @@ public class S00007 extends HttpServlet {
 			String Gender = Transform.getGender(l.gender());
 			cb.setGender_formated(Gender);
 			//誕生日
-			String birthday_formated = Transform.conBirthday(l.birthday());
+			String birthday_formated = Transform.conDate(l.birthday());
 			cb.setBirthday_formated(birthday_formated);
 			//リスナー数
 			String listener_count_formated = Transform.conComma(l.listener_count());
@@ -544,8 +544,9 @@ public class S00007 extends HttpServlet {
 
 			newList.add(cb);
 		}
-
+		 
 		String count = NumberFormat.getNumberInstance().format(listSize);
+		request.setAttribute("listSize", listSize);
 		request.setAttribute("hits", count);
 		request.setAttribute("list", newList);
 
@@ -934,7 +935,7 @@ public class S00007 extends HttpServlet {
 		// (17) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
 		pstmt.close();
 
-		// (18) 前処理で生成したListを呼び出し元に返却する。
+		// (18) 前処理で生成したListを呼び出し元countに返却する。
 		return conmposerList;
 
 	}

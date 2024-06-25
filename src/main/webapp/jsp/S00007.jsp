@@ -440,7 +440,7 @@ if (sort_order == null)
 	</div>
 	<!-- ページトップへjavaScript -->
 	<div id="pagetop" hidden>
-		<img alt="ページトップ" src="/web/images/pagetop.png">
+		<img alt="ページトップ" src="/web/image/pagetop.png">
 	</div>
 
 	<!-- フッター -->

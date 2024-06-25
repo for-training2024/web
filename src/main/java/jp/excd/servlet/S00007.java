@@ -516,6 +516,7 @@ public class S00007 extends HttpServlet {
 				break;
 			}
 
+		
 			ComposerBean cb = new ComposerBean(); // コンストラクタはループ内で生成する
 			//ニックネーム
 			String Nickname = l.nickname();

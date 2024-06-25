@@ -147,6 +147,7 @@ if (sort_order == null)
 <title>作曲家検索</title>
 <link rel="stylesheet" href="/web/CSS/main.css">
 <link rel="stylesheet" href="/web/CSS/S00007.css">
+<link rel="stylesheet" href="/web/CSS/S5678.css">
 <script src="/web/js/jquery-3.3.0.min.js"></script>
 <script src="/web/js/S00002.js"></script>
 <script src="/web/js/S00007.js"></script>

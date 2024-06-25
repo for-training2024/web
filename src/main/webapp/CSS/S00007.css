@@ -16,4 +16,31 @@
 	margin-left: 6px;
 }
 
+/******テキストボックスのデザイン******/
 
+.check_label {
+	font-size: 20px;
+}
+
+input[type=checkbox] {
+	transform: scale(2);
+	margin: 0 6px 0 0;
+	accent-color: #379f2e;
+}
+
+
+
+
+/******フッターをセンターに******/
+
+footer {
+  text-align: center;
+
+}
+
+footer a{
+  color: blue;
+}
+
+
+/******メインボタンの上に隙間******/

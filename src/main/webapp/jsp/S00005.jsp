@@ -44,7 +44,7 @@
 	// (6) 「平均感動指数_エラー状態(rating_average_is_error)」= "1"の場合、tdタグに errorを加える。
 	String rating_average_is_error = "";
 	if ("1".equals(request.getAttribute("rating_average_is_error"))) {
-		rating_is_error = " error";
+		rating_average_is_error = " error";
 	}
 	
 	// (7) 以下の項目を元に平均感動指数の入力状態を再現する。
@@ -56,7 +56,7 @@
 	}
 	String rating_average_from = (String)request.getAttribute("rating_average_from");
 	if (rating_average_from == null) { 
-		rating_average_from="1.0";
+		rating_average_from="4.0";
 	}
 	String rating_average_to = (String)request.getAttribute("rating_average_to");
 	if (rating_average_to == null) {
@@ -108,7 +108,7 @@
 
 	// (12) 以下の項目を元に並び順の入力状態を再現する。
 	String sort_order = (String)request.getAttribute("sort_order");
-	if (sort_order == null){ sort_order="01";}
+	if (sort_order == null){ sort_order="1";}
 %>
 
 
@@ -118,7 +118,8 @@
   <meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ">
   <meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
   <title>作品検索</title>
-  <link rel="stylesheet" href="/web/css/main.css">
+  <link rel="stylesheet" href="/web/CSS/main.css">
+  <link rel="stylesheet" href="/web/CSS/S5678.css" />
   <script src="/web/js/jquery-3.3.0.min.js"></script>
     <script src="/web/js/input.js"></script>
   <script src="/web/js/S00002.js"></script>
@@ -248,94 +249,94 @@
           </tr>
           <tr>
             <td class="value" <%= rating_average_is_error %>>
-              <select name="rating_average_from" tabindex="1">
-				<option value="1.0">1.0</option>
-				<option value="1.1">1.1</option>
-				<option value="1.2">1.2</option>
-				<option value="1.3">1.3</option>
-				<option value="1.4">1.4</option>
-				<option value="1.5">1.5</option>
-				<option value="1.6">1.6</option>
-				<option value="1.7">1.7</option>
-				<option value="1.8">1.8</option>
-				<option value="1.9">1.9</option>
-				<option value="2.0">2.0</option>
-				<option value="2.1">2.1</option>
-				<option value="2.2">2.2</option>
-				<option value="2.3">2.3</option>
-				<option value="2.4">2.4</option>
-				<option value="2.5">2.5</option>
-				<option value="2.6">2.6</option>
-				<option value="2.7">2.7</option>
-				<option value="2.8">2.8</option>
-				<option value="2.9">2.9</option>
-				<option value="3.0">3.0</option>
-				<option value="3.1">3.1</option>
-				<option value="3.2">3.2</option>
-				<option value="3.3">3.3</option>
-				<option value="3.4">3.4</option>
-				<option value="3.5">3.5</option>
-				<option value="3.6">3.6</option>
-				<option value="3.7">3.7</option>
-				<option value="3.8">3.8</option>
-				<option value="3.9">3.9</option>
-				<option value="4.0" selected>4.0</option>
-				<option value="4.1">4.1</option>
-				<option value="4.2">4.2</option>
-				<option value="4.3">4.3</option>
-				<option value="4.4">4.4</option>
-				<option value="4.5">4.5</option>
-				<option value="4.6">4.6</option>
-				<option value="4.7">4.7</option>
-				<option value="4.8">4.8</option>
-				<option value="4.9">4.9</option>
-				<option value="5.0">5.0</option>
+              <select name="rating_average_from" tabindex="1" value="<%= rating_average_from %>">
+				<option value="1.0" <% if ("1.0".equals(rating_average_from)) { %>selected<% } %>>1.0</option>
+				<option value="1.1" <% if ("1.1".equals(rating_average_from)) { %>selected<% } %>>1.1</option>
+				<option value="1.2" <% if ("1.2".equals(rating_average_from)) { %>selected<% } %>>1.2</option>
+				<option value="1.3" <% if ("1.3".equals(rating_average_from)) { %>selected<% } %>>1.3</option>
+				<option value="1.4" <% if ("1.4".equals(rating_average_from)) { %>selected<% } %>>1.4</option>
+				<option value="1.5" <% if ("1.5".equals(rating_average_from)) { %>selected<% } %>>1.5</option>
+				<option value="1.6" <% if ("1.6".equals(rating_average_from)) { %>selected<% } %>>1.6</option>
+				<option value="1.7" <% if ("1.7".equals(rating_average_from)) { %>selected<% } %>>1.7</option>
+				<option value="1.8" <% if ("1.8".equals(rating_average_from)) { %>selected<% } %>>1.8</option>
+				<option value="1.9" <% if ("1.9".equals(rating_average_from)) { %>selected<% } %>>1.9</option>
+				<option value="2.0" <% if ("2.0".equals(rating_average_from)) { %>selected<% } %>>2.0</option>
+				<option value="2.1" <% if ("2.1".equals(rating_average_from)) { %>selected<% } %>>2.1</option>
+				<option value="2.2" <% if ("2.2".equals(rating_average_from)) { %>selected<% } %>>2.2</option>
+				<option value="2.3" <% if ("2.3".equals(rating_average_from)) { %>selected<% } %>>2.3</option>
+				<option value="2.4" <% if ("2.4".equals(rating_average_from)) { %>selected<% } %>>2.4</option>
+				<option value="2.5" <% if ("2.5".equals(rating_average_from)) { %>selected<% } %>>2.5</option>
+				<option value="2.6" <% if ("2.6".equals(rating_average_from)) { %>selected<% } %>>2.6</option>
+				<option value="2.7" <% if ("2.7".equals(rating_average_from)) { %>selected<% } %>>2.7</option>
+				<option value="2.8" <% if ("2.8".equals(rating_average_from)) { %>selected<% } %>>2.8</option>
+				<option value="2.9" <% if ("2.9".equals(rating_average_from)) { %>selected<% } %>>2.9</option>
+				<option value="3.0" <% if ("3.0".equals(rating_average_from)) { %>selected<% } %>>3.0</option>
+				<option value="3.1" <% if ("3.1".equals(rating_average_from)) { %>selected<% } %>>3.1</option>
+				<option value="3.2" <% if ("3.2".equals(rating_average_from)) { %>selected<% } %>>3.2</option>
+				<option value="3.3" <% if ("3.3".equals(rating_average_from)) { %>selected<% } %>>3.3</option>
+				<option value="3.4" <% if ("3.4".equals(rating_average_from)) { %>selected<% } %>>3.4</option>
+				<option value="3.5" <% if ("3.5".equals(rating_average_from)) { %>selected<% } %>>3.5</option>
+				<option value="3.6" <% if ("3.6".equals(rating_average_from)) { %>selected<% } %>>3.6</option>
+				<option value="3.7" <% if ("3.7".equals(rating_average_from)) { %>selected<% } %>>3.7</option>
+				<option value="3.8" <% if ("3.8".equals(rating_average_from)) { %>selected<% } %>>3.8</option>
+				<option value="3.9" <% if ("3.9".equals(rating_average_from)) { %>selected<% } %>>3.9</option>
+				<option value="4.0" <% if ("4.0".equals(rating_average_from)) { %>selected<% } %>>4.0</option>
+				<option value="4.1" <% if ("4.1".equals(rating_average_from)) { %>selected<% } %>>4.1</option>
+				<option value="4.2" <% if ("4.2".equals(rating_average_from)) { %>selected<% } %>>4.2</option>
+				<option value="4.3" <% if ("4.3".equals(rating_average_from)) { %>selected<% } %>>4.3</option>
+				<option value="4.4" <% if ("4.4".equals(rating_average_from)) { %>selected<% } %>>4.4</option>
+				<option value="4.5" <% if ("4.5".equals(rating_average_from)) { %>selected<% } %>>4.5</option>
+				<option value="4.6" <% if ("4.6".equals(rating_average_from)) { %>selected<% } %>>4.6</option>
+				<option value="4.7" <% if ("4.7".equals(rating_average_from)) { %>selected<% } %>>4.7</option>
+				<option value="4.8" <% if ("4.8".equals(rating_average_from)) { %>selected<% } %>>4.8</option>
+				<option value="4.9" <% if ("4.9".equals(rating_average_from)) { %>selected<% } %>>4.9</option>
+				<option value="5.0" <% if ("5.0".equals(rating_average_from)) { %>selected<% } %>>5.0</option>
               </select>
               <br>
               ～
               <br>
-              <select name="rating_average_to" tabindex="2">
-				<option value="1.0">1.0</option>
-				<option value="1.1">1.1</option>
-				<option value="1.2">1.2</option>
-				<option value="1.3">1.3</option>
-				<option value="1.4">1.4</option>
-				<option value="1.5">1.5</option>
-				<option value="1.6">1.6</option>
-				<option value="1.7">1.7</option>
-				<option value="1.8">1.8</option>
-				<option value="1.9">1.9</option>
-				<option value="2.0">2.0</option>
-				<option value="2.1">2.1</option>
-				<option value="2.2">2.2</option>
-				<option value="2.3">2.3</option>
-				<option value="2.4">2.4</option>
-				<option value="2.5">2.5</option>
-				<option value="2.6">2.6</option>
-				<option value="2.7">2.7</option>
-				<option value="2.8">2.8</option>
-				<option value="2.9">2.9</option>
-				<option value="3.0">3.0</option>
-				<option value="3.1">3.1</option>
-				<option value="3.2">3.2</option>
-				<option value="3.3">3.3</option>
-				<option value="3.4">3.4</option>
-				<option value="3.5">3.5</option>
-				<option value="3.6">3.6</option>
-				<option value="3.7">3.7</option>
-				<option value="3.8">3.8</option>
-				<option value="3.9">3.9</option>
-				<option value="4.0">4.0</option>
-				<option value="4.1">4.1</option>
-				<option value="4.2">4.2</option>
-				<option value="4.3">4.3</option>
-				<option value="4.4">4.4</option>
-				<option value="4.5">4.5</option>
-				<option value="4.6">4.6</option>
-				<option value="4.7">4.7</option>
-				<option value="4.8">4.8</option>
-				<option value="4.9">4.9</option>
-				<option value="5.0" selected>5.0</option>
+              <select name="rating_average_to" tabindex="2" value="<%= rating_average_to %>">
+				<option value="1.0" <% if ("1.0".equals(rating_average_to)) { %>selected<% } %>>1.0</option>
+				<option value="1.1" <% if ("1.1".equals(rating_average_to)) { %>selected<% } %>>1.1</option>
+				<option value="1.2" <% if ("1.2".equals(rating_average_to)) { %>selected<% } %>>1.2</option>
+				<option value="1.3" <% if ("1.3".equals(rating_average_to)) { %>selected<% } %>>1.3</option>
+				<option value="1.4" <% if ("1.4".equals(rating_average_to)) { %>selected<% } %>>1.4</option>
+				<option value="1.5" <% if ("1.5".equals(rating_average_to)) { %>selected<% } %>>1.5</option>
+				<option value="1.6" <% if ("1.6".equals(rating_average_to)) { %>selected<% } %>>1.6</option>
+				<option value="1.7" <% if ("1.7".equals(rating_average_to)) { %>selected<% } %>>1.7</option>
+				<option value="1.8" <% if ("1.8".equals(rating_average_to)) { %>selected<% } %>>1.8</option>
+				<option value="1.9" <% if ("1.9".equals(rating_average_to)) { %>selected<% } %>>1.9</option>
+				<option value="2.0" <% if ("2.0".equals(rating_average_to)) { %>selected<% } %>>2.0</option>
+				<option value="2.1" <% if ("2.1".equals(rating_average_to)) { %>selected<% } %>>2.1</option>
+				<option value="2.2" <% if ("2.2".equals(rating_average_to)) { %>selected<% } %>>2.2</option>
+				<option value="2.3" <% if ("2.3".equals(rating_average_to)) { %>selected<% } %>>2.3</option>
+				<option value="2.4" <% if ("2.4".equals(rating_average_to)) { %>selected<% } %>>2.4</option>
+				<option value="2.5" <% if ("2.5".equals(rating_average_to)) { %>selected<% } %>>2.5</option>
+				<option value="2.6" <% if ("2.6".equals(rating_average_to)) { %>selected<% } %>>2.6</option>
+				<option value="2.7" <% if ("2.7".equals(rating_average_to)) { %>selected<% } %>>2.7</option>
+				<option value="2.8" <% if ("2.8".equals(rating_average_to)) { %>selected<% } %>>2.8</option>
+				<option value="2.9" <% if ("2.9".equals(rating_average_to)) { %>selected<% } %>>2.9</option>
+				<option value="3.0" <% if ("3.0".equals(rating_average_to)) { %>selected<% } %>>3.0</option>
+				<option value="3.1" <% if ("3.1".equals(rating_average_to)) { %>selected<% } %>>3.1</option>
+				<option value="3.2" <% if ("3.2".equals(rating_average_to)) { %>selected<% } %>>3.2</option>
+				<option value="3.3" <% if ("3.3".equals(rating_average_to)) { %>selected<% } %>>3.3</option>
+				<option value="3.4" <% if ("3.4".equals(rating_average_to)) { %>selected<% } %>>3.4</option>
+				<option value="3.5" <% if ("3.5".equals(rating_average_to)) { %>selected<% } %>>3.5</option>
+				<option value="3.6" <% if ("3.6".equals(rating_average_to)) { %>selected<% } %>>3.6</option>
+				<option value="3.7" <% if ("3.7".equals(rating_average_to)) { %>selected<% } %>>3.7</option>
+				<option value="3.8" <% if ("3.8".equals(rating_average_to)) { %>selected<% } %>>3.8</option>
+				<option value="3.9" <% if ("3.9".equals(rating_average_to)) { %>selected<% } %>>3.9</option>
+				<option value="4.0" <% if ("4.0".equals(rating_average_to)) { %>selected<% } %>>4.0</option>
+				<option value="4.1" <% if ("4.1".equals(rating_average_to)) { %>selected<% } %>>4.1</option>
+				<option value="4.2" <% if ("4.2".equals(rating_average_to)) { %>selected<% } %>>4.2</option>
+				<option value="4.3" <% if ("4.3".equals(rating_average_to)) { %>selected<% } %>>4.3</option>
+				<option value="4.4" <% if ("4.4".equals(rating_average_to)) { %>selected<% } %>>4.4</option>
+				<option value="4.5" <% if ("4.5".equals(rating_average_to)) { %>selected<% } %>>4.5</option>
+				<option value="4.6" <% if ("4.6".equals(rating_average_to)) { %>selected<% } %>>4.6</option>
+				<option value="4.7" <% if ("4.7".equals(rating_average_to)) { %>selected<% } %>>4.7</option>
+				<option value="4.8" <% if ("4.8".equals(rating_average_to)) { %>selected<% } %>>4.8</option>
+				<option value="4.9" <% if ("4.9".equals(rating_average_to)) { %>selected<% } %>>4.9</option>
+				<option value="5.0" <% if ("5.0".equals(rating_average_to)) { %>selected<% } %>>5.0</option>
               </select>
             </td>
           </tr>
@@ -426,16 +427,15 @@
           <tr>
             <td class="label">並び順</td>
             <td class="value">
-              <select name="order" tabindex="10">
-                <option value="" selected="selected"></option>
-                <option value="">新しい順</option>
-                <option value="">古い順</option>
-                <option value="">感動指数が多い順</option>
-                <option value="">感動指数が少ない順</option>
-                <option value="">平均感動指数が高い順</option>
-                <option value="">平均感動指数が低い順</option>
-                <option value="">再生回数が多い順</option>
-                <option value="">再生回数が少ない順</option>
+              <select name="sort_order" tabindex="10">
+                <option value="1" <% if ("1".equals(sort_order)) { %>selected<% } %>>新しい順</option>
+                <option value="2" <% if ("2".equals(sort_order)) { %>selected<% } %>>古い順</option>
+                <option value="3" <% if ("3".equals(sort_order)) { %>selected<% } %>>感動指数が多い順</option>
+                <option value="4" <% if ("4".equals(sort_order)) { %>selected<% } %>>感動指数が少ない順</option>
+                <option value="5" <% if ("5".equals(sort_order)) { %>selected<% } %>>平均感動指数が高い順</option>
+                <option value="6" <% if ("6".equals(sort_order)) { %>selected<% } %>>平均感動指数が低い順</option>
+                <option value="7" <% if ("7".equals(sort_order)) { %>selected<% } %>>再生回数が多い順</option>
+                <option value="8" <% if ("8".equals(sort_order)) { %>selected<% } %>>再生回数が少ない順</option>
               </select>
             </td>
           </tr>

@@ -13,7 +13,8 @@
   <meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ">
   <meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
 <title>作品検索</title>
-<link rel="stylesheet" href="/web/css/main.css" />
+<link rel="stylesheet" href="/web/CSS/main.css" />
+<link rel="stylesheet" href="/web/CSS/S5678.css" />
 <script src="/web/js/jquery-3.3.0.min.js"></script>
 <script type="text/javascript" src="/web/js/input.js"></script>
 <script type="text/javascript" src="/web/js/S00002.js"></script>
@@ -64,7 +65,8 @@
 			<div class="image_base">
 			  <a href="/web/ja/S00003/<%= bean.getSong_id()%>">
 				<div class="image song1">
-				  <img src="<%=bean.getImage_file_name()%>" class="trimc" alt="">
+				  <img src="<%if(bean.getImage_file_name() != null){%><%=bean.getImage_file_name()%>
+				  				<%}else if(bean.getImage_file_name() == null){%>/web/image/noimage.png<%}%>" class="trimc" alt="">
 				  <img alt= "play" class="play" src="/web/image/play.png">
 				</div>
 			  </a>

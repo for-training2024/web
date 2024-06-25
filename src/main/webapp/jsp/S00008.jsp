@@ -15,8 +15,8 @@ String hits = (String) request.getAttribute("hits");
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>作曲家検索</title>
 <link rel="stylesheet" href="/web/CSS/main.css" />
-<link rel="stylesheet" type="text/css" href="/web/CSS/menu.css" />
 <link rel="stylesheet" type="text/css" href="/web/CSS/S00008.css" />
+<link rel="stylesheet" href="/web/CSS/S5678.css">
 <script src="/web/js/jquery-3.3.0.min.js"></script>
 <script type="text/javascript" src="/web/js/S00002.js"></script>
 <script type="text/javascript" src="/web/js/S00008.js"></script>
@@ -191,7 +191,7 @@ String hits = (String) request.getAttribute("hits");
 		</p>
 
 		<div id="pagetop" hidden>
-			<img src="/web/images/pagetop.png" alt="ページトップ">
+			<img src="/web/image/pagetop.png" alt="ページトップ">
 		</div>
 
 	</footer>

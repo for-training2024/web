@@ -28,19 +28,7 @@ input[type=checkbox] {
 	accent-color: #379f2e;
 }
 
-
-
-
-/******フッターをセンターに******/
-
-footer {
-  text-align: center;
-
-}
-
-footer a{
-  color: blue;
-}
-
-
 /******メインボタンの上に隙間******/
+div .contents button {
+  margin-top: 8px;
+}

@@ -153,6 +153,7 @@ if (sort_order == null)
 <script src="/web/js/S00007.js"></script>
 </head>
 
+
 <body>
 	<!-- メニューのキャンセルレイヤの起点 -->
 	<div id="layer_marker"></div>

@@ -65,7 +65,7 @@ div.song_link div.cell div.song1 img {
 		<!-- 作者へのリンク -->
 		<div class="label_and_link">
 			<span class="label">作者：</span><span class="link"><a
-				href="../S00004/<%=beanS3.getUnique_code()%>"><%=beanS3.getNickname()%></a></span>
+				href="../S00004/<%=beanS3.getunique_code()%>"><%=beanS3.getnickname()%></a></span>
 		</div>
 
 		<!-- メッセージ -->

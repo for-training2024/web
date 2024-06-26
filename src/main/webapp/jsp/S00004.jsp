@@ -18,6 +18,17 @@
   <link rel="stylesheet" href="../../CSS/main.css">
   <script src="../../js/jquery-3.3.0.min.js"></script>
   <script src="../../js/S00002.js"></script>
+  
+  <style>
+div.song_list ul li div.cell div.song1 img {
+    position: relative;
+    left: 0px;
+    top: -11px;
+    width :275px;
+    height :182px;
+}
+</style>
+  
 </head>
 <body>
  <!-- メニューのキャンセルレイヤの起点 -->
@@ -53,14 +64,15 @@
     
     <!-- メッセージ -->
     <div class="single_row_table">
-      <table>
+        <table>
         <tr>
           <td class="label">メッセージ</td>
         </tr>
         <tr>
           <td class="value"><%=composer.getmessage() %></td>
         </tr>
-      </table>
+         </table>
+    
     </div>
 
     <!-- プロフィール -->
@@ -71,17 +83,36 @@
         </tr>
         <tr>
           <td class="value">
+          <%
+          	System.out.println(composer);
+          	if((composer.getGender_formated()) != ""){%>
+		  <%if((composer.getGender_formated()) != null){ %>
             <span class="label_top">性別：</span>
             <span class="value"><%=composer.getGender_formated() %></span>
+          <%
+          	}
+          }
+          %>
+          
+          <%
+          	System.out.println(composer);
+          	if((composer.getBirthday_formated()) != ""){%>
+		  <%if((composer.getBirthday_formated()) != null){ %>
+          
             <span class="label">誕生日：</span>
             <span class="value"><%=composer.getBirthday_formated() %></span>
-            <br>
+              <br>
+		  <%
+          	}
+          }
+          %>
+
             <span class="label_top">FB：</span>
-            <span class="value"><a href="https://google.co.jp"><%=composer.getFb_link() %></a></span>
-            <br>
+			<span class="value"><a href="<%=composer.getFb_link() %>"><%=composer.getFb_link() %></a></span>          
+			<br>
             <span class="label_top">Twitter：</span>
-            <span class="value"><a href="https://google.co.jp"><%=composer.getTw_link() %></a></span>
-          </td>
+			<span class="value"><a href="<%=composer.getTw_link() %>"><%=composer.getTw_link() %></a></span>          
+			</td>
         </tr>
       </table>
     </div>
@@ -117,7 +148,7 @@
         </tr>
         <tr>
           <td class="value">
-            <a href="https://google.co.jp"><%=composer.getother_link_url() %></a>
+            <a href="<%=composer.getother_link_url() %>" ><%=composer.getother_link_description() %></a>
           </td>
         </tr>
       </table>
@@ -139,9 +170,14 @@ for (int i=0; i<songs.size(); i++) { %>
           <div class="cell">
             <div class="song_title"><%=songs.get(i).gettitle() %></div>
             <div class="image_base">
-              <a href="web/ja/S00003/<%= songs.get(i).getsong_id() %>">
+              <a href="../S00003/<%= songs.get(i).getsong_id() %>">
                 <div class="image song1">
-                  <img src="<%=songs.get(i).getimage_file_name() %>" class="trimc" alt="">
+<img alt="<%=songs.get(i).gettitle() %>" src="
+                  <% if(songs.get(i).getimage_file_name() == null){%>
+                	../../image/noimage.png
+                  <%} else{%>
+                	  <%=songs.get(i).getimage_file_name()%>
+                  <%}%>">
                   <img alt= "play" class="play" src="../../image/play.png">
                   
                 </div>

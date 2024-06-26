@@ -48,7 +48,7 @@ public class Transform {
 		//小数点以下を切り捨てる処理
 		NumberFormat numberFormat = NumberFormat.getInstance();
 		numberFormat.setMaximumFractionDigits(0);
-
+		
 		//公開時間を取得
 		//0秒未満（妥当な値でない）
 		if (diff < 0) {
@@ -67,7 +67,8 @@ public class Transform {
 		}
 		//2秒以上かつ60秒未満
 		else if (diff < 60000) {
-			resultVal = diff + "秒前";
+			d_releaseDay = (diff /1000);
+			resultVal = numberFormat.format(d_releaseDay) + "秒前";
 
 		}
 		//1分以上かつ2分未満

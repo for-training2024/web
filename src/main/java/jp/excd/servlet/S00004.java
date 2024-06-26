@@ -258,7 +258,7 @@ public class S00004 extends HttpServlet {
 
 					songBean2.setbpm(SongRecord.bpm());
 
-					songBean2.setimage_file_name(SongRecord.image_file_name());
+					songBean2.setimage_file_name(SongRecord.imege_file_name());
 
 					songBean2.setimage_file_height(SongRecord.image_file_height());
 

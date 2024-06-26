@@ -42,9 +42,9 @@ div.song_list ul li div.cell div.song1 img {
 
     <!-- トップバナー -->
     <div class="top_banner">
-      <a href="S00009.html">
+      <a href=https://itunes.apple.com/jp/app/id1440134774?mt=8>
         <img alt="メロコ～iPhone用作曲アプリアイコン" src="../image/melokoIcon.png" class="icon">
-        <p><%=request.getAttribute("discription") %></p>
+        <p><%=request.getAttribute("description") %></p>
         <img alt="メロコ～専用アプリダウンロード画面へのリンク" src="../image/right_blue_arrow.png" class="to_download_page_arrow">
       </a>
     </div>
@@ -76,7 +76,7 @@ div.song_list ul li div.cell div.song1 img {
 
       <%
       String notice = (String)request.getAttribute("notice");
-      if (notice != null){
+      if (notice != "" && notice != null){
    		out.println("<div class=\"top_notice\">");
    		out.println("<p class=\"top_notice_title\">告知</p>");
    		out.println("<p class=\"top_notice_body\">" + notice + "</p>");
@@ -86,50 +86,59 @@ div.song_list ul li div.cell div.song1 img {
     <!-- ソングテーブル -->
     <div class="song_list">
       <ul>
-		<%
-		
-		for (ExSongBean bean : songs) {
-		
+		<% int from = (Integer)request.getAttribute("from");
+		   int count = (Integer)request.getAttribute("count");
+		if (from<=count) {
+		for (int i=from-1; i<= from+3; i++) {
+			if(i >= songs.size()-1){
+				break;
+			}
 		%>
 			
         <li>
           <div class="cell">
-            <div class="song_title"><%=bean.gettitle() %></div>
+            <div class="song_title"><%=songs.get(i).gettitle() %></div>
             <div class="composer">
               <span class="label_top">作曲：</span>
-              <span class="composer_link"><a href="http://localhost:8080/web/ja/S00004/<%=bean.getunique_code()%>"><%=bean.getnickname() %></a></span>
+              <span class="composer_link"><a href="http://localhost:8080/web/ja/S00004/<%=songs.get(i).getunique_code()%>"><%=songs.get(i).getnickname() %></a></span>
             </div>
             <div class="image_base">
-              <a href="http://localhost:8080/web/ja/S00003/<%=bean.getsong_id()%>">
+              <a href="http://localhost:8080/web/ja/S00003/<%=songs.get(i).getsong_id()%>">
                 <div class="image song1">
-                  <img alt="<%=bean.gettitle() %>" src="<%=bean.getimage_file_name() %>">
+                  <img alt="<%=songs.get(i).gettitle() %>" src="
+                  <% if(songs.get(i).getimage_file_name() == null){%>
+                	  ../image/noimage.png
+                  <%} else{%>
+                	  <%=songs.get(i).getimage_file_name()%>
+                  <%}%>">
                   <img alt= "play" class="play" src="../image/play.png">
                 </div>
               </a>
             </div>
             <div class="detail">
               <span class="label_top">総感動指数：</span>
-              <span class="value"><%=bean.getrating_total_formated() %></span>
+              <span class="value"><%=songs.get(i).getrating_total_formated() %></span>
               <span class="label">平均感動指数：</span>
-              <span class="value"><%=bean.getrating_average_formated() %></span>
+              <span class="value"><%=songs.get(i).getrating_average_formated() %></span>
               <span class="label">再生回数：</span>
-              <span class="value"><%=bean.gettotal_listen_count_formated() %></span>
+              <span class="value"><%=songs.get(i).gettotal_listen_count_formated() %></span>
               <span class="label">公開：</span>
-              <span class="value"><%=bean.getrelease_datetime_formated() %></span>
+              <span class="value"><%=songs.get(i).getrelease_datetime_formated() %></span>
             </div>
           </div>
         </li>
 		<%
 			
 		}
-		
+		}
 		%>
       </ul>
     </div>
 
     <!-- メインボタン -->
+    
       <% 
-    if((int)request.getAttribute("listSize") == 5) {
+    if((Integer)request.getAttribute("from")<=(Integer)request.getAttribute("count")-5) {
     	out.println("<div class=\"main_button\">");
     	out.println("<a href=\""+ request.getAttribute("loadMore") + "\">さらに読み込む</a>");
     	out.println("</div>");    	

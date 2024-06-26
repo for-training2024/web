@@ -98,7 +98,7 @@ public class S00001 extends HttpServlet {
 		String from = (String)request.getParameter("from");
 
 		// (3) URLの表示対象言語に応じて(日本語)、アプリリンクに表示する文言を取得する。
-		String discription = getDiscription(con);
+		String description = getDescription(con);
 
 		// (4) URLで指定された言語区分(日本語)をキーに「getTopnotice」を呼び出し、告知情報を取得する。
 		String notice = getTopnotice(con,"002");
@@ -107,7 +107,9 @@ public class S00001 extends HttpServlet {
 		List<ExSongRecord> results = null;
 		try {
 			results = executeQuery(request, response, con, category, from);
-
+			
+			
+			
 		} catch (Exception e) {
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/500.jsp").forward(request, response);
 		}
@@ -116,39 +118,48 @@ public class S00001 extends HttpServlet {
 		String loadMore = null;
 		int fromLoad;
 		
+
 		//行数指定の有無
 		if(from != null) {
 			//整数判定
 			Pattern pattern = Pattern.compile("^[0-9]+$");
 			boolean numCheck = pattern.matcher(from).matches();
-			fromLoad = Integer.parseInt(from) + 5;
+			
 
 			if ("2".equals(category) || "3".equals(category) || "4".equals(category) ) {
 
 				if(numCheck) {
+					fromLoad = Integer.parseInt(from) + 5;
 					loadMore = "http://localhost:8080/web/ja/S00001?category=" + category + "&from=" + fromLoad;
+					request.setAttribute("from", Integer.parseInt(from));
 				} else {
 					loadMore = "http://localhost:8080/web/ja/S00001?category=" + category + "&from=6";
+					request.setAttribute("from", 1);
 				}
 
 			} else {
 				if(numCheck) {
+					fromLoad = Integer.parseInt(from) + 5;
 					loadMore = "http://localhost:8080/web/ja/S00001?category=1&from=" + fromLoad;
+					request.setAttribute("from", Integer.parseInt(from));
 				} else {
 					loadMore = "http://localhost:8080/web/ja/S00001?category=1&from=6";
+					request.setAttribute("from", 1);
 				}
 			}
 		} else {
-			
+
 			if ("2".equals(category) || "3".equals(category) || "4".equals(category) ) {
 				loadMore = "http://localhost:8080/web/ja/S00001?category=" + category + "&from=6";
-				
+				request.setAttribute("from", 1);
+
 			} else {
 				loadMore = "http://localhost:8080/web/ja/S00001?category=1&from=6";
-				
+				request.setAttribute("from", 1);
 			}
 		}
 
+		int counter = 0;
 		// (7) ExSongBeanインスタンスを持つListを作成する。
 		List<ExSongBean> exSongList = new ArrayList<ExSongBean>();
 		for (ExSongRecord record : results) {
@@ -198,17 +209,22 @@ public class S00001 extends HttpServlet {
 			bean.setunique_code(Unique_code);
 
 			exSongList.add(bean);
-
+			
+			counter = counter + 1;
+			// 先頭の100件のみ処理を行う。
+			if (counter > 100) {
+				break;
+			}
 		}
 
 		// (8) Requestオブジェクトに値をセットする
 		request.setAttribute("list", exSongList);
-		request.setAttribute("listSize", exSongList.size());
+		request.setAttribute("count", counter);
 		request.setAttribute("category", category);
 		request.setAttribute("notice", notice);
-		request.setAttribute("discription", discription);
+		request.setAttribute("description", description);
 		request.setAttribute("loadMore", loadMore);
-
+		
 		//(9)フォワード先の指定
 		RequestDispatcher dispatcher =  request.getRequestDispatcher("/jsp/S00001.jsp");
 
@@ -217,9 +233,9 @@ public class S00001 extends HttpServlet {
 
 	}
 
-	
+
 	//discriptionを返却するメソッド
-	private String getDiscription(Connection con) throws Exception {
+	private String getDescription(Connection con) throws Exception {
 		String ret = "";
 		String sql = "select description from mst_description where description_id = 'DS00001_001' AND language_type = '002'";
 		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -261,13 +277,13 @@ public class S00001 extends HttpServlet {
 		// (1) SQLの断片を用意する。
 		String sql1 = "SELECT song.id, song.title, song.rating_total, song.rating_average, song.total_listen_count, song.release_datetime, song.image_file_name, composer.nickname, composer.unique_code ";
 		String sql2 = "FROM song ";
-		String sql3 = "LEFT JOIN composer ON song.id = composer.id ";
+		String sql3 = "LEFT JOIN composer ON song.composer_id = composer.id ";
 		String sql4 = "WHERE ";
 		String sql5 = "release_datetime >= ? ";
-		String sql6 = "ORDER BY song.rating_total desc ";
-		String sql7 = "ORDER BY song.rating_average desc ";
-		String sql8 = "ORDER BY song.release_datetime desc ";
-		String sql9 = "LIMIT 5 OFFSET ? ";
+		String sql6 = "ORDER BY song.rating_total desc, song.id asc ";
+		String sql7 = "ORDER BY song.rating_average desc, song.id asc ";
+		String sql8 = "ORDER BY song.release_datetime desc, song.id asc ";
+		//String sql9 = "LIMIT 5 OFFSET ? ";
 
 		// (2) SQLを連結するための文字列を宣言する。
 		String query = sql1 + sql2 + sql3;
@@ -277,76 +293,43 @@ public class S00001 extends HttpServlet {
 
 		// 現在のエポック秒を取得
 		Date date = new Date();
-		Double nowEpoch = (double) date.getTime();
+		double nowEpoch = (double) date.getTime();
+		System.out.println(nowEpoch);
 		//1ヵ月前
-		double monthAgo = (nowEpoch/1000) - 2592000;
+		double monthAgo = (nowEpoch/1000 - 2592000);
 		//1年前
-		double yearAgo = (nowEpoch/1000) - 31104000;
-		
-		
-		// (4) GETパラメタで受け取った[category]に応じて、SQLを組み立てる。
+		double yearAgo = (nowEpoch/1000 - 31104000);
 
+
+		// (4) GETパラメタで受け取った[category]に応じて、SQLを組み立てる。
+		PlaceHolderInput phi = new PlaceHolderInput();
 		if("2".equals(category)){
 			query = query + sql4 + sql5 + sql6;
-
-			PlaceHolderInput phi = new PlaceHolderInput();
 			phi.setType("2");
 			phi.setDoubleValue(monthAgo);
 			list.add(phi);
 
 		}else if("3".equals(category)) {
 			query = query + sql4 + sql5 + sql7;
-
-			PlaceHolderInput phi = new PlaceHolderInput();
 			phi.setType("2");
 			phi.setDoubleValue(monthAgo);
 			list.add(phi);
 
 		}else if("4".equals(category)) {
 			query = query + sql4 + sql5 + sql6;
-
-			PlaceHolderInput phi = new PlaceHolderInput();
 			phi.setType("2");
 			phi.setDoubleValue(yearAgo);
 			list.add(phi);
 
 		}else {
 			query = query + sql4 + sql5 + sql8;
-
-			PlaceHolderInput phi = new PlaceHolderInput();
 			phi.setType("2");
 			phi.setDoubleValue(monthAgo);
 			list.add(phi);
 
 		}
 		// (5) 行数指定fromのSQLへの連結及びプレイスホルダへの設定
-		if(from == null) {
-			query = query + sql9;
-			PlaceHolderInput phi = new PlaceHolderInput();
-			phi.setType("1");
-			phi.setIntValue(0);
-			list.add(phi);
-			
-		} else {
-			//整数チェック
-			Pattern pattern = Pattern.compile("^[0-9]+$");
-			boolean result = pattern.matcher(from).matches();
-			
-			if(result) {
-				query = query + sql9;
-				PlaceHolderInput phi = new PlaceHolderInput();
-				phi.setType("1");
-				//from-1した値を指定
-				phi.setIntValue(Integer.parseInt(from)-1);
-				list.add(phi);
-			} else {
-				query = query + sql9;
-				PlaceHolderInput phi = new PlaceHolderInput();
-				phi.setType("1");
-				phi.setIntValue(0);
-				list.add(phi);
-			}
-		}
+	
 
 		// (6) PreparedStatementのインスタンスを得る。
 		PreparedStatement pstmt = con.prepareStatement(query);
@@ -373,35 +356,35 @@ public class S00001 extends HttpServlet {
 			//ソングID
 			String Song_id = rs.getString("id");
 			record.setsong_id(Song_id);
-			
+
 			//曲名
 			String Title = rs.getString("title");
 			record.settitle(Title);
-			
+
 			//総評価数
 			long Rating_total = rs.getLong("rating_total");
 			record.setrating_total(Rating_total);
-			
+
 			//平均評価数
 			double Rating_average = rs.getDouble("rating_average");
 			record.setrating_average(Rating_average);
-			
+
 			//再生回数
 			long Total_listen_count = rs.getLong("Total_listen_count");
 			record.settotal_listen_count(Total_listen_count);
-			
+
 			//公開日
 			double Release_datetime = rs.getDouble("release_datetime");
 			record.setrelease_datetime(Release_datetime);
-			
+
 			//ファイルネーム
 			String Image_file_name = rs.getString("image_file_name");
 			record.setimage_file_name(Image_file_name);
-			
+
 			//ニックネーム
 			String Nickname = rs.getString("nickname");
 			record.setnickname(Nickname);
-			
+
 			//ユニークコード
 			String Unique_code = rs.getString("unique_code");
 			record.setunique_code(Unique_code);
@@ -417,4 +400,3 @@ public class S00001 extends HttpServlet {
 	}
 
 }
-

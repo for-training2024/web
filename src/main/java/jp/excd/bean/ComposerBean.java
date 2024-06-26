@@ -2,7 +2,7 @@ package jp.excd.bean;
 
 public class ComposerBean {
 	
-	//プロパティ宣言
+
 	//作曲家ID
 	private String composer_id;
 	
@@ -42,122 +42,141 @@ public class ComposerBean {
 	//関連リンク文字列
 	private String other_link_description;
 	
-	//コンストラクタ生成
+
+	
 	//作曲家ID
-	public String getcomposer_id() {
+	public String getComposer_id() {
 		return composer_id;
 	}
 	
-	public void setcomposer_id(String composer_id) {
+	public void setComposer_id(String composer_id) {
+
 		this.composer_id = composer_id;
 	}
 	
 	//ユニーク名
-	public String getunique_code() {
+
+	public String getUnique_code() {
 		return unique_code;
 	}
 	
-	public void setunique_code(String unique_code) {
+	public void setUnique_code(String unique_code) {
+
 		this.unique_code = unique_code;
 	}
 	
 	//ニックネーム
-	public String getnickname() {
+
+	public String getNickname() {
 		return nickname;
 	}
 	
-	public void setnickname(String nickname) {
+	public void setNickname(String nickname) {
+
 		this.nickname = nickname;
 	}
 	
 	//登録日
-	public String getjoined_date_formated() {
+
+	public String getJoined_date_formated() {
 		return joined_date_formated;
 	}
 	
-	public void setjoined_date_formated(String joined_date_formated) {
+	public void setJoined_date_formated(String joined_date_formated) {
+
 		this.joined_date_formated = joined_date_formated;
 	}
 	
 	//性別
-	public String getgender_formated() {
+
+	public String getGender_formated() {
 		return gender_formated;
 	}
 	
-	public void setgender_formated(String gender_formated) {
+	public void setGender_formated(String gender_formated) {
+
 		this.gender_formated = gender_formated;
 	}
 	
 	//誕生日
-	public String getbirthday_formated() {
+
+	public String getBirthday_formated() {
 		return birthday_formated;
 	}
 	
-	public void setbirthday_formated(String birthday_formated) {
+	public void setBirthday_formated(String birthday_formated) {
+
 		this.birthday_formated = birthday_formated;
 	}
 	
 	//リスナー数
-	public String getlistener_count_formated() {
+
+	public String getListener_count_formated() {
 		return listener_count_formated;
 	}
 	
-	public void setlistener_count_formated(String listener_count_formated) {
+	public void setListener_count_formated(String listener_count_formated) {
+
 		this.listener_count_formated = listener_count_formated;
 	}
 	
 	//言語
-	public String getlanguage_type() {
+
+	public String getLanguage_type() {
 		return language_type;
 	}
 	
-	public void setlanguage_type(String language_type) {
+	public void setLanguage_type(String language_type) {
 		this.language_type = language_type;
 	}
 	
 	//メッセージ
-	public String getmessage() {
+
+	public String getMessage() {
 		return message;
 	}
 	
-	public void setmessage(String message) {
+	public void setMessage(String message) {
+
 		this.message = message;
 	}
 	
 	//FaceBookリンク
-	public String getfb_link() {
+
+	public String getFb_link() {
 		return fb_link;
 	}
 	
-	public void setfb_link(String fb_link) {
+	public void setFb_link(String fb_link) {
 		this.fb_link = fb_link;
 	}
 	
 	//Twitterリンク
-	public String gettw_link() {
+	public String getTw_link() {
 		return tw_link;
 	}
 	
-	public void settw_link(String tw_link) {
+	public void setTw_link(String tw_link) {
 		this.tw_link = tw_link;
 	}
 	
 	//関連リンクURL
-	public String getother_link_url() {
+	public String getOther_link_url() {
 		return other_link_url;
 	}
 	
-	public void setother_link_url(String other_link_url) {
+	public void setOther_link_url(String other_link_url) {
 		this.other_link_url = other_link_url;
 	}
 	
 	//関連リンク文字列
-	public String getother_link_description() {
+	public String getOther_link_description() {
 		return other_link_description;
 	}
 	
-	public void setother_link_description(String other_link_description) {
+	public void setOther_link_description(String other_link_description) {
 		this.other_link_description = other_link_description;
 	}
 
 }
+

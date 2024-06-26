@@ -112,68 +112,68 @@ public class S00003 extends HttpServlet {
 			
 			//曲ID
 			String song_id = recordS3.getsong_id();
-			beanS3.setsong_id(song_id);
+			beanS3.setSong_id(song_id);
 			//曲名
 			String title = recordS3.gettitle();
-			beanS3.settitle(title);
+			beanS3.setTitle(title);
 			//作曲家ID
 			String Composer_id = recordS3.getcomposer_id();
-			beanS3.setcomposer_id(Composer_id);
+			beanS3.setComposer_id(Composer_id);
 			//総評価数
 			String rating_total_formated = Transform.conComma(recordS3.getrating_total());
-			beanS3.setrating_total_formated(rating_total_formated);
+			beanS3.setKey_formated(rating_total_formated);
 
 			//平均感動指数
 			String rating_average_formated = Transform.conThree(recordS3.getrating_average());			
-			beanS3.setrating_average_formated(rating_average_formated);
+			beanS3.setRating_average_formated(rating_average_formated);
 
 			//再生回数
 			String total_listen_count_formated = Transform.conComma(recordS3.gettotal_listen_count());
-			beanS3.settotal_listen_count_formated(total_listen_count_formated);
+			beanS3.setTotal_listen_count_formated(total_listen_count_formated);
 
 			//公開時間
 			String release_datetime_formated = Transform.getLastUploadTime(recordS3.getrelease_datetime());
-			beanS3.setrelease_datetime_formated(release_datetime_formated);
+			beanS3.setRelease_datetime_formated(release_datetime_formated);
 
 			//最終更新時間
 			String last_update_datetime_formated = Transform.getLastUploadTime(recordS3.getlast_update_datetime());
-			beanS3.setlast_update_datetime_formated(last_update_datetime_formated);
+			beanS3.setLast_update_datetime_formated(last_update_datetime_formated);
 
 			//メッセージ
 			String message = recordS3.getmessage();
-			beanS3.setmessage(message);
+			beanS3.setMessage(message);
 
 			//キー
 			String key_formated = Transform.getKey(recordS3.getkey());
-			beanS3.setkey_formated(key_formated);
+			beanS3.setKey_formated(key_formated);
 
 			//楽譜表記
 			String score_type_formated = Transform.getScore_type(recordS3.getscore_type());
-			beanS3.setscore_type_formated(score_type_formated);
+			beanS3.setScore_type_formated(score_type_formated);
 
 			//BPM
 			String bpm =  String.format("%d", (int) Math.floor(recordS3.getbpm()));
-			beanS3.setbpm(bpm);
+			beanS3.setBpm(bpm);
 			
 			//イメージファイル名
 			String Image_file_name = recordS3.getimage_file_name();
-			beanS3.setimage_file_name(Image_file_name);
+			beanS3.setImage_file_name(Image_file_name);
 
 			//イメージファイル画像高さ
 			int image_file_height = recordS3.getimage_file_height();
-			beanS3.setimage_file_height(image_file_height);
+			beanS3.setImage_file_height(image_file_height);
 
 			//イメージファイル画像幅
 			int image_file_width = recordS3.getimage_file_width();
-			beanS3.setimage_file_width(image_file_width);
+			beanS3.setImage_file_width(image_file_width);
 
 			//関連リンク
 			String other_link_url = recordS3.getother_link_url();
-			beanS3.setother_link_url(other_link_url);
+			beanS3.setOther_link_url(other_link_url);
 
 			//関連リンク文字列
 			String other_link_description = recordS3.getother_link_description();
-			beanS3.setother_link_description(other_link_description);
+			beanS3.setOther_link_description(other_link_description);
 
 			//ユニーク名
 			String unique_code = recordS3.getunique_code();

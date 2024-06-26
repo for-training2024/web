@@ -20,7 +20,7 @@
 	content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ">
 <meta name="description"
 	content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
-<title><%=beanS3.gettitle()%></title>
+<title><%=beanS3.getTitle()%></title>
 <link rel="stylesheet" href="../../CSS/main.css">
 <script src="../../js/jquery-3.3.0.min.js"></script>
 <script src="../../js/S00002.js"></script>
@@ -43,7 +43,7 @@ div.song_link div.cell div.song1 img {
 
 		<!-- タイトルバー -->
 		<div class="title_bar">
-			<p class="page_title"><%=beanS3.gettitle()%></p>
+			<p class="page_title"><%=beanS3.getTitle()%></p>
 			<a href="#" id="menu_open"> <img alt="メニュー"
 				src="../../image/menu.png" class="menu-icon">
 			</a>
@@ -57,7 +57,7 @@ div.song_link div.cell div.song1 img {
 			<table>
 				<tr>
 					<td class="label">曲名</td>
-					<td class="value"><%=beanS3.gettitle()%></td>
+					<td class="value"><%=beanS3.getTitle()%></td>
 				</tr>
 			</table>
 		</div>
@@ -65,7 +65,7 @@ div.song_link div.cell div.song1 img {
 		<!-- 作者へのリンク -->
 		<div class="label_and_link">
 			<span class="label">作者：</span><span class="link"><a
-				href="../S00004/<%=beanS3.getunique_code()%>"><%=beanS3.getnickname()%></a></span>
+				href="../S00004/<%=beanS3.getUnique_code()%>"><%=beanS3.getNickname()%></a></span>
 		</div>
 
 		<!-- メッセージ -->
@@ -75,7 +75,7 @@ div.song_link div.cell div.song1 img {
 					<td class="label">メッセージ</td>
 				</tr>
 				<tr>
-					<td class="value"><%=beanS3.getmessage()%></td>
+					<td class="value"><%=beanS3.getMessage()%></td>
 				</tr>
 			</table>
 		</div>
@@ -84,16 +84,16 @@ div.song_link div.cell div.song1 img {
 		<div class="song_link">
 			<div class="cell">
 				<div class="image_base">
-					<a href="meloko://?song_id=<%=beanS3.getsong_id()%>">
+					<a href="meloko://?song_id=<%=beanS3.getSong_id()%>">
 						<div class="image song1">
 						<%
-						if((beanS3.getimage_file_name()) != null){
+						if((beanS3.getImage_file_name()) != null){
 						%>
-							<img alt="<%=beanS3.gettitle()%>" src="<%=beanS3.getimage_file_name()%>">
+							<img alt="<%=beanS3.getTitle()%>" src="<%=beanS3.getImage_file_name()%>">
 						<%
 						}else{
 						%>
-							<img alt="<%=beanS3.gettitle()%>" src="/web/image/noimage.png">						
+							<img alt="<%=beanS3.getTitle()%>" src="/web/image/noimage.png">						
 						<%
 						}
 						%>	
@@ -111,20 +111,14 @@ div.song_link div.cell div.song1 img {
 					<td class="label">情報</td>
 				</tr>
 				<tr>
-					<td class="value"><span class="label_top">総感動指数：</span><span><%=beanS3.getrating_total_formated()%></span>
-						<span class="label">平均感動指数：</span><span><%=beanS3.getrating_average_formated()%></span>
-						<span class="label">再生回数：</span><span><%=beanS3.gettotal_listen_count_formated()%></span>
-						<span class="label">公開：</span><span><%=beanS3.getrelease_datetime_formated()%></span>
-						<span class="label">最終更新日：</span><span><%=beanS3.getlast_update_datetime_formated()%></span>
-						<span class="label">KEY：</span><span><%=beanS3.getkey_formated()%></span>
-						<span class="label">楽譜表記：</span><span><%=beanS3.getscore_type_formated()%></span>
-						<span class="label">BPM：</span><span><%=beanS3.getbpm()%></span></td>
-				</tr>
-			</table>
-		</div>
-
-		<!-- 関連リンク -->
-		<div class="single_row_table">
+					<td class="value"><span class="label_top">総感動指数：</span><span><%=beanS3.getRating_total_formated()%></span>
+						<span class="label">平均感動指数：</span><span><%=beanS3.getRating_average_formated()%></span>
+						<span class="label">再生回数：</span><span><%=beanS3.getTotal_listen_count_formated()%></span>
+						<span class="label">公開：</span><span><%=beanS3.getRelease_datetime_formated()%></span>
+						<span class="label">最終更新日：</span><span><%=beanS3.getLast_update_datetime_formated()%></span>
+						<span class="label">KEY：</span><span><%=beanS3.getKey_formated()%></span>
+						<span class="label">楽譜表記：</span><span><%=beanS3.getScore_type_formated()%></span>
+						<span class="label">BPM：</span><span><%=beanS3.getBpm()%>
 			<table>
 				<tr>
 					<td class="label">関連リンク</td>
@@ -133,9 +127,9 @@ div.song_link div.cell div.song1 img {
 					<td class="value">
 						<!-- 関連リンクUrL --> 
 						<%
-						if((beanS3.getother_link_description()) != null && (beanS3.getother_link_url()) != null){
+						if((beanS3.getOther_link_description()) != null && (beanS3.getOther_link_url()) != null){
 						%>
-						<a href="<%=beanS3.getother_link_url()%>"><%=beanS3.getother_link_description()%></a>
+						<a href="<%=beanS3.getOther_link_url()%>"><%=beanS3.getOther_link_description()%></a>
 						<%
 						}else{
 							%>

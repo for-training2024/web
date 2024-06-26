@@ -119,6 +119,7 @@ public class S00003 extends HttpServlet {
 			//作曲家ID
 			String Composer_id = recordS3.getcomposer_id();
 			beanS3.setComposer_id(Composer_id);
+			
 			//総評価数
 			String rating_total_formated = Transform.conComma(recordS3.getrating_total());
 			beanS3.setRating_total_forated(rating_total_formated);

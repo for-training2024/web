@@ -101,7 +101,7 @@ div.song_link div.cell div.song1 img {
 						</div>
 					</a>
 				</div>
-			</div>
+			</div>　
 		</div>
 
 		<!-- 情報 -->
@@ -119,7 +119,14 @@ div.song_link div.cell div.song1 img {
 						<span class="label">KEY：</span><span><%=beanS3.getKey_formated()%></span>
 						<span class="label">楽譜表記：</span><span><%=beanS3.getScore_type_formated()%></span>
 						<span class="label">BPM：</span><span><%=beanS3.getBpm()%>
+	          </td>
+	        </tr>
 			<table>
+		</div>
+		
+		   <!-- 関連リンク -->
+   		 <div class="single_row_table">
+     		 <table>
 				<tr>
 					<td class="label">関連リンク</td>
 				</tr>

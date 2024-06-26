@@ -133,7 +133,7 @@ div.song_link div.cell div.song1 img {
 					<td class="value">
 						<!-- 関連リンクUrL --> 
 						<%
-						if((beanS3.getother_link_description()) != null){
+						if((beanS3.getother_link_description()) != null && (beanS3.getother_link_url()) != null){
 						%>
 						<a href="<%=beanS3.getother_link_url()%>"><%=beanS3.getother_link_description()%></a>
 						<%

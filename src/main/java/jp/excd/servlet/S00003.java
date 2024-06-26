@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.excd.Util.Transform;
 import jp.excd.bean.CommentRatingBean;
 import jp.excd.bean.CommentRatingRecord;
 import jp.excd.bean.S00003Bean;
 import jp.excd.bean.S00003Record;
-import jp.excd.transform.Transform;
 
 public class S00003 extends HttpServlet {
 
@@ -120,15 +120,15 @@ public class S00003 extends HttpServlet {
 			String Composer_id = recordS3.getcomposer_id();
 			beanS3.setcomposer_id(Composer_id);
 			//総評価数
-			String rating_total_formated = Transform.isComma(recordS3.getrating_total());
+			String rating_total_formated = Transform.conComma(recordS3.getrating_total());
 			beanS3.setrating_total_formated(rating_total_formated);
 
 			//平均感動指数
-			String rating_average_formated = Transform.isThree(recordS3.getrating_average());			
+			String rating_average_formated = Transform.conThree(recordS3.getrating_average());			
 			beanS3.setrating_average_formated(rating_average_formated);
 
 			//再生回数
-			String total_listen_count_formated = Transform.isComma(recordS3.gettotal_listen_count());
+			String total_listen_count_formated = Transform.conComma(recordS3.gettotal_listen_count());
 			beanS3.settotal_listen_count_formated(total_listen_count_formated);
 
 			//公開時間
@@ -144,11 +144,11 @@ public class S00003 extends HttpServlet {
 			beanS3.setmessage(message);
 
 			//キー
-			String key_formated = Transform.isKey(recordS3.getkey());
+			String key_formated = Transform.getKey(recordS3.getkey());
 			beanS3.setkey_formated(key_formated);
 
 			//楽譜表記
-			String score_type_formated = Transform.isScore_type(recordS3.getscore_type());
+			String score_type_formated = Transform.getScore_type(recordS3.getscore_type());
 			beanS3.setscore_type_formated(score_type_formated);
 
 			//BPM

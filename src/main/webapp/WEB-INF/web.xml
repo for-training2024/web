@@ -15,6 +15,21 @@
 	</servlet>
 
 	<servlet>
+		<servlet-name>S00003</servlet-name>
+		<servlet-class>jp.excd.servlet.S00003</servlet-class>	
+ 		<init-param>
+			<param-name>javaEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+ 
+
+	<servlet-mapping>
+		<servlet-name>S00003</servlet-name>
+		<url-pattern>/ja/S00003/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>Sample</servlet-name>
 		<servlet-class>jp.excd.servlet.SampleServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
@@ -50,6 +65,7 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>S00006</servlet-name>
 		<url-pattern>/ja/S00006/*</url-pattern>
@@ -115,5 +131,8 @@
 		<error-code>500</error-code>
 		<location>/jsp/500.jsp</location>
 	</error-page>
+
+
+
 
 </web-app>

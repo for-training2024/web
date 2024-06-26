@@ -97,19 +97,19 @@ div.song_list ul li div.cell div.song1 img {
 			
         <li>
           <div class="cell">
-            <div class="song_title"><%=songs.get(i).gettitle() %></div>
+            <div class="song_title"><%=songs.get(i).getTitle() %></div>
             <div class="composer">
               <span class="label_top">作曲：</span>
               <span class="composer_link"><a href="http://localhost:8080/web/ja/S00004/<%=songs.get(i).getunique_code()%>"><%=songs.get(i).getnickname() %></a></span>
             </div>
             <div class="image_base">
-              <a href="http://localhost:8080/web/ja/S00003/<%=songs.get(i).getsong_id()%>">
+              <a href="http://localhost:8080/web/ja/S00003/<%=songs.get(i).getSong_id()%>">
                 <div class="image song1">
-                  <img alt="<%=songs.get(i).gettitle() %>" src="
-                  <% if(songs.get(i).getimage_file_name() == null){%>
+                  <img alt="<%=songs.get(i).getTitle() %>" src="
+                  <% if(songs.get(i).getImage_file_name() == null){%>
                 	  ../image/noimage.png
                   <%} else{%>
-                	  <%=songs.get(i).getimage_file_name()%>
+                	  <%=songs.get(i).getImage_file_name()%>
                   <%}%>">
                   <img alt= "play" class="play" src="../image/play.png">
                 </div>
@@ -117,13 +117,13 @@ div.song_list ul li div.cell div.song1 img {
             </div>
             <div class="detail">
               <span class="label_top">総感動指数：</span>
-              <span class="value"><%=songs.get(i).getrating_total_formated() %></span>
+              <span class="value"><%=songs.get(i).getRating_total_formated() %></span>
               <span class="label">平均感動指数：</span>
-              <span class="value"><%=songs.get(i).getrating_average_formated() %></span>
+              <span class="value"><%=songs.get(i).getRating_average_formated() %></span>
               <span class="label">再生回数：</span>
-              <span class="value"><%=songs.get(i).gettotal_listen_count_formated() %></span>
+              <span class="value"><%=songs.get(i).getTotal_listen_count_formated() %></span>
               <span class="label">公開：</span>
-              <span class="value"><%=songs.get(i).getrelease_datetime_formated() %></span>
+              <span class="value"><%=songs.get(i).getRelease_datetime_formated() %></span>
             </div>
           </div>
         </li>
@@ -138,7 +138,7 @@ div.song_list ul li div.cell div.song1 img {
     <!-- メインボタン -->
     
       <% 
-    if((Integer)request.getAttribute("from")<=(Integer)request.getAttribute("count")-5) {
+    if((Integer)request.getAttribute("from")<=(Integer)request.getAttribute("count")-6) {
     	out.println("<div class=\"main_button\">");
     	out.println("<a href=\""+ request.getAttribute("loadMore") + "\">さらに読み込む</a>");
     	out.println("</div>");    	

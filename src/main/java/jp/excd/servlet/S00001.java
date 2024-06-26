@@ -168,37 +168,37 @@ public class S00001 extends HttpServlet {
 
 			//ソングID
 			String Song_id = record.getsong_id();
-			bean.setsong_id(Song_id);
+			bean.setSong_id(Song_id);
 
 			//曲名
 			String Title = record.gettitle();
-			bean.settitle(Title);
+			bean.setTitle(Title);
 
 			//総感動指数
 			long Rating_total = record.getrating_total();
 
 			//rating_totalをカンマ編集してString型に変換
 			String rating_total_formated = Transform.conComma(Rating_total);
-			bean.setrating_total_forated(rating_total_formated);
+			bean.setRating_total_forated(rating_total_formated);
 
 			//平均感動指数
 			double Rating_average = record.getrating_average();
 			String rating_average_formated =Transform.conThree(Rating_average);	
-			bean.setrating_average_formated(rating_average_formated);
+			bean.setRating_average_formated(rating_average_formated);
 
 			//再生回数
 			long Total_listen_count = record.gettotal_listen_count();
 			String Total_listen_count_formated = Transform.conComma(Total_listen_count);
-			bean.settotal_listen_count_formated(Total_listen_count_formated);
+			bean.setTotal_listen_count_formated(Total_listen_count_formated);
 
 			//公開時間
 			double Release_datetime = record.getrelease_datetime();
 			String Release_datetime_formated = Transform.getLastUploadTime(Release_datetime);
-			bean.setrelease_datetime_formated(Release_datetime_formated);
+			bean.setRelease_datetime_formated(Release_datetime_formated);
 
 			//ファイルネーム
 			String Image_file_name = record.getimage_file_name();
-			bean.setimage_file_name(Image_file_name);
+			bean.setImage_file_name(Image_file_name);
 
 			//ニックネーム
 			String Nickname = record.getnickname();

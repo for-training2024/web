@@ -55,21 +55,15 @@ if ("2".equals(request.getAttribute("joined_date_radio"))) {
 String joined_date_from = (String) request.getAttribute("joined_date_from");
 String joined_date_to = (String) request.getAttribute("joined_date_to");
 
-// (6) 「性別_エラー状態(gender_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
-String gender_is_error = "";
-if ("1".equals(request.getAttribute("gender_is_error"))) {
-	gender_is_error = ", error";
-}
 
 // (7) 以下の項目を元に性別の入力状態を再現する。
 String gender_Radio1 = "";
+String gender_Radio2 = "checked=\"checked\"";
 if ("1".equals(request.getAttribute("gender_radio"))) {
 	gender_Radio1 = "checked=\"checked\"";
+	gender_Radio2 = "";
 }
-String gender_Radio2 = "";
-if ("2".equals(request.getAttribute("gender_radio"))) {
-	gender_Radio2 = "checked=\"checked\"";
-}
+
 String gender = (String) request.getAttribute("gender");
 if (gender == null)
 	gender = "男";
@@ -122,11 +116,11 @@ if ("1".equals(request.getAttribute("language_is_error"))) {
 
 // (13) 以下の項目を元に言語の入力状態を再現する。
 String language_type_jp = "";
-if ("001".equals(request.getAttribute("language_type_jp"))) {
+if ("true".equals(request.getAttribute("language_type_jp"))) {
 	language_type_jp = "checked=\"checked\"";
 }
 String language_type_en = "";
-if ("002".equals(request.getAttribute("language_type_en"))) {
+if ("true".equals(request.getAttribute("language_type_en"))) {
 	language_type_en = "checked=\"checked\"";
 }
 
@@ -288,7 +282,7 @@ if (sort_order == null)
 									</label></td>
 									<td><label> <input type="radio"
 											name="gender_radio" value="2" class="onOffRadio"
-											checked="checked" <%=gender_Radio2%>><span
+											 <%=gender_Radio2%>><span
 											class="radio_label">指定なし</span>
 									</label></td>
 								</tr>

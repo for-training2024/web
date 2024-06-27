@@ -39,10 +39,3 @@ input[type="text"] {
 	height: 30px;
 	border-radius: 7px;
 }
-
-input[name="title"]{
-	width: 300px;
-	height: 30px;
-	border-radius: 7px;
-
-}

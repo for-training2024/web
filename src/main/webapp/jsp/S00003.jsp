@@ -26,17 +26,33 @@
 <script src="../../js/S00002.js"></script>
 
 <!-- 画像の圧縮表示設定 -->
+<%
+		
+	double width = 275;
+	double x = width / (beanS3.getImage_file_width());
+	double y = (beanS3.getImage_file_height()) * x;
+	int height = (int)y;
+	int	 top = height - 160;
+	top = top/2;	
+
+%>
+
 <style>
 div.song_link div.cell div.song1 img {
 	position: relative;
 	left: 0px;
-	top: -11px;
 	width: 275px;
-	height: 182px;
+<%if (height > 160){%>
+	top: -<%=top%>px;
+	height: <%=height%>px;
+<%}else{%>
+	height: <%=height%>px;
+<% }%>
 }
 </style>
 </head>
 <body>
+
 	<!-- メニューのキャンセルレイヤの起点 -->
 	<div id="layer_marker"></div>
 	<div class="wrapper">

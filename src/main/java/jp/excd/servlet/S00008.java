@@ -18,6 +18,7 @@ public class S00008 extends HttpServlet {
 	// （1）404.jspにフォワーディングする。
 	getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
 }
+	
 
 public void doPost(
 		HttpServletRequest request,

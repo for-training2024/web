@@ -1,39 +1,23 @@
-package jp.excd.Util;
+package jp.excd.transform;
 
 import java.text.NumberFormat;
 import java.util.Date;
 
 public class Transform {
 
-	/**
-	 * 3桁ごとにカンマをいれて編集する。
-	 * @param number チェック対象値
-	 * @return 
-	 */
-	public static String conComma (long number) {
-		
+	//カンマ編集
+	public static String isComma (long number) {
 		String ret = String.format("%,d", number);
 		return ret;
 	}
 	
-	/**
-	 * 四捨五入で、少数第一まで表示する
-	 * @param number チェック対象値
-	 * @return 
-	 */
-
-	public static String conThree (double number) {
-		
+	//四捨五入で、少数第一まで表示
+	public static String isThree (double number) {
 		double roundedNumber = Math.round(number * 10.0) / 10.0;
         return String.format("%.1f", roundedNumber);
 	}
-	
-	/**
-	 * 公開時間を日本語で表示する。引数の値が妥当でない場合、""（空白）を返す。
-	 * @param  release_datetime チェック対象値
-	 * @return 
-	 */
-	public static String getLastUploadTime(double release_datetime) {
+
+	public static String getLastUploadTime(Double release_datetime) {
 
 		String resultVal;
 		double d_releaseDay = 0;
@@ -50,13 +34,8 @@ public class Transform {
 		numberFormat.setMaximumFractionDigits(0);
 
 		//公開時間を取得
-		//0秒未満（妥当な値でない）
-		if (diff < 0) {
-			resultVal = "";
-			
-		}
 		//1秒未満
-		else if (diff < 1000) {
+		if (diff < 1000) {
 			resultVal = "たった今";
 
 		}
@@ -67,8 +46,7 @@ public class Transform {
 		}
 		//2秒以上かつ60秒未満
 		else if (diff < 60000) {
-			d_releaseDay = (diff / 1000);						
-			resultVal = numberFormat.format(d_releaseDay) + "秒前";
+			resultVal = diff + "秒前";
 
 		}
 		//1分以上かつ2分未満
@@ -140,12 +118,8 @@ public class Transform {
 		return resultVal;
 	}
 	
-	/**
-	 * キーをコード値の内容に変換して返す。引数の値が"01"～"34"以外の場合、""（空白）を返す。
-	 * @param  key チェック対象値
-	 * @return 
-	 */
-	public static String getKey(String key){
+	//キーをコード値の内容に変換して返す。
+	public static String isKey(String key){
 		
 		String resultKey = null;
 		
@@ -222,7 +196,7 @@ public class Transform {
 			resultKey = "Eマイナー";
 			
 		}else if("25".equals(key)){
-			resultKey = "Fマイナー";
+			resultKey = "Eシャープマイナー";
 			
 		}else if("26".equals(key)){
 			resultKey = "Fシャープマイナー";
@@ -251,19 +225,12 @@ public class Transform {
 		}else if("34".equals(key)){
 			resultKey = "Bマイナー";
 			
-		}else {
-			resultKey = "";
-			
 		}
 		return resultKey;
 	}
 	
-	/**
-	 * 楽譜表記をコード値の内容に変換して返す。"0"、"1"以外は""（空白）を返す。
-	 * @param  score_type チェック対象値
-	 * @return 
-	 */
-	public static String getScore_type(String score_type){
+	//楽譜表記をコード値の内容に変換して返す。
+	public static String isScore_type(String score_type){
 	
 		String resultScore_type = null;
 		
@@ -273,39 +240,21 @@ public class Transform {
 		}else if("1".equals(score_type)){
 			resultScore_type = "1オクターブ上で表記";
 			
-		}else {
-			resultScore_type = "";
-			
 		}
 		return resultScore_type;
 	}
 	
-	/**
-	 * 日付を[yyyy年MM月dd日]で返す。引数が妥当でない場合、""（空白）を返す。
-	 * @param  date チェック対象値
-	 * @return 
-	 */
-	public static String conDate(String date){
+	//登録日を[yyyy年MM月dd日]で返す。
+	public static String isDate(String joined_date){
 		
-		String resultDate = null;
-		if(Judge.isNumber(date) && date.length() == 8) {
-			StringBuilder builder = new StringBuilder(date);
-			StringBuilder sb = (builder.insert(4, "年").insert(7, "月").insert(10,"日"));
-			resultDate = sb.toString();
-			
-		}else {
-			resultDate = "";
-			
-		}
+		StringBuilder joined = new StringBuilder(joined_date);
+		StringBuilder date = (joined.insert(4, "年").insert(7, "月").insert(10,"日"));
+		String resultDate = date.toString();
 		return resultDate;
 	}
 	
-	/**
-	 * 性別を「男」もしくは「女」と日本語で返す。nullの場合は""（空白）を返す。
-	 * @param  gender チェック対象値
-	 * @return 
-	 */
-	public static String getGender(String gender){
+	//性別を「男」もしくは「女」と日本語で返す。nullの場合は""（空白）を返す。
+	public static String isGender(String gender){
 	
 		String resultGender = null;
 		
@@ -322,32 +271,17 @@ public class Transform {
 		return resultGender;
 	}
 	
-	/**
-	 * 誕生日を[yyyy/MM/dd]で返す。引数が妥当じゃない場合、""（空白）を返す。
-	 * @param  birthday チェック対象値
-	 * @return 
-	 */
-	public static String conBirthday(String birthday){
-		
-		String resultBirthday = null;
-		
-		if(Judge.isNumber(birthday) && birthday.length() == 8) {
-			StringBuilder builder = new StringBuilder(birthday);
-			StringBuilder sb = (builder.insert(4, "/").insert(7, "/"));
-			resultBirthday = sb.toString();
-		
-		}else {
-			resultBirthday = "";
-		}
+	//誕生日を[yyyy/MM/dd]で返す。
+	public static String isBirthday(String birthday){
+	
+		StringBuilder sb = new StringBuilder(birthday);
+		StringBuilder SB = (sb.insert(4, "/").insert(7, "/"));
+		String resultBirthday = SB.toString();
 		return resultBirthday;
 	}
 	
-	/**
-	 * 言語を「日本語」もしくは「英語」と日本語で返す。nullの場合は""（空白）を返す。
-	 * @param  language_type チェック対象値
-	 * @return 
-	 */
-	public static String getLanguage_type(String language_type){
+	//言語を「日本語」もしくは「英語」と日本語で返す。
+	public static String isLanguage_type(String language_type){
 	
 		String resultLanguage_type = null;
 		
@@ -356,9 +290,6 @@ public class Transform {
 			
 		}else if("002".equals(language_type)){
 			resultLanguage_type = "日本語";
-			
-		}else {
-			resultLanguage_type = "";
 			
 		}
 		return resultLanguage_type;

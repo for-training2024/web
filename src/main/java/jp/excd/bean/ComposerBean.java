@@ -2,6 +2,7 @@ package jp.excd.bean;
 
 public class ComposerBean {
 	
+
 	//作曲家ID
 	private String composer_id;
 	
@@ -41,6 +42,7 @@ public class ComposerBean {
 	//関連リンク文字列
 	private String other_link_description;
 	
+
 	
 	//作曲家ID
 	public String getComposer_id() {
@@ -48,64 +50,78 @@ public class ComposerBean {
 	}
 	
 	public void setComposer_id(String composer_id) {
+
 		this.composer_id = composer_id;
 	}
 	
 	//ユニーク名
+
 	public String getUnique_code() {
 		return unique_code;
 	}
 	
 	public void setUnique_code(String unique_code) {
+
 		this.unique_code = unique_code;
 	}
 	
 	//ニックネーム
+
 	public String getNickname() {
 		return nickname;
 	}
 	
 	public void setNickname(String nickname) {
+
 		this.nickname = nickname;
 	}
 	
 	//登録日
+
 	public String getJoined_date_formated() {
 		return joined_date_formated;
 	}
 	
 	public void setJoined_date_formated(String joined_date_formated) {
+
 		this.joined_date_formated = joined_date_formated;
 	}
 	
 	//性別
+
 	public String getGender_formated() {
 		return gender_formated;
 	}
 	
 	public void setGender_formated(String gender_formated) {
+
 		this.gender_formated = gender_formated;
 	}
 	
 	//誕生日
+
 	public String getBirthday_formated() {
 		return birthday_formated;
 	}
 	
 	public void setBirthday_formated(String birthday_formated) {
+
 		this.birthday_formated = birthday_formated;
 	}
 	
 	//リスナー数
+
 	public String getListener_count_formated() {
 		return listener_count_formated;
 	}
 	
 	public void setListener_count_formated(String listener_count_formated) {
+
 		this.listener_count_formated = listener_count_formated;
 	}
 	
 	//言語
+
 	public String getLanguage_type() {
 		return language_type;
 	}
@@ -115,15 +131,18 @@ public class ComposerBean {
 	}
 	
 	//メッセージ
+
 	public String getMessage() {
 		return message;
 	}
 	
 	public void setMessage(String message) {
+
 		this.message = message;
 	}
 	
 	//FaceBookリンク
+
 	public String getFb_link() {
 		return fb_link;
 	}

@@ -70,6 +70,20 @@
 		<servlet-name>S00006</servlet-name>
 		<url-pattern>/ja/S00006/*</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>S00001</servlet-name>
+		<servlet-class>jp.excd.servlet.S00001</servlet-class>	
+		<init-param>
+			<param-name>javaEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>S00001</servlet-name>
+		<url-pattern>/ja/S00001/*</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>S00007</servlet-name>

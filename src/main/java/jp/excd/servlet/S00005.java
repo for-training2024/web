@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.NumberFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
@@ -100,6 +99,11 @@ public class S00005 extends HttpServlet {
 		String title_radio = request.getParameter("title_radio");
 		String title_type_radio = request.getParameter("title_type_radio");
 		String title = request.getParameter("title");
+		String key_radio = request.getParameter("key_radio");
+		String key = request.getParameter("key");
+		String bpm_radio = request.getParameter("bpm_radio");
+		String bpm_from = request.getParameter("bpm_from");
+		String bpm_to = request.getParameter("bpm_to");
 		String sort_order = request.getParameter("sort_order");
 
 
@@ -125,6 +129,11 @@ public class S00005 extends HttpServlet {
 		request.setAttribute("title_radio", title_radio);
 		request.setAttribute("title_type_radio", title_type_radio);
 		request.setAttribute("title", title);
+		request.setAttribute("key_radio", key_radio);		
+		request.setAttribute("key", key);
+		request.setAttribute("bpm_radio", bpm_radio);
+		request.setAttribute("bpm_from", bpm_from);
+		request.setAttribute("bpm_to", bpm_to);
 		request.setAttribute("sort_order", sort_order);
 
 		//条件分岐に使う変数の初期化
@@ -134,6 +143,8 @@ public class S00005 extends HttpServlet {
 		Double rAt = null;
 		Integer vf = null;
 		Integer vt = null;
+		Integer bf = null;
+		Integer bt = null;
 
 		try {
 
@@ -444,6 +455,97 @@ public class S00005 extends HttpServlet {
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00005.jsp").forward(request, response);
 			return;
 		}
+		
+		//(12)BPMFROMについてエラー判定を行う
+		if ("1".equals(bpm_radio)) {
+			if (bpm_from == null || "".equals(bpm_from)) {
+				//処理継続
+
+			} else if (Judge.isNumber(bpm_from) == false || Integer.parseInt(bpm_from) < 0 ) {
+				//エラー
+				String s = this.getDescription(con, "ES00005_010");
+				request.setAttribute("error", s);
+				request.setAttribute("bpm_is_error", "1");
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00005.jsp")
+				.forward(request, response);
+				return;
+
+			} else {
+				//処理継続
+			}
+		} else if (!("1".equals(bpm_radio))) {
+			//処理続行
+		}
+
+		//(13)BPMTOについてエラー判定を行う。
+		if ("1".equals(bpm_radio)) {
+			if (bpm_to == null || "".equals(bpm_to)) {
+				//処理継続
+
+			} else if (Judge.isNumber(bpm_to) == false || Integer.parseInt(bpm_to) < 0 ) {
+				//エラー
+				String s = this.getDescription(con, "ES00005_011");
+				request.setAttribute("error", s);
+				request.setAttribute("bpm_is_error", "1");
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00005.jsp")
+				.forward(request, response);
+				return;
+
+			} else {
+				//処理継続
+			}
+		} else if (!("1".equals(bpm_radio))) {
+			//処理続行
+		}
+
+		//(14)BPMFROM、BPMTOについてエラー判定を行う。
+		if ("1".equals(bpm_radio)) {
+
+			if (bpm_from == null || "".equals(bpm_from) &&
+					(bpm_to == null|| "".equals(bpm_to))) {
+				//エラー
+				String s = this.getDescription(con, "ES00005_012");
+				request.setAttribute("error", s);
+				request.setAttribute("bpm_is_error", "1");
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00005.jsp")
+				.forward(request, response);
+				return;
+
+			} else if (bpm_from == null || "".equals(bpm_from) && Judge.isNumber(bpm_to) == true) {
+				//処理続行
+
+			} else if (Judge.isNumber(bpm_from)) {
+				//処理続行
+			}
+		} else if (!("1".equals(bpm_radio))) {
+			//処理続行
+		}
+
+		//(15)BPMFROM、BPMTOについてエラー判定を行う
+		if ("1".equals(bpm_radio)) {
+
+			if (bpm_from != null && !("".equals(bpm_from))) {
+				bf = Integer.parseInt(bpm_from);
+			}
+			if (bpm_to != null && !("".equals(bpm_to))) {
+				bt = Integer.parseInt(bpm_to);
+			}
+			if ((bf != null) && (bt != null)){
+				if ( bf > bt) {
+					//エラー
+					String s = this.getDescription(con, "ES00005_013");
+					request.setAttribute("error", s);
+					request.setAttribute("bpm_is_error", "1");
+					getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00005.jsp").forward(request, response);
+					return;
+				}
+			} else {
+				//処理続行
+			}
+		} else if (!("1".equals(bpm_radio))) {
+			//処理続行
+		}
+
 
 		//(17)リクエストパラメータを条件にList型のインスタンスで受け取り、曲情報を取得する
 		List<SongRecord> results = null;
@@ -467,13 +569,16 @@ public class S00005 extends HttpServlet {
 					title_radio,
 					title_type_radio,
 					title,
+					key_radio,
+					key,
+					bpm_radio,
+					bpm_from,
+					bpm_to,
 					sort_order);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 
 		if (results == null) {
 			results = new ArrayList<SongRecord>();
@@ -492,7 +597,6 @@ public class S00005 extends HttpServlet {
 		List<SongBean> songList = new ArrayList<SongBean>();
 
 		int counter = 0;
-
 
 		for (SongRecord record : results) {
 			SongBean bean = new SongBean();
@@ -535,7 +639,15 @@ public class S00005 extends HttpServlet {
 			//ファイルネーム
 			String Image_file_name = record.imege_file_name();
 			bean.setImage_file_name(Image_file_name);
-
+			
+			//画像幅
+			int Image_file_width = record.image_file_width();
+			bean.setImage_file_width(Image_file_width);
+			
+			//画像高さ
+			int Image_file_height = record.image_file_height();
+			bean.setImage_file_height(Image_file_height);
+			
 			songList.add(bean);
 		}
 
@@ -546,8 +658,7 @@ public class S00005 extends HttpServlet {
 			counter_main = counter_main + 1;
 		}
 
-		String count = NumberFormat.getNumberInstance().format(counter_main);
-		request.setAttribute("hits", count);
+		request.setAttribute("hits", counter_main);
 		request.setAttribute("list", songList);
 
 		// (20) S00006.jsp にフォワーディングする。
@@ -576,7 +687,6 @@ public class S00005 extends HttpServlet {
 
 	}
 
-
 	private List<SongRecord> executeQuery (HttpServletRequest request,
 			HttpServletResponse response, 
 			Connection con, 
@@ -595,6 +705,11 @@ public class S00005 extends HttpServlet {
 			String title_radio, 
 			String title_type_radio, 
 			String title, 
+			String key_radio,
+			String key,
+			String bpm_radio, 
+			String bpm_from, 
+			String bpm_to, 			
 			String sort_order) throws Exception {
 
 		String SQL = "SELECT id, title, composer_id, rating_total, rating_average, "
@@ -623,6 +738,9 @@ public class S00005 extends HttpServlet {
 		String sql18 = "ORDER BY total_listen_count asc ";
 		String sql19 = ", id;";
 		String and = "AND ";
+		String sql20 = "`key` = ? ";
+		String sql21 = "bpm >= ? ";
+		String sql22 = "bpm <= ? ";		
 		/*		String from = ">= ? ";
 		 * 		String space = " ";
 		 * 		String to = "<= ? ";
@@ -632,7 +750,7 @@ public class S00005 extends HttpServlet {
 		 */		
 		List<PlaceHolderInput> list = new ArrayList<PlaceHolderInput>(); 
 
-		if ("1".equals(release_date_radio) || "1".equals(rating_radio) || "1".equals(rating_average_radio) || "1".equals(views_radio) || "1".equals(title_radio)) {
+		if ("1".equals(release_date_radio) || "1".equals(rating_radio) || "1".equals(rating_average_radio) || "1".equals(views_radio) || "1".equals(title_radio) || "1".equals(key_radio)  || "1".equals(bpm_radio)) {
 			SQL += "WHERE ";
 
 			//公開日FROMのSQLへの連結及びプレイスホルダへの設定
@@ -862,6 +980,79 @@ public class S00005 extends HttpServlet {
 				//処理続行				
 			}
 
+			//キーのSQLへの連結及びプレイスホルダへの設定
+			if ("1".equals(key_radio)) {
+				if (key == null || "".equals(key)) {
+					//処理続行
+
+				} else {
+					if (list.size() == 0) {
+					} else {
+						SQL += and;
+					}
+						SQL = SQL + sql20; 
+	
+					PlaceHolderInput phi = new PlaceHolderInput();
+					phi.setType("3");
+					phi.setStringValue(key);
+					list.add(phi);
+				}
+
+			} else if (!("1".equals(key_radio))) {
+				//処理続行				
+			}
+			
+			//BPMFROMのSQLへの連結及びプレイスホルダへの設定
+			if ("1".equals(bpm_radio)) {
+				if (bpm_from == null || "".equals(bpm_from)) {
+					//処理続行
+
+				} else if (Judge.isNumber(bpm_from)) {
+					if (list.size() == 0) {
+					} else {
+						SQL += and;
+					}
+
+					SQL += sql21;
+
+					PlaceHolderInput phi = new PlaceHolderInput();
+					phi.setType("1");
+					phi.setIntValue(Integer.parseInt(bpm_from));
+					list.add(phi);
+				} else {
+					throw new Exception();
+				}
+
+			} else if (!("1".equals(views_radio))) {
+				//処理続行				
+			}
+
+			//BPMTOのSQLへの連結及びプレイスホルダへの設定
+			if ("1".equals(bpm_radio)) {
+				if (bpm_to == null || "".equals(bpm_to)) {
+					//処理続行
+
+				} else if (Judge.isNumber(bpm_to)) {
+					if (list.size() == 0) {
+					} else {
+						SQL += and;
+					}
+
+					SQL += sql22;
+
+					PlaceHolderInput phi = new PlaceHolderInput();
+					phi.setType("1");
+					phi.setIntValue(Integer.parseInt(bpm_to));
+					list.add(phi);
+				} else {
+					throw new Exception();
+				}
+
+			} else if (!("1".equals(bpm_radio))) {
+				//処理続行				
+			}
+
+
 		}
 
 		try {
@@ -915,6 +1106,7 @@ public class S00005 extends HttpServlet {
 				pstmt.setString(i + 1, option.getStringValue());
 			}
 		}
+		System.out.println(SQL);
 
 		rs = pstmt.executeQuery();
 
@@ -953,7 +1145,6 @@ public class S00005 extends HttpServlet {
 		}
 
 		return songList;
-
 
 	}
 

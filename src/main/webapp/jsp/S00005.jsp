@@ -105,8 +105,44 @@
 	}
 	String title = (String)request.getAttribute("title");
 	if (title == null){ title = "";}
+	
+	// (12) 「キー_エラー状態(key_is_error)」= "1"の場合、tdタグに errorを加える。
+	String key_is_error = "";
+	if ("1".equals(request.getAttribute("key_is_error"))) {
+		key_is_error = " error";
+	}
+	
+	// (13) 以下の項目を元にキーの入力状態を再現する。
+	String key_radio1 = "";
+	String key_radio2 = "checked=\"checked\"";
+	if ("1".equals(request.getAttribute("key_radio"))) {
+		key_radio1 = "checked=\"checked\"";
+		key_radio2 = "";
+	}
+	String key = (String)request.getAttribute("key");
+	if (key == null) { 
+		key="01";
+	}
 
-	// (12) 以下の項目を元に並び順の入力状態を再現する。
+	// (14) 「BPM_エラー状態(views_is_error)」= "1"の場合、tdタグにerrorを加える。
+	String bpm_is_error = "";
+	if ("1".equals(request.getAttribute("bpm_is_error"))) {
+		bpm_is_error = " error";
+	}
+	
+	// (15) 以下の項目を元にBPMの入力状態を再現する。
+	String bpm_radio1 = "";
+	String bpm_radio2 = "checked=\"checked\"";
+	if ("1".equals(request.getAttribute("bpm_radio"))) {
+		bpm_radio1 = "checked=\"checked\"";
+		bpm_radio2 = "";
+	}
+	String bpm_from = (String)request.getAttribute("bpm_from");
+	if (bpm_from == null){ bpm_from = "";}
+	String bpm_to = (String)request.getAttribute("bpm_to");
+	if (bpm_to == null){ bpm_to = "";}
+	
+	// (16) 以下の項目を元に並び順の入力状態を再現する。
 	String sort_order = (String)request.getAttribute("sort_order");
 	if (sort_order == null){ sort_order="1";}
 %>
@@ -420,6 +456,106 @@
           </tr>
         </table>
       </div>
+
+      <!-- キー -->
+      <div class="input_table">
+        <table>
+          <tr>
+            <td class="label" rowspan=2 <%= key_is_error %>>キー</td>
+            <td class="value" <%= key_is_error %>>
+              <table class="radio_base">
+                <tr>
+                  <td>
+                    <label>
+                      <input type="radio" name="key_radio" value="1" class="onOffRadio" <%= key_radio1 %>><span class="radio_label">指定</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input type="radio" name="key_radio" value="2" class="onOffRadio" <%= key_radio2 %>><span class="radio_label">指定なし</span>
+                    </label>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="value" <%= key_is_error %>>
+              <select name="key" tabindex="1" value="<%= key %>">
+				<option value="01" <% if ("01".equals(key)) { %>selected<% } %>>Cメジャー</option>
+				<option value="02" <% if ("02".equals(key)) { %>selected<% } %>>Cシャープメジャー</option>
+				<option value="03" <% if ("03".equals(key)) { %>selected<% } %>>Dフラットメジャー</option>
+				<option value="04" <% if ("04".equals(key)) { %>selected<% } %>>Dメジャー</option>
+				<option value="05" <% if ("05".equals(key)) { %>selected<% } %>>Dシャープメジャー</option>
+				<option value="06" <% if ("06".equals(key)) { %>selected<% } %>>Eフラットメジャー</option>
+				<option value="07" <% if ("07".equals(key)) { %>selected<% } %>>Eメジャー</option>
+				<option value="08" <% if ("08".equals(key)) { %>selected<% } %>>Fメジャー</option>
+				<option value="09" <% if ("09".equals(key)) { %>selected<% } %>>Fシャープメジャー</option>
+				<option value="10" <% if ("10".equals(key)) { %>selected<% } %>>Gフラットメジャー</option>
+				<option value="11" <% if ("11".equals(key)) { %>selected<% } %>>Gメジャー</option>
+				<option value="12" <% if ("12".equals(key)) { %>selected<% } %>>Gシャープメジャー</option>
+				<option value="13" <% if ("13".equals(key)) { %>selected<% } %>>Aフラットメジャー</option>
+				<option value="14" <% if ("14".equals(key)) { %>selected<% } %>>Aメジャー</option>
+				<option value="15" <% if ("15".equals(key)) { %>selected<% } %>>Aシャープメジャー</option>
+				<option value="16" <% if ("16".equals(key)) { %>selected<% } %>>Bフラットメジャー</option>
+				<option value="17" <% if ("17".equals(key)) { %>selected<% } %>>Bメジャー</option>
+				<option value="18" <% if ("18".equals(key)) { %>selected<% } %>>Cマイナー</option>
+				<option value="19" <% if ("19".equals(key)) { %>selected<% } %>>Cシャープマイナー</option>
+				<option value="20" <% if ("20".equals(key)) { %>selected<% } %>>Dフラットマイナー</option>
+				<option value="21" <% if ("21".equals(key)) { %>selected<% } %>>Dマイナー</option>
+				<option value="22" <% if ("22".equals(key)) { %>selected<% } %>>Dシャープマイナー</option>
+				<option value="23" <% if ("23".equals(key)) { %>selected<% } %>>Eフラットマイナー</option>
+				<option value="24" <% if ("24".equals(key)) { %>selected<% } %>>Eマイナー</option>
+				<option value="25" <% if ("25".equals(key)) { %>selected<% } %>>Fマイナー</option>
+				<option value="26" <% if ("26".equals(key)) { %>selected<% } %>>Fシャープマイナー</option>
+				<option value="27" <% if ("27".equals(key)) { %>selected<% } %>>Gフラットマイナー</option>
+				<option value="28" <% if ("28".equals(key)) { %>selected<% } %>>Gマイナー</option>
+				<option value="29" <% if ("29".equals(key)) { %>selected<% } %>>Gシャープマイナー</option>
+				<option value="30" <% if ("30".equals(key)) { %>selected<% } %>>Aフラットマイナー</option>
+				<option value="31" <% if ("31".equals(key)) { %>selected<% } %>>Aマイナー</option>
+				<option value="32" <% if ("32".equals(key)) { %>selected<% } %>>Aシャープマイナー</option>
+				<option value="33" <% if ("33".equals(key)) { %>selected<% } %>>Bフラットマイナー</option>
+				<option value="34" <% if ("34".equals(key)) { %>selected<% } %>>Bマイナー</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- bpm -->
+      <div class="input_table">
+        <table>
+          <tr>
+            <td class="label" rowspan=2 <%= bpm_is_error %>>BPM</td>
+            <td class="value" <%= bpm_is_error %>>
+              <table class="radio_base">
+                <tr>
+                  <td>
+                    <label>
+                      <input type="radio" name="bpm_radio" value="1" class="onOffRadio" <%= bpm_radio1 %>><span class="radio_label">指定</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input type="radio" name="bpm_radio" value="2" class="onOffRadio" <%= bpm_radio2 %>><span class="radio_label">指定なし</span>
+                    </label>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="value" <%= bpm_is_error %>>
+              <input type="text" name="bpm_from" maxlength='4' value="<%= bpm_from %>">
+              <br>
+              ～
+              <br>
+              <input type="text" name="bpm_to" maxlength='4' value="<%= bpm_to %>">
+            </td>
+          </tr>
+        </table>
+      </div>
+
 
       <!-- 並び順 -->
       <div class="input_table">

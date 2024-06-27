@@ -17,21 +17,20 @@ if ("1".equals(request.getAttribute("nickname_is_error"))) {
 
 // (3) 以下の項目を元にニックネームの入力状態を再現する。
 String nickname_Radio1 = "";
+String nickname_Radio2 ="checked=\"checked\"";
+
 if ("1".equals(request.getAttribute("nickname_radio"))) {
 	nickname_Radio1 = "checked=\"checked\"";
+	nickname_Radio2 = "";
 }
-;
-String nickname_Radio2 = "";
-if ("2".equals(request.getAttribute("nickname_radio"))) {
-	nickname_Radio2 = "checked=\"checked\"";
-}
+
 String nickname_type_Radio1 = "";
+String nickname_type_Radio2 = "checked=\"checked\"";
+
 if ("1".equals(request.getAttribute("nickname_type_radio"))) {
 	nickname_type_Radio1 = "checked=\"checked\"";
-}
-String nickname_type_Radio2 = "";
-if ("2".equals(request.getAttribute("nickname_type_radio"))) {
-	nickname_type_Radio2 = "checked=\"checked\"";
+	nickname_type_Radio2 = "";
+
 }
 String nickname = (String) request.getAttribute("nickname");
 if (nickname == null)
@@ -45,12 +44,11 @@ if ("1".equals(request.getAttribute("joined_date_is_error"))) {
 
 // (5) 以下の項目を元に登録日の入力状態を再現する。
 String joined_date_Radio1 = "";
+String joined_date_Radio2 ="checked=\"checked\"";
+
 if ("1".equals(request.getAttribute("joined_date_radio"))) {
 	joined_date_Radio1 = "checked=\"checked\"";
-}
-String joined_date_Radio2 = "";
-if ("2".equals(request.getAttribute("joined_date_radio"))) {
-	joined_date_Radio2 = "checked=\"checked\"";
+	joined_date_Radio2 =  "";
 }
 String joined_date_from = (String) request.getAttribute("joined_date_from");
 String joined_date_to = (String) request.getAttribute("joined_date_to");
@@ -63,12 +61,12 @@ if ("1".equals(request.getAttribute("gender_is_error"))) {
 
 // (7) 以下の項目を元に性別の入力状態を再現する。
 String gender_Radio1 = "";
+String gender_Radio2 ="checked=\"checked\"";
+
 if ("1".equals(request.getAttribute("gender_radio"))) {
 	gender_Radio1 = "checked=\"checked\"";
-}
-String gender_Radio2 = "";
-if ("2".equals(request.getAttribute("gender_radio"))) {
-	gender_Radio2 = "checked=\"checked\"";
+	gender_Radio2 =  "";
+
 }
 String gender = (String) request.getAttribute("gender");
 if (gender == null)
@@ -80,15 +78,14 @@ if ("1".equals(request.getAttribute("birthday_is_error"))) {
 	birthday_is_error = ", error";
 }
 
-// (9) 以下の項目を元に再生回数の入力状態を再現する。
+// (9) 以下の項目を元に誕生日の入力状態を再現する。
 String birthday_Radio1 = "";
+String birthday_Radio2 = "checked=\"checked\"";
 if ("1".equals(request.getAttribute("birthday_radio"))) {
 	birthday_Radio1 = "checked=\"checked\"";
+	birthday_Radio2 = "";
 }
-String birthday_Radio2 = "";
-if ("2".equals(request.getAttribute("birthday_radio"))) {
-	birthday_Radio2 = "checked=\"checked\"";
-}
+
 String birthday_from = (String) request.getAttribute("birthday_from");
 String birthday_to = (String) request.getAttribute("birthday_to");
 
@@ -100,13 +97,12 @@ if ("1".equals(request.getAttribute("listener_count_is_error"))) {
 
 // (11) 以下の項目を元にリスナー数の入力状態を再現する。
 String listener_count_Radio1 = "";
+String listener_count_Radio2 = "checked=\"checked\"";
 if ("1".equals(request.getAttribute("listener_count_radio"))) {
 	listener_count_Radio1 = "checked=\"checked\"";
+	listener_count_Radio2 = "";
 }
-String listener_count_Radio2 = "";
-if ("2".equals(request.getAttribute("listener_count_radio"))) {
-	listener_count_Radio2 = "checked=\"checked\"";
-}
+
 String listener_count_from = (String) request.getAttribute("listener_count_from");
 if(listener_count_from == null)
 	listener_count_from = "";
@@ -122,12 +118,14 @@ if ("1".equals(request.getAttribute("language_is_error"))) {
 
 // (13) 以下の項目を元に言語の入力状態を再現する。
 String language_type_jp = "";
-if ("001".equals(request.getAttribute("language_type_jp"))) {
-	language_type_jp = "checked=\"checked\"";
+String lg =(String) request.getAttribute("language_type_jp");
+System.out.println(lg);
+if ("true".equals(request.getAttribute("language_type_jp"))) {
+	language_type_jp = "checked";
 }
 String language_type_en = "";
-if ("002".equals(request.getAttribute("language_type_en"))) {
-	language_type_en = "checked=\"checked\"";
+if ("true".equals(request.getAttribute("language_type_en"))) {
+	language_type_en = "checked";
 }
 
 // (14) 以下の項目を元に並び順の入力状態を再現する。
@@ -201,7 +199,7 @@ if (sort_order == null)
 									</label></td>
 									<td><label> <input type="radio"
 											name="nickname_radio" id="id_name2" value="2"
-											checked="checked" class="onOffRadio" <%=nickname_Radio2%>><span
+											class="onOffRadio" <%=nickname_Radio2%>><span
 											class="radio_label">指定なし</span>
 									</label></td>
 								</tr>
@@ -247,7 +245,7 @@ if (sort_order == null)
 											<%=joined_date_Radio1%>><span class="radio_label">指定</span>
 									</label></td>
 									<td><label> <input type="radio"
-											name="joined_date_radio" value="2" checked="checked"
+											name="joined_date_radio" value="2" 
 											class="onOffRadio" <%=joined_date_Radio2%>><span
 											class="radio_label">指定なし</span>
 									</label></td>
@@ -290,7 +288,7 @@ if (sort_order == null)
 									</label></td>
 									<td><label> <input type="radio"
 											name="gender_radio" value="2" class="onOffRadio"
-											checked="checked" <%=gender_Radio2%>><span
+											<%=gender_Radio2%>><span
 											class="radio_label">指定なし</span>
 									</label></td>
 								</tr>
@@ -311,7 +309,7 @@ if (sort_order == null)
 			<div class="input_table">
 				<table>
 					<tr>
-						<td class="label" rowspan="2" <%=birthday_is_error %>>誕生日</td>
+						<td class="label" rowspan="2" <%=birthday_is_error%>>誕生日</td>
 						<td class="value"<%=birthday_is_error %>>
 							<table class="radio_base">
 								<tr>
@@ -320,7 +318,7 @@ if (sort_order == null)
 											<%=birthday_Radio1%>><span class="radio_label">指定</span>
 									</label></td>
 									<td><label> <input type="radio"
-											name="birthday_radio" value="2" checked="checked"
+											name="birthday_radio" value="2" 
 											class="onOffRadio" <%=birthday_Radio2%>><span
 											class="radio_label">指定なし</span>
 									</label></td>
@@ -329,7 +327,7 @@ if (sort_order == null)
 						</td>
 					</tr>
 					<tr>
-						<td class="value" <%=birthday_is_error %>>
+						<td class="value" <%=birthday_is_error%>>
 							<table class="date_base">
 								<tr>
 									<td><input type="date" name="birthday_from"
@@ -363,7 +361,7 @@ if (sort_order == null)
 									</label></td>
 									<td><label> <input type="radio"
 											name="listener_count_radio" value="2" class="onOffRadio"
-											<%=listener_count_Radio2%> checked="checked"><span
+											<%=listener_count_Radio2%>><span
 											class="radio_label">指定なし</span>
 									</label></td>
 								</tr>
@@ -402,14 +400,14 @@ if (sort_order == null)
 							<table class="check_base">
 								<tr>
 									<td><label> <input type="checkbox"
-											name="language_type_jp" value="001"><span
-											class="check_label"<%=language_type_jp %>>日本語</span>
+											name="language_type_jp" value="001"<%=language_type_jp %>><span
+											class="check_label">日本語</span>
 									</label></td>
 								</tr>
 								<tr>
 									<td><label> <input type="checkbox"
-											name="language_type_en" value="002"><span
-											class="check_label"<%=language_type_en %>>英語</span>
+											name="language_type_en" value="002"<%=language_type_en %>><span
+											class="check_label">英語</span>
 									</label></td>
 								</tr>
 							</table>

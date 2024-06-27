@@ -1,5 +1,6 @@
 package jp.excd.servlet;
 
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -310,13 +311,13 @@ public class S00007 extends HttpServlet {
 
 		// (13) 誕生日FROM　誕生日TO（逆転チェック）
 		if ("1".equals(birthday_radio)) {
-			if(Judge.isDateValue("birthday from")== true && Judge.isDateValue("birthday to")== true) {
+			if(Judge.isDateValue(birthday_from)== true && Judge.isDateValue(birthday_to)== true) {
 				int checkResult = birthday_to.compareTo(birthday_from);
 				if (checkResult < 0) {
 					//エラー
 					String s = this.getDescription(con, "ES00007_009");
 					request.setAttribute("error", s);
-					request.setAttribute("rating_from_error", "1");
+					request.setAttribute("birthday_is_error", "1");
 					getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
 							response);
 					return;
@@ -516,7 +517,7 @@ public class S00007 extends HttpServlet {
 				break;
 			}
 
-		
+
 			ComposerBean cb = new ComposerBean(); // コンストラクタはループ内で生成する
 			//ニックネーム
 			String Nickname = l.nickname();
@@ -545,8 +546,8 @@ public class S00007 extends HttpServlet {
 
 			newList.add(cb);
 		}
-		 
-		
+
+
 		String count = NumberFormat.getNumberInstance().format(listSize);
 		request.setAttribute("listSize", listSize);
 		request.setAttribute("hits", count);
@@ -629,7 +630,7 @@ public class S00007 extends HttpServlet {
 		String sql23 = " ORDER BY joined_date asc";
 		String sql24 = " ORDER BY listener_count desc";
 		String sql25 = " ORDER BY listener_count asc";
-		String sql26 = " ,id desc;";
+		String sql26 = " ,id asc;";
 
 		// (2) SQLを連結するための文字列を宣言する。
 		String query = sql1 + sql2;
@@ -678,10 +679,13 @@ public class S00007 extends HttpServlet {
 					query = query + sql6;
 				}
 				query = query + sql7;
-
 				PlaceHolderInput phi = new PlaceHolderInput();
 				phi.setType("3");
-				phi.setStringValue(joined_date_from);
+				String answer1 = joined_date_from.substring(0,4);
+				String answer2 = joined_date_from.substring(5,7);
+				String answer3 = joined_date_from.substring(8,10);
+				String answer = answer1 + answer2 + answer3;
+				phi.setStringValue(answer);
 				list.add(phi);
 			} else {
 				throw new Exception();
@@ -689,7 +693,6 @@ public class S00007 extends HttpServlet {
 		} else if (!("1".equals(joined_date_radio))) {
 			//処理続行
 		}
-
 		// (6) 登録日TOのSQLへの連結及びプレイスホルダへの設定
 		if ("1".equals(joined_date_radio)) {
 			if (joined_date_to == null || "".equals(joined_date_to)) {
@@ -702,10 +705,13 @@ public class S00007 extends HttpServlet {
 					query = query + sql8;
 				}
 				query = query + sql9;
-
 				PlaceHolderInput phi = new PlaceHolderInput();
 				phi.setType("3");
-				phi.setStringValue(joined_date_to);
+				String answer1 = joined_date_to.substring(0,4);
+				String answer2 = joined_date_to.substring(5,7);
+				String answer3 = joined_date_to.substring(8,10);
+				String answer = answer1 + answer2 + answer3;
+				phi.setStringValue(answer);
 				list.add(phi);
 			} else {
 				throw new Exception();
@@ -763,10 +769,13 @@ public class S00007 extends HttpServlet {
 					query = query + sql12;
 				}
 				query = query + sql13;
-
 				PlaceHolderInput phi = new PlaceHolderInput();
 				phi.setType("3");
-				phi.setStringValue(birthday_from);
+				String answer1 = birthday_from.substring(0,4);
+				String answer2 = birthday_from.substring(5,7);
+				String answer3 = birthday_from.substring(8,10);
+				String answer = answer1 + answer2 + answer3;
+				phi.setStringValue(answer);
 				list.add(phi);
 			} else {
 				throw new Exception();
@@ -786,10 +795,13 @@ public class S00007 extends HttpServlet {
 					query = query + sql14;
 				}
 				query = query + sql15;
-
 				PlaceHolderInput phi = new PlaceHolderInput();
 				phi.setType("3");
-				phi.setStringValue(birthday_to);
+				String answer1 = birthday_to.substring(0,4);
+				String answer2 = birthday_to.substring(5,7);
+				String answer3 = birthday_to.substring(8,10);
+				String answer = answer1 + answer2 + answer3;
+				phi.setStringValue(answer);
 				list.add(phi);
 			} else {
 				throw new Exception();
@@ -797,6 +809,7 @@ public class S00007 extends HttpServlet {
 		} else if (!("1".equals(birthday_radio))) {
 			//処理続行
 		}
+
 		// (10) リスナー数FROMのSQLへの連結及びプレイスホルダへの設定
 		if ("1".equals(listener_count_radio)) {
 			if (listener_count_from == null || "".equals(listener_count_from)) {
@@ -908,6 +921,7 @@ public class S00007 extends HttpServlet {
 				pstmt.setDouble(i + 1, option.getDoubleValue());
 			} else if ("3".equals(type)) {
 				pstmt.setString(i + 1, option.getStringValue());
+				System.out.println(option.getStringValue());
 			}
 		}
 

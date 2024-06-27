@@ -41,3 +41,4 @@ public record ComposerRecord(
 		//関連リンク文字列
 		String other_link_description) {
 }
+

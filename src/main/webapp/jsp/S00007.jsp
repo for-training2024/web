@@ -53,11 +53,6 @@ if ("1".equals(request.getAttribute("joined_date_radio"))) {
 String joined_date_from = (String) request.getAttribute("joined_date_from");
 String joined_date_to = (String) request.getAttribute("joined_date_to");
 
-// (6) 「性別_エラー状態(gender_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
-String gender_is_error = "";
-if ("1".equals(request.getAttribute("gender_is_error"))) {
-	gender_is_error = ", error";
-}
 
 // (7) 以下の項目を元に性別の入力状態を再現する。
 String gender_Radio1 = "";
@@ -68,6 +63,7 @@ if ("1".equals(request.getAttribute("gender_radio"))) {
 	gender_Radio2 =  "";
 
 }
+
 String gender = (String) request.getAttribute("gender");
 if (gender == null)
 	gender = "男";
@@ -288,7 +284,11 @@ if (sort_order == null)
 									</label></td>
 									<td><label> <input type="radio"
 											name="gender_radio" value="2" class="onOffRadio"
+<<<<<<< HEAD
 											<%=gender_Radio2%>><span
+=======
+											 <%=gender_Radio2%>><span
+>>>>>>> 4cd46a9 (temp1)
 											class="radio_label">指定なし</span>
 									</label></td>
 								</tr>

@@ -70,7 +70,6 @@ public class S00005 extends HttpServlet {
 		}
 
 	}
-
 	//mainProcessForSearchメソッド
 	private void mainProcessForSearch (HttpServletRequest request, HttpServletResponse response, Connection con) throws IOException, ServletException, SQLException {
 

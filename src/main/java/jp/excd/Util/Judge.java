@@ -34,7 +34,6 @@ public class Judge {
 		}
 
 	}
-
 	/**
 	 * 数値として妥当な値かどうか判定する。返り値はtrueかfalse
 	 * @param num チェック対象値

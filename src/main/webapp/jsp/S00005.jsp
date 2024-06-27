@@ -12,7 +12,6 @@
 	if ("1".equals(request.getAttribute("release_date_is_error"))) {
 		release_date_is_error = " error";
 	}
-
 	// (3) 以下の項目を元に公開日時の入力状態を再現する。
 	String release_date_radio1 = "";
 	String release_date_radio2 = "checked=\"checked\"";

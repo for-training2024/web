@@ -33,16 +33,3 @@ div.main_button button {
 
 }
 
-/*テキストボックス*/
-input[type="text"] {
-	width: 100px;
-	height: 30px;
-	border-radius: 7px;
-}
-
-input[name="title"]{
-	width: 300px;
-	height: 30px;
-	border-radius: 7px;
-
-}

@@ -14,15 +14,25 @@ public class Judge {
 	 */
 	public static boolean isDateValue (String value) {
 		
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format2 = new SimpleDateFormat("YYYY/MM/DD");
+		DateFormat format3 = new SimpleDateFormat("YYYYMMDD");
 
 		try {
-			format.parse(value);
-			return true;
-
+			if (value.indexOf("-") == 5 ) {
+				format1.parse(value);
+				return true;
+			} else if (value.indexOf("/") == 5 ) {
+				format2.parse(value);
+				return true;
+			} else {
+				format3.parse(value);
+				return true;
+			}
 		} catch (ParseException e) {
 			return false;
 		}
+
 	}
 
 	/**
@@ -37,7 +47,7 @@ public class Judge {
 			return true;
 			
 		} catch (NumberFormatException e) {
-			return false; // エラーにならないように、とりあえずダミー
+			return false; 
 		}
 	}
 
@@ -53,7 +63,7 @@ public class Judge {
 			return true;
 			
 		} catch (NumberFormatException e) {
-			return false; // エラーにならないように、とりあえずダミー
+			return false; 
 		}
 	}
 }

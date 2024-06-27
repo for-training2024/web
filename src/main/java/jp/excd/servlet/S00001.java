@@ -81,50 +81,50 @@ public class S00001 extends HttpServlet {
 			HttpServletResponse response,
 			Connection con) throws Exception{
 
-		//接続URL受け取り
+		//　接続URL受け取り
 		String URL = request.getRequestURI();
 
-		// (1) 接続URLが「/ja/S00001」以外の場合は、404.jspへフォワーディングする。
+		//  接続URLが「/ja/S00001」以外の場合は、404.jspへフォワーディングする。
 		if ("/web/ja/S00001".equals(URL.substring(0,14))) {
 		} else {
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
 		}
 
-		// POSTパラメタの文字コードを指定
+		//　POSTパラメタの文字コードを指定
 		request.setCharacterEncoding("UTF-8");
 
-		// (2) GETパラメタから値を受け取る。
+		//  GETパラメタから値を受け取る。
 		String category = (String)request.getParameter("category");
 		String from = (String)request.getParameter("from");
 
-		// (3) URLの表示対象言語に応じて(日本語)、アプリリンクに表示する文言を取得する。
+		//  URLの表示対象言語に応じて(日本語)、アプリリンクに表示する文言を取得する。
 		String description = getDescription(con);
 
-		// (4) URLで指定された言語区分(日本語)をキーに「getTopnotice」を呼び出し、告知情報を取得する。
+		//  URLで指定された言語区分(日本語)をキーに「getTopnotice」を呼び出し、告知情報を取得する。
 		String notice = getTopnotice(con,"002");
 
-		// (5) SQLの組み立てと、Where句への値の設定を行う。「executeQuery」メソッドを呼び出す。
+		//  SQLの組み立てと、Where句への値の設定を行う。「executeQuery」メソッドを呼び出す。
 		List<ExSongRecord> results = null;
 		try {
 			results = executeQuery(request, response, con, category, from);
-			
-			
-			
+
+
+
 		} catch (Exception e) {
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/500.jsp").forward(request, response);
 		}
 
-		// (6) 「さらに読み込む」ボタンに設定するURL
+		// 「さらに読み込む」ボタンに設定するURL
 		String loadMore = null;
 		int fromLoad;
-		
 
-		//行数指定の有無
+
+		//　行数指定の有無
 		if(from != null) {
-			//整数判定
+			//　整数判定
 			Pattern pattern = Pattern.compile("^[0-9]+$");
 			boolean numCheck = pattern.matcher(from).matches();
-			
+
 
 			if ("2".equals(category) || "3".equals(category) || "4".equals(category) ) {
 
@@ -160,7 +160,7 @@ public class S00001 extends HttpServlet {
 		}
 
 		int counter = 0;
-		// (7) ExSongBeanインスタンスを持つListを作成する。
+		//  ExSongBeanインスタンスを持つListを作成する。
 		List<ExSongBean> exSongList = new ArrayList<ExSongBean>();
 		for (ExSongRecord record : results) {
 
@@ -209,7 +209,7 @@ public class S00001 extends HttpServlet {
 			bean.setunique_code(Unique_code);
 
 			exSongList.add(bean);
-			
+
 			counter = counter + 1;
 			// 先頭の100件のみ処理を行う。
 			if (counter > 100) {
@@ -217,18 +217,18 @@ public class S00001 extends HttpServlet {
 			}
 		}
 
-		// (8) Requestオブジェクトに値をセットする
+		// Requestオブジェクトに値をセットする
 		request.setAttribute("list", exSongList);
 		request.setAttribute("count", counter);
 		request.setAttribute("category", category);
 		request.setAttribute("notice", notice);
 		request.setAttribute("description", description);
 		request.setAttribute("loadMore", loadMore);
-		
-		//(9)フォワード先の指定
+
+		//　フォワード先の指定
 		RequestDispatcher dispatcher =  request.getRequestDispatcher("/jsp/S00001.jsp");
 
-		//フォワードの実行
+		//　フォワードの実行
 		dispatcher.forward(request, response);
 
 	}
@@ -274,7 +274,7 @@ public class S00001 extends HttpServlet {
 	// SQLの組み立てと、Where句への値の設定を行うメソッド
 	private List<ExSongRecord>  executeQuery(HttpServletRequest request, HttpServletResponse response,Connection con, String category, String from) throws Exception{
 
-		// (1) SQLの断片を用意する。
+		//  SQLの断片を用意する。
 		String sql1 = "SELECT song.id, song.title, song.rating_total, song.rating_average, song.total_listen_count, song.release_datetime, song.image_file_name, composer.nickname, composer.unique_code ";
 		String sql2 = "FROM song ";
 		String sql3 = "LEFT JOIN composer ON song.composer_id = composer.id ";
@@ -285,10 +285,10 @@ public class S00001 extends HttpServlet {
 		String sql8 = "ORDER BY song.release_datetime desc, song.id asc ";
 		//String sql9 = "LIMIT 5 OFFSET ? ";
 
-		// (2) SQLを連結するための文字列を宣言する。
+		//  SQLを連結するための文字列を宣言する。
 		String query = sql1 + sql2 + sql3;
 
-		// (3) プレイスホルダに設定する値を格納するためのListを用意する。
+		//  プレイスホルダに設定する値を格納するためのListを用意する。
 		List<PlaceHolderInput> list = new ArrayList<PlaceHolderInput>();
 
 		// 現在のエポック秒を取得
@@ -301,7 +301,7 @@ public class S00001 extends HttpServlet {
 		double yearAgo = (nowEpoch/1000 - 31104000);
 
 
-		// (4) GETパラメタで受け取った[category]に応じて、SQLを組み立てる。
+		//  GETパラメタで受け取った[category]に応じて、SQLを組み立てる。
 		PlaceHolderInput phi = new PlaceHolderInput();
 		if("2".equals(category)){
 			query = query + sql4 + sql5 + sql6;
@@ -328,13 +328,12 @@ public class S00001 extends HttpServlet {
 			list.add(phi);
 
 		}
-		// (5) 行数指定fromのSQLへの連結及びプレイスホルダへの設定
-	
 
-		// (6) PreparedStatementのインスタンスを得る。
+
+		//  PreparedStatementのインスタンスを得る。
 		PreparedStatement pstmt = con.prepareStatement(query);
 
-		// (7) 生成したプレイスホルダ用のListの内容をすべて、プレイスホルダに設定する。
+		//  生成したプレイスホルダ用のListの内容をすべて、プレイスホルダに設定する。
 		for (int i = 0; i < list.size(); i++) {
 			PlaceHolderInput option = list.get(i);
 			String type = option.getType();
@@ -347,7 +346,7 @@ public class S00001 extends HttpServlet {
 			}
 		}
 
-		// (8) executeQueryを実行し、結果の「ResultSet」を得る。
+		//  executeQueryを実行し、結果の「ResultSet」を得る。
 		ResultSet rs = pstmt.executeQuery();
 		List<ExSongRecord> songList = new ArrayList<ExSongRecord>();
 
@@ -392,10 +391,10 @@ public class S00001 extends HttpServlet {
 			songList.add(record);
 		}
 
-		// (9) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
+		//  ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
 		pstmt.close();
 
-		// (10) 前処理で生成したListを呼び出し元に返却する。
+		//  前処理で生成したListを呼び出し元に返却する。
 		return songList;
 	}
 

@@ -74,25 +74,26 @@ div.song_list ul li div.cell div.song1 img {
 
     <!-- トップ告知 -->
 
-      <%
-      String notice = (String)request.getAttribute("notice");
-      if (notice != "" && notice != null){
-   		out.println("<div class=\"top_notice\">");
-   		out.println("<p class=\"top_notice_title\">告知</p>");
-   		out.println("<p class=\"top_notice_body\">" + notice + "</p>");
-   		out.println("</div>");
-      }
-    %>
+	<%
+    	String notice = (String)request.getAttribute("notice");
+    	if (notice != "" && notice != null){
+   			out.println("<div class=\"top_notice\">");
+   			out.println("<p class=\"top_notice_title\">告知</p>");
+   			out.println("<p class=\"top_notice_body\">" + notice + "</p>");
+   			out.println("</div>");
+    	}
+	%>
     <!-- ソングテーブル -->
     <div class="song_list">
       <ul>
-		<% int from = (Integer)request.getAttribute("from");
-		   int count = (Integer)request.getAttribute("count");
-		if (from<=count) {
-		for (int i=from-1; i<= from+3; i++) {
-			if(i >= songs.size()-1){
-				break;
-			}
+		<%  
+			int from = (Integer)request.getAttribute("from");
+			int count = (Integer)request.getAttribute("count");
+			if (from<=count) {
+				for (int i=from-1; i<= from+3; i++) {
+					if(i >= songs.size()-1){
+						break;
+					}
 		%>
 			
         <li>
@@ -129,21 +130,21 @@ div.song_list ul li div.cell div.song1 img {
         </li>
 		<%
 			
-		}
-		}
+				}
+			}
 		%>
       </ul>
     </div>
 
     <!-- メインボタン -->
     
-      <% 
-    if((Integer)request.getAttribute("from")<=(Integer)request.getAttribute("count")-6) {
-    	out.println("<div class=\"main_button\">");
-    	out.println("<a href=\""+ request.getAttribute("loadMore") + "\">さらに読み込む</a>");
-    	out.println("</div>");    	
-    }
-    %>
+	<% 
+		if((Integer)request.getAttribute("from")<=(Integer)request.getAttribute("count")-6) {
+			out.println("<div class=\"main_button\">");
+ 		   	out.println("<a href=\""+ request.getAttribute("loadMore") + "\">さらに読み込む</a>");
+ 		   	out.println("</div>");    	
+ 		}
+ 	%>
     
     <!-- ページトップへjavaScript -->
     <div id="pagetop" hidden>

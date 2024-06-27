@@ -197,9 +197,16 @@ public class S00004 extends HttpServlet {
 				List<SongRecord> songList = new ArrayList<SongRecord>();
 
 				int count = 0;
-
+				long count1 = 0;
+				long count2 = 0;
+				Double count3 = (double) 0;
+				
 				while (rs.next()) {
 					count = count + 1;
+					count1 = count1 + rs.getLong("total_listen_count");
+					count2 = count2 + rs.getLong("rating_total");
+					count3 = count3 + rs.getDouble("rating_average");
+					
 					SongRecord SongRecord = new SongRecord(
 							rs.getString("id"),
 							rs.getString("title"),
@@ -222,6 +229,8 @@ public class S00004 extends HttpServlet {
 					songList.add(SongRecord);
 
 				}
+				
+				count3 = count3 / count;
 				List<S00004SongBean> songBeanList = new ArrayList<S00004SongBean>();
 				
 				for (SongRecord SongRecord : songList) {
@@ -272,7 +281,15 @@ public class S00004 extends HttpServlet {
 					
 				}
 
-//				String counter = NumberFormat.getNumberInstance().format(count);
+				String Count1 =Transform.conComma(count1);
+				request.setAttribute("composer_total_listen_count", Count1);
+				
+				String Count2 = Transform.conComma(count2);
+				request.setAttribute("composer_rating_total", Count2);
+				
+				String Count3 = Transform.conThree(count3);
+				request.setAttribute("composer_rating_average", Count3);
+				
 				request.setAttribute("hits", count);
 				request.setAttribute("songList", songBeanList);
 				pstmt.close();

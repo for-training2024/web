@@ -132,8 +132,19 @@ div.song_list ul li div.cell div.song1 img {
             <span class="label_top">作品数：</span>
             <span class="value"><%=request.getAttribute("hits") %></span>
             <br>
-
+            
+            <span class="label_top">総感動指数：</span>
+            <span class="value"><%=request.getAttribute("composer_rating_total") %></span>
             <br>
+
+            <span class="label_top">平均感動指数：</span>
+            <span class="value"><%=request.getAttribute("composer_rating_average") %></span>
+            <br>
+
+            <span class="label_top">総再生回数：</span>
+            <span class="value"><%=request.getAttribute("composer_total_listen_count") %></span>
+            <br>
+
 
           </td>
         </tr>

@@ -140,13 +140,12 @@ if (sort_order == null)
 	content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
 <title>作曲家検索</title>
 <link rel="stylesheet" href="/web/CSS/main2.css">
-<link rel="stylesheet" href="/web/CSS/S00007.css">
 <link rel="stylesheet" href="/web/CSS/S5678.css">
+<link rel="stylesheet" href="/web/CSS/S00007.css">
 <script src="/web/js/jquery-3.3.0.min.js"></script>
 <script src="/web/js/S00002.js"></script>
 <script src="/web/js/S00007.js"></script>
 </head>
-
 
 <body>
 	<!-- メニューのキャンセルレイヤの起点 -->
@@ -274,8 +273,8 @@ if (sort_order == null)
 			<div class="input_table">
 				<table>
 					<tr>
-						<td class="label" rowspan=2 <%=gender_is_error%>>性別</td>
-						<td class="value" <%=gender_is_error%>>
+						<td class="label" rowspan=2 >性別</td>
+						<td class="value" >
 							<table class="radio_base">
 								<tr>
 									<td><label> <input type="radio"
@@ -284,11 +283,8 @@ if (sort_order == null)
 									</label></td>
 									<td><label> <input type="radio"
 											name="gender_radio" value="2" class="onOffRadio"
-<<<<<<< HEAD
 											<%=gender_Radio2%>><span
-=======
-											 <%=gender_Radio2%>><span
->>>>>>> 4cd46a9 (temp1)
+
 											class="radio_label">指定なし</span>
 									</label></td>
 								</tr>
@@ -296,9 +292,10 @@ if (sort_order == null)
 						</td>
 					</tr>
 					<tr>
-						<td class="value" <%=gender_is_error%>><select name="gender">
-								<option value="1" <%=gender%>>男
-								<option value="2" <%=gender%>>女
+						<td class="value" >
+						<select name="gender"value="<%=gender%>">
+								<option value="1" <%= "1".equals(gender) ? "selected" : "" %>>男
+								<option value="2" <%= "2".equals(gender) ? "selected" : "" %>>女
 						</select></td>
 					</tr>
 				</table>
@@ -423,10 +420,10 @@ if (sort_order == null)
 					<tr>
 						<td class="label">並び順</td>
 						<td class="value"><select name="sort_order">
-								<option value="01">新しい順</option>
-								<option value="02">古い順</option>
-								<option value="03">リスナー数が多い順</option>
-								<option value="04">リスナー数が少ない順</option>
+								<option value="01"<% if ("01".equals(sort_order)) { %>selected<% } %>>新しい順</option>
+								<option value="02"<% if ("02".equals(sort_order)) { %>selected<% } %>>古い順</option>
+								<option value="03"<% if ("03".equals(sort_order)) { %>selected<% } %>>リスナー数が多い順</option>
+								<option value="04"<% if ("04".equals(sort_order)) { %>selected<% } %>>リスナー数が少ない順</option>
 						</select></td>
 					</tr>
 				</table>

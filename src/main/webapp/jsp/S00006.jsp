@@ -9,16 +9,9 @@
 	Integer hits = (Integer) request.getAttribute("hits");
 %>
 <head>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ">
-  <meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
-<title>作品検索</title>
-<link rel="stylesheet" href="/web/CSS/main.css" />
-<link rel="stylesheet" href="/web/CSS/S5678.css" />
-<script src="/web/js/jquery-3.3.0.min.js"></script>
-<script type="text/javascript" src="/web/js/input.js"></script>
-<script type="text/javascript" src="/web/js/S00002.js"></script>
+  <jsp:include page="HFail.jsp"></jsp:include>
+   <link rel="stylesheet" href="../../CSS/S5678.css">
+  <title>作曲家検索</title>
 </head>
 <body>
   <!-- メニューのキャンセルレイヤの起点 -->
@@ -165,17 +158,6 @@
 	</form>
 
 
-    <!-- ページトップへjavaScript -->
-	<div id="pagetop" hidden>
-	  <img alt="ページトップ" src="/web/image/pagetop.png">
-	</div>
-
-	<footer>
-		<p>
-		  Copyright <a href="https://www.excd.jp/">© EXCEED Co., Ltd.</a> All Rights Reserved.
-		</p>
-
-	</footer>
-
+<jsp:include page="Common.jsp"></jsp:include>
 </body>
 </html>

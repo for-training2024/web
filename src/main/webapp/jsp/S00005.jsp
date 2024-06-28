@@ -148,17 +148,9 @@
 
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ">
-  <meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
-  <title>作品検索</title>
-  <link rel="stylesheet" href="/web/CSS/main.css">
+  <jsp:include page="HFail.jsp"></jsp:include>
   <link rel="stylesheet" href="/web/CSS/S5678.css" />
-  <script src="/web/js/jquery-3.3.0.min.js"></script>
-    <script src="/web/js/input.js"></script>
-  <script src="/web/js/S00002.js"></script>
-  
+  <title>作曲家検索</title>
 </head>
 
 <body>
@@ -583,18 +575,8 @@
     </div>
 
     </form>
+<jsp:include page="Common.jsp"></jsp:include>
 
-    <!-- ページトップへjavaScript -->
-    <div id="pagetop" hidden>
-      <img alt="ページトップ" src="/web/image/pagetop.png">
-    </div>
-
-    <!-- フッター -->
-    <footer>
-      Copyright <a href="https://www.excd.jp/">© EXCEED Co., Ltd.</a> All Rights Reserved.
-    </footer>
-
-  </div>
     <script src="/web/js/S00005.js"></script>
   
 </body>

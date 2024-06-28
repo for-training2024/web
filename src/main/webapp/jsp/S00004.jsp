@@ -10,16 +10,9 @@
 	List<S00004SongBean> songs = (List<S00004SongBean>)request.getAttribute("songList");
 %>
 <head>
-<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ">
-  <meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
+  <jsp:include page="HFail.jsp"></jsp:include>
   <title>作曲家紹介</title>
-  <link rel="stylesheet" href="../../CSS/main.css">
-  <script src="../../js/jquery-3.3.0.min.js"></script>
-  <script src="../../js/S00002.js"></script>
-  
-  <style>
+ <style>
 div.song_list ul li div.cell div.song1 img {
     position: relative;
     left: 0px;
@@ -213,16 +206,7 @@ for (int i=0; i<songs.size(); i++) { %>
       </ul>
     </div>
 
+<jsp:include page="Common.jsp"></jsp:include>
 
-    <!-- ページトップへjavaScript -->
-    <div id="pagetop" hidden>
-      <img alt="ページトップ" src="../../image/pagetop.png">
-    </div>
-
-    <!-- フッター -->
-    <footer>
-      Copyright <a href="https://www.excd.jp/">© EXCEED Co., Ltd.</a> All Rights Reserved.
-    </footer>
-    </div>
 </body>
 </html>
